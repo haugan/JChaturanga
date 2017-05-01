@@ -1,5 +1,6 @@
 package engine.pieces;
 
+import com.google.common.collect.ImmutableList;
 import engine.board.Board;
 import engine.moves.Move;
 import engine.moves.Move.CaptureMove;
@@ -11,8 +12,6 @@ import java.util.Collection;
 import java.util.List;
 
 import static engine.board.BoardUtilities.*;
-import static engine.board.BoardUtilities.isValidSquarePosition;
-import static java.util.Collections.unmodifiableList;
 
 public class Pawn extends Piece {
 
@@ -89,7 +88,7 @@ public class Pawn extends Piece {
 
         }
 
-        return unmodifiableList(legalMoves);
+        return ImmutableList.copyOf(legalMoves);
     }
 
     /**

@@ -85,7 +85,7 @@ public abstract class Piece {
     public PlayerColor getColor() {return this.color;}
 
     /**
-     * @return TODO: comment this!
+     * @return TODO: comment this
      */
     public PieceType getType() {return this.type;}
 
@@ -95,7 +95,7 @@ public abstract class Piece {
     public boolean isFirstMove() {return this.isFirstMove;}
 
     /**
-     * @param board TODO: comment this!
+     * @param board TODO: comment this
      * @return a list of legal and valid Moves.
      */
     public abstract Collection<Move> calculateLegalMoves(final Board board);
@@ -115,9 +115,7 @@ public abstract class Piece {
 
         private String type;
 
-        PieceType(final String type) {
-            this.type = type;
-        }
+        PieceType(final String type) {this.type = type;}
 
         @Override
         public String toString() {return this.type;}

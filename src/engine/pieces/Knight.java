@@ -1,5 +1,6 @@
 package engine.pieces;
 
+import com.google.common.collect.ImmutableList;
 import engine.board.Board;
 import engine.board.Square;
 import engine.moves.Move;
@@ -12,11 +13,11 @@ import java.util.List;
 
 import static engine.board.BoardUtilities.*;
 import static engine.moves.Move.CaptureMove;
-import static java.util.Collections.unmodifiableList;
 
 public class Knight extends Piece {
 
-    private final static int[] MOVE_PATTERN = {-17, -15, -10, -6, 6, 10, 15, 17}; // offset from position
+    private final static int[] MOVE_PATTERN = {-17, -15, -10, -6,
+                                                17,  15,  10,  6}; // offset from position
 
     /**
      * @param position of Square from top-left to bottom-right; 0 to 63.
@@ -27,13 +28,13 @@ public class Knight extends Piece {
     }
 
     /**
-     * @return TODO: comment this!
+     * @return TODO: comment this
      */
     @Override
     public String toString() {return PieceType.KNIGHT.toString();}
 
     /**
-     * @param board TODO: comment this!
+     * @param board TODO: comment this
      * @return a list of legal Moves calculated from valid positions (e.g. not outside Board).
      */
     @Override
@@ -69,7 +70,7 @@ public class Knight extends Piece {
             }
         }
 
-        return unmodifiableList(legalMoves);
+        return ImmutableList.copyOf(legalMoves);
     }
 
     /**

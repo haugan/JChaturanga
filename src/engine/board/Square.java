@@ -30,8 +30,7 @@ public abstract class Square {
             emptySquareMap.put(i, new EmptySquare(i));
         }
 
-        //return unmodifiableMap(emptySquareMap);
-        return ImmutableMap.copyOf(emptySquareMap); // Google Guava library
+        return ImmutableMap.copyOf(emptySquareMap);
     }
 
     /**

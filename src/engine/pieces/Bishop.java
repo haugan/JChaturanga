@@ -1,5 +1,6 @@
 package engine.pieces;
 
+import com.google.common.collect.ImmutableList;
 import engine.board.Board;
 import engine.board.Square;
 import engine.moves.Move;
@@ -10,13 +11,13 @@ import java.util.Collection;
 import java.util.List;
 
 import static engine.board.BoardUtilities.*;
-import static engine.board.BoardUtilities.COLUMN_H;
-import static engine.moves.Move.*;
-import static java.util.Collections.unmodifiableList;
+import static engine.moves.Move.CaptureMove;
+import static engine.moves.Move.NeutralMove;
 
 public class Bishop extends Piece {
 
-    public static final int[] MOVE_PATTERN = {-9, -7, 7, 9}; // offset from position
+    public static final int[] MOVE_PATTERN = {-9, -7,
+                                               9,  7}; // offset from position
 
     /**
      * @param position of Square from top-left to bottom-right; 0 to 63.
@@ -27,13 +28,13 @@ public class Bishop extends Piece {
     }
 
     /**
-     * @return TODO: comment this!
+     * @return TODO: comment this
      */
     @Override
     public String toString() {return PieceType.BISHOP.toString();}
 
     /**
-     * @param board TODO: comment this!
+     * @param board TODO: comment this
      * @return a list of legal Moves calculated from valid positions (e.g. not outside Board).
      */
     @Override
@@ -72,7 +73,7 @@ public class Bishop extends Piece {
             }
         }
 
-        return unmodifiableList(legalMoves);
+        return ImmutableList.copyOf(legalMoves);
     }
 
     /**

@@ -122,7 +122,7 @@ public class Board {
             ); // get Piece associated with position, and create Square (with occupying Piece)
         }
 
-        return ImmutableList.copyOf(squares); // Google Guava library
+        return ImmutableList.copyOf(squares);
     }
 
     /**
@@ -175,7 +175,7 @@ public class Board {
                         this.whitePlayer.getLegalMoves(),
                         this.blackPlayer.getLegalMoves()
                 )
-        ); // Google Guava library
+        );
     }
 
     /**
