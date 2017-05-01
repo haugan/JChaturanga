@@ -51,12 +51,8 @@ public abstract class Move {
      */
     @Override
     public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof Move)) {
-            return false;
-        }
+        if (this == obj) return true;
+        if (!(obj instanceof Move)) return false;
         final Move other = (Move) obj;
         return
                 this.getDestinationPosition() == other.getDestinationPosition() &&
@@ -204,13 +200,34 @@ public abstract class Move {
             this.capturedPiece = capturedPiece;
         }
 
-        /**
-         * TODO: implement this method!
-         * @return new Board displaying new Piece positions after COMPLETED MoveTransaction.
-         */
+        @Override
+        public int hashCode() {
+            return this.capturedPiece.hashCode() + super.hashCode();
+        }
+
+        @Override
+        public boolean equals(final Object obj) {
+            if (this == obj) return true;
+            if (!(obj instanceof CaptureMove)) return false;
+            final CaptureMove other = (CaptureMove) obj;
+            return
+                super.equals(other) &&
+                this.getCapturedPiece().equals(other.getCapturedPiece());
+        }
+
         @Override
         public Board perform() {
             return null;
+        }
+
+        @Override
+        public boolean isCaptureMove() {
+            return true;
+        }
+
+        @Override
+        public Piece getCapturedPiece() {
+            return this.capturedPiece;
         }
     }
 

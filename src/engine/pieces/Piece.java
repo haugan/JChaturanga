@@ -49,18 +49,14 @@ public abstract class Piece {
      */
     @Override
     public boolean equals(final Object obj) {
-        if (this == obj) { // object references point to same object (reference equality)
-            return true;
-        }
-        if (!(obj instanceof Piece)) { // object reference is not a Piece type
-            return false;
-        }
+        if (this == obj) return true;
+        if (!(obj instanceof Piece)) return false;
         final Piece other = (Piece) obj;
         return
-                this.position == other.getPosition() &&
-                this.color == other.getColor() &&
-                this.type == other.getType() &&
-                this.isFirstMove() == other.isFirstMove(); // objects "contains" the same state
+            this.position == other.getPosition() &&
+            this.color == other.getColor() &&
+            this.type == other.getType() &&
+            this.isFirstMove() == other.isFirstMove(); // objects "contains" the same state
     }
 
     /**
@@ -115,8 +111,7 @@ public abstract class Piece {
 
         private String type;
 
-        PieceType(final String type) {
-            this.type = type;}
+        PieceType(final String type) {this.type = type;}
 
         @Override
         public String toString() {return this.type;}
