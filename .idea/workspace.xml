@@ -22,11 +22,12 @@
       <file leaf-file-name="Move.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/engine/moves/Move.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="15" column="43" lean-forward="true" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+            <state relative-caret-position="1700">
+              <caret line="236" column="69" lean-forward="false" selection-start-line="236" selection-start-column="69" selection-end-line="236" selection-end-column="69" />
               <folding>
                 <element signature="method#Move#0;class#Move#0" expanded="false" />
                 <element signature="method#perform#0;class#Move#0" expanded="false" />
+                <element signature="class#MoveFactory#0;class#Move#0" expanded="false" />
                 <element signature="method#createMove#0;class#MoveFactory#0;class#Move#0" expanded="false" />
                 <element signature="class#IllegalMove#0;class#Move#0" expanded="false" />
                 <element signature="class#NeutralMove#0;class#Move#0" expanded="false" />
@@ -564,7 +565,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -888,11 +889,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/moves/Move.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="15" column="43" lean-forward="true" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+        <state relative-caret-position="1700">
+          <caret line="236" column="69" lean-forward="false" selection-start-line="236" selection-start-column="69" selection-end-line="236" selection-end-column="69" />
           <folding>
             <element signature="method#Move#0;class#Move#0" expanded="false" />
             <element signature="method#perform#0;class#Move#0" expanded="false" />
+            <element signature="class#MoveFactory#0;class#Move#0" expanded="false" />
             <element signature="method#createMove#0;class#MoveFactory#0;class#Move#0" expanded="false" />
             <element signature="class#IllegalMove#0;class#Move#0" expanded="false" />
             <element signature="class#NeutralMove#0;class#Move#0" expanded="false" />

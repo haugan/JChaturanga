@@ -13,7 +13,7 @@ public abstract class Move {
 
     /**
      * @param board TODO: comment this
-     * @param movedPiece TODO: comment this
+     * @param movedPiece to be created at a numbered destination Square on a new Board.
      * @param destinationPosition numbered position of the Square that is moved to.
      */
     private Move(final Board board,
@@ -24,18 +24,19 @@ public abstract class Move {
         this.destinationPosition = destinationPosition;
     }
 
-    /**
-     * @return Piece that will move to new Board.
-     */
+    public boolean isCaptureMove() {return false;}
+    public boolean isCastlingMove() {return false;}
+
+    public Piece getCapturedPiece() {return null;}
     public Piece getMovedPiece() {return this.movedPiece;}
 
     /**
-     * @return numbered position of the Square that is moved from.
+     * @return numbered position of the Square a Piece is moved from.
      */
     public int getCurrentPosition() {return this.getMovedPiece().getPosition();}
 
     /**
-     * @return numbered position of the Square that is moved to.
+     * @return numbered position of the Square a Piece is moved to.
      */
     public int getDestinationPosition() {return this.destinationPosition;}
 
@@ -70,9 +71,7 @@ public abstract class Move {
     // INNER CLASS!
     public static class MoveFactory {
 
-        private MoveFactory() {
-            throw new RuntimeException("The MoveFactory class is not instantiable!");
-        }
+        private MoveFactory() {throw new RuntimeException("The MoveFactory class is not instantiable!");}
 
         public static Move createMove(final Board board,
                                       final int currentPosition, // ..from Square number i
@@ -109,8 +108,8 @@ public abstract class Move {
     // INNER CLASS!
     public static final class NeutralMove extends Move {
         /**
-         * @param board TODO: comment this!
-         * @param movedPiece TODO: comment this!
+         * @param board TODO: comment this
+         * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to.
          */
         public NeutralMove(final Board board,
@@ -123,8 +122,8 @@ public abstract class Move {
     // INNER CLASS!
     public static final class PawnNeutralSingleMove extends Move {
         /**
-         * @param board TODO: comment this!
-         * @param movedPiece TODO: comment this!
+         * @param board TODO: comment this
+         * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to.
          */
         public PawnNeutralSingleMove(final Board board,
@@ -137,8 +136,8 @@ public abstract class Move {
     // INNER CLASS!
     public static final class PawnNeutralDoubleMove extends Move {
         /**
-         * @param board TODO: comment this!
-         * @param movedPiece TODO: comment this!
+         * @param board TODO: comment this
+         * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to.
          */
         public PawnNeutralDoubleMove(final Board board,
@@ -153,10 +152,10 @@ public abstract class Move {
         final Piece capturedPiece;
 
         /**
-         * @param board TODO: comment this!
-         * @param movedPiece TODO: comment this!
+         * @param board TODO: comment this
+         * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to.
-         * @param capturedPiece TODO: comment this!
+         * @param capturedPiece to be removed from new Board (?).
          */
         public CaptureMove(final Board board,
                            final Piece movedPiece,
@@ -179,8 +178,8 @@ public abstract class Move {
     // INNER CLASS!
     public static class PawnCaptureMove extends CaptureMove {
         /**
-         * @param board TODO: comment this!
-         * @param movedPiece TODO: comment this!
+         * @param board TODO: comment this
+         * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to.
          */
         public PawnCaptureMove(final Board board,
@@ -194,8 +193,8 @@ public abstract class Move {
     // INNER CLASS!
     public static final class EnPassantMove extends PawnCaptureMove {
         /**
-         * @param board TODO: comment this!
-         * @param movedPiece TODO: comment this!
+         * @param board TODO: comment this
+         * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to.
          */
         public EnPassantMove(final Board board,
@@ -209,8 +208,8 @@ public abstract class Move {
     // INNER CLASS!
     static abstract class CastlingMove extends Move {
         /**
-         * @param board TODO: comment this!
-         * @param movedPiece TODO: comment this!
+         * @param board TODO: comment this
+         * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to.
          */
         public CastlingMove(final Board board,
@@ -223,8 +222,8 @@ public abstract class Move {
     // INNER CLASS!
     public static final class CastlingLongMove extends CastlingMove {
         /**
-         * @param board TODO: comment this!
-         * @param movedPiece TODO: comment this!
+         * @param board TODO: comment this
+         * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to.
          */
         public CastlingLongMove(final Board board,
@@ -237,8 +236,8 @@ public abstract class Move {
     // INNER CLASS!
     public static final class CastlingShortMove extends CastlingMove {
         /**
-         * @param board TODO: comment this!
-         * @param movedPiece TODO: comment this!
+         * @param board TODO: comment this
+         * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to.
          */
         public CastlingShortMove(final Board board,
