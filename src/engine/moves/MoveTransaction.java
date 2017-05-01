@@ -24,8 +24,6 @@ public class MoveTransaction {
     /**
      * @return TODO: comment this!
      */
-    public MoveTransactionResult getResult() {
-        return this.result;
-    }
+    public MoveTransactionResult getResult() {return this.result;}
 
 }

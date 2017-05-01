@@ -16,9 +16,7 @@ public abstract class Square {
     /**
      * @param position of Square from top-left to bottom-right; 0 to 63.
      */
-    private Square(final int position) {
-        this.position = position;
-    }
+    private Square(final int position) {this.position = position;}
 
     /**
      * @return map of all Squares on Board.
@@ -53,9 +51,7 @@ public abstract class Square {
         /**
          * @param position of Square from top-left to bottom-right; 0 to 63.
          */
-        private EmptySquare(final int position) {
-            super(position);
-        }
+        private EmptySquare(final int position) {super(position);}
 
         @Override
         public boolean isOccupied() {return false;}
@@ -64,9 +60,7 @@ public abstract class Square {
         public Piece getPiece() {return null;}
 
         @Override
-        public String toString() {
-            return "-";
-        }
+        public String toString() {return "-";}
     }
 
     // INNER CLASS!

@@ -4,8 +4,7 @@ public enum PlayerColor {
 
     BLACK {
         @Override
-        public Player setPlayer(final WhitePlayer white,
-                                final BlackPlayer black) {return black;}
+        public Player setPlayer(final WhitePlayer white, final BlackPlayer black) {return black;}
         @Override
         public int getMoveDirection() {return 1;}
         @Override
@@ -16,8 +15,7 @@ public enum PlayerColor {
 
     WHITE {
         @Override
-        public Player setPlayer(final WhitePlayer white,
-                                final BlackPlayer black) {return white;}
+        public Player setPlayer(final WhitePlayer white, final BlackPlayer black) {return white;}
         @Override
         public int getMoveDirection() {return -1;}
         @Override
@@ -27,10 +25,10 @@ public enum PlayerColor {
     };
 
     /**
-     * TODO: comment this method!
-     * @param white TODO: comment this!
-     * @param black TODO: comment this!
-     * @return TODO: comment this!
+     * TODO: comment this method
+     * @param white TODO: comment this
+     * @param black TODO: comment this
+     * @return TODO: comment this
      */
     public abstract Player setPlayer(final WhitePlayer white, final BlackPlayer black);
 

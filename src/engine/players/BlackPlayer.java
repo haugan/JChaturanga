@@ -11,9 +11,9 @@ import static engine.players.PlayerColor.BLACK;
 public class BlackPlayer extends Player {
 
     /**
-     * @param board TODO: comment this!
-     * @param blackLegalMoves TODO: comment this!
-     * @param whiteLegalMoves TODO: comment this!
+     * @param board TODO: comment this
+     * @param blackLegalMoves TODO: comment this
+     * @param whiteLegalMoves TODO: comment this
      */
     public BlackPlayer(final Board board,
                        final Collection<Move> blackLegalMoves,

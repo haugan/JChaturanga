@@ -19,10 +19,10 @@ public class Pawn extends Piece {
 
     /**
      * @param position of Square from top-left to bottom-right; 0 to 63.
-     * @param playerColor black or white.
+     * @param color of Player; black or white.
      */
-    public Pawn(final int position, final PlayerColor playerColor) {
-        super(position, playerColor, PieceType.PAWN);
+    public Pawn(final int position, final PlayerColor color) {
+        super(position, color, PieceType.PAWN);
     }
 
     /**

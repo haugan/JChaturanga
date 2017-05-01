@@ -1,5 +1,6 @@
 package engine.players;
 
+import com.google.common.collect.ImmutableList;
 import engine.board.Board;
 import engine.moves.Move;
 import engine.moves.MoveTransaction;
@@ -8,12 +9,9 @@ import engine.pieces.Piece;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
-import static engine.moves.MoveTransactionResult.CANCELED;
-import static engine.moves.MoveTransactionResult.COMPLETED;
-import static engine.moves.MoveTransactionResult.PLAYER_CHECKED;
+import static engine.moves.MoveTransactionResult.*;
 import static engine.pieces.Piece.PieceType.KING;
 
 public abstract class Player {
@@ -24,9 +22,9 @@ public abstract class Player {
     private final boolean inCheck;
 
     /**
-     * @param board TODO: comment this!
-     * @param legalMovesPlayer TODO: comment this!
-     * @param legalMovesOpponent TODO: comment this!
+     * @param board TODO: comment this
+     * @param legalMovesPlayer TODO: comment this
+     * @param legalMovesOpponent TODO: comment this
      */
     protected Player(final Board board,
                      final Collection<Move> legalMovesPlayer,
@@ -80,7 +78,7 @@ public abstract class Player {
             }
         }
 
-        return Collections.unmodifiableList(legalCaptureMovesOpponent);
+        return ImmutableList.copyOf(legalCaptureMovesOpponent);
     }
 
     /**
@@ -119,7 +117,7 @@ public abstract class Player {
      * @param attemptedMove by Player.
      * @return true (if attempted Move is contained in Player's current list of legal Moves).
      */
-    public boolean isAttemptingLegalMove(Move attemptedMove) {return this.legalMoves.contains(attemptedMove);}
+    public boolean isAttemptingLegalMove(final Move attemptedMove) {return this.legalMoves.contains(attemptedMove);}
 
     /**
      * @return a King Piece object from a list of active "in-game" Pieces currently on the Board.
