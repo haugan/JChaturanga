@@ -12,8 +12,8 @@ public abstract class Move {
     public static final Move ILLEGAL_MOVE = new IllegalMove(); // null Move
 
     /**
-     * @param board TODO: comment this!
-     * @param movedPiece TODO: comment this!
+     * @param board TODO: comment this
+     * @param movedPiece TODO: comment this
      * @param destinationPosition numbered position of the Square that is moved to.
      */
     private Move(final Board board,
