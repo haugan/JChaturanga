@@ -13,8 +13,8 @@ import java.util.*;
 
 import static engine.board.BoardUtilities.SQUARES_ON_BOARD;
 import static engine.board.BoardUtilities.SQUARES_ON_ROW;
-import static engine.players.PlayerColor.*;
-import static java.util.Collections.unmodifiableList;
+import static engine.players.PlayerColor.BLACK;
+import static engine.players.PlayerColor.WHITE;
 
 public class Board {
 
@@ -122,7 +122,6 @@ public class Board {
             ); // get Piece associated with position, and create Square (with occupying Piece)
         }
 
-        //return unmodifiableList(Arrays.asList(squares));
         return ImmutableList.copyOf(squares); // Google Guava library
     }
 
@@ -138,18 +137,18 @@ public class Board {
      * @return list of active "in-game" Pieces for each Player on the Board.
      */
     public static Collection<Piece> getIngamePieces(final List<Square> squares, final PlayerColor color) {
-        final List<Piece> pieces = new ArrayList<>();
+        final List<Piece> ingamePieces = new ArrayList<>();
 
         for (final Square s : squares) {
             if (s.isOccupied()) {
                 final Piece occupyingPiece = s.getPiece();
                 if (occupyingPiece.getColor() == color) {
-                    pieces.add(occupyingPiece);
+                    ingamePieces.add(occupyingPiece);
                 }
             }
         }
 
-        return unmodifiableList(pieces);
+        return ImmutableList.copyOf(ingamePieces);
     }
 
     /**
@@ -163,7 +162,7 @@ public class Board {
             legalMoves.addAll(p.calculateLegalMoves(this));
         }
 
-        return unmodifiableList(legalMoves);
+        return ImmutableList.copyOf(legalMoves);
     }
 
     /**
