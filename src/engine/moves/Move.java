@@ -24,6 +24,45 @@ public abstract class Move {
         this.destinationPosition = destinationPosition;
     }
 
+    /**
+     * When adding an object to a hash table, it gets a key value used to store and retrieve it.
+     * The key's hash code is calculated, and determines "an area" in memory to search for an object that is stored.
+     * Hash codes aren't unique, and several keys might share the same ones.
+     * The hash table thus iterates "the area", and uses the key's equals() method to find the right key,
+     * in order to retrieve the correct object stored with that key.
+     *
+     * @return hash code of key that is created, stored, and used for retrieving an object from a hash table.
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+        hashCode = prime * hashCode + this.getDestinationPosition();
+        hashCode = prime * hashCode + this.movedPiece.hashCode();
+        return hashCode;
+    }
+
+    /**
+     * Overridden from JRE to test for object equality over default reference-only equality test.
+     * A Piece object copy might have changed from the original (e.g. new position on Board).
+     * (ref. http://tutorials.jenkov.com/java-collections/hashcode-equals.html)
+     * @param obj that is tested for equality.
+     * @return true (if the two objects has equal "states", i.e. same variable values, etc.)
+     */
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Move)) {
+            return false;
+        }
+        final Move other = (Move) obj;
+        return
+                this.getDestinationPosition() == other.getDestinationPosition() &&
+                this.getMovedPiece().equals(other.getMovedPiece());
+    }
+
     public boolean isCaptureMove() {return false;}
     public boolean isCastlingMove() {return false;}
 

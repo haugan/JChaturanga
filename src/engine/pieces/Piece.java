@@ -29,29 +29,6 @@ public abstract class Piece {
     }
 
     /**
-     * Overridden from JRE to test for object equality over default reference-only equality test.
-     * A Piece object copy might have changed from the original (e.g. new position on Board).
-     * (ref. http://tutorials.jenkov.com/java-collections/hashcode-equals.html)
-     * @param object that is tested for equality.
-     * @return true (if the two objects has equal "states", i.e. same variable values, etc.)
-     */
-    @Override
-    public boolean equals(final Object object) {
-        if (this == object) { // object references point to same object (reference equality)
-            return true;
-        }
-        if (!(object instanceof Piece)) { // object reference is not a Piece type
-            return false;
-        }
-        final Piece other = (Piece) object;
-        return
-                this.position == other.getPosition() &&
-                this.color == other.getColor() &&
-                this.type == other.getType() &&
-                this.isFirstMove() == other.isFirstMove(); // objects "contains" the same state
-    }
-
-    /**
      * When adding an object to a hash table, it gets a key value used to store and retrieve it.
      * The key's hash code is calculated, and determines "an area" in memory to search for an object that is stored.
      * Hash codes aren't unique, and several keys might share the same ones.
@@ -61,7 +38,30 @@ public abstract class Piece {
      * @return hash code of key that is created, stored, and used for retrieving an object from a hash table.
      */
     @Override
-    public int hashCode() {return this.hashCode;} // overriden from JRE
+    public int hashCode() {return this.hashCode;}
+
+    /**
+     * Overridden from JRE to test for object equality over default reference-only equality test.
+     * A Piece object copy might have changed from the original (e.g. new position on Board).
+     * (ref. http://tutorials.jenkov.com/java-collections/hashcode-equals.html)
+     * @param obj that is tested for equality.
+     * @return true (if the two objects has equal "states", i.e. same variable values, etc.)
+     */
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) { // object references point to same object (reference equality)
+            return true;
+        }
+        if (!(obj instanceof Piece)) { // object reference is not a Piece type
+            return false;
+        }
+        final Piece other = (Piece) obj;
+        return
+                this.position == other.getPosition() &&
+                this.color == other.getColor() &&
+                this.type == other.getType() &&
+                this.isFirstMove() == other.isFirstMove(); // objects "contains" the same state
+    }
 
     /**
      * @return a unique integer value for each particular (and immutable) Piece.
@@ -115,7 +115,8 @@ public abstract class Piece {
 
         private String type;
 
-        PieceType(final String type) {this.type = type;}
+        PieceType(final String type) {
+            this.type = type;}
 
         @Override
         public String toString() {return this.type;}
