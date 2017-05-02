@@ -21,7 +21,7 @@ public abstract class Player {
     protected final King king;
     protected final Collection<Move> legalMovesAll;
     private final boolean inCheck;
-    
+
     protected Player(final Board board,
                      final Collection<Move> legalMovesPlayer,
                      final Collection<Move> legalMovesOpponent) {
@@ -40,7 +40,6 @@ public abstract class Player {
         - The method performs all legal Moves to find potential escape Moves,
           and for that to happen it creates another Board (to perform the Moves on)
           which in turn causes the Board class to instantiate more Players, and so on.. */
-
         this.inCheck = !Player.getCaptureMovesOnSquare(
                 this.king.getPosition(), legalMovesOpponent
         ).isEmpty(); // current Player is in check if returned list contains legal Moves

@@ -4,7 +4,10 @@ import com.google.common.collect.ImmutableList;
 import engine.board.Board;
 import engine.board.Square;
 import engine.moves.Move;
+import engine.moves.Move.CastlingLongMove;
+import engine.moves.Move.CastlingShortMove;
 import engine.pieces.Piece;
+import engine.pieces.Rook;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -36,31 +39,41 @@ public class BlackPlayer extends Player {
                                                 final Collection<Move> legalMovesOpponent) {
         final List<Move> castlingMoves = new ArrayList<>();
         if (this.king.isFirstMove() && !this.isChecked()) {
-            // CASTLING SHORT
+            // CASTLING SHORT "KINGSIDE"
             if (!this.board.getSquare(5).isOccupied() &&
                 !this.board.getSquare(6).isOccupied()) {
-                final Square kingSideRookSquare = this.board.getSquare(7);
+                final Square rookSquareShort = this.board.getSquare(7);
                 if (Player.getCaptureMovesOnSquare(5, legalMovesOpponent).isEmpty() &&
                     Player.getCaptureMovesOnSquare(6, legalMovesOpponent).isEmpty() &&
-                    kingSideRookSquare.getPiece().getType() == ROOK) { // #26 @15:20 getPiece().isRook()
-                    if (kingSideRookSquare.isOccupied() &&
-                        kingSideRookSquare.getPiece().isFirstMove()) {
-                        castlingMoves.add(null); // TODO: add King-side castling move (i.e. short)
+                    rookSquareShort.getPiece().getType() == ROOK) { // #26 @15:20 getPiece().isRook()
+                    if (rookSquareShort.isOccupied() &&
+                        rookSquareShort.getPiece().isFirstMove()) {
+                        castlingMoves.add(new CastlingShortMove(this.board,
+                                                                this.king,
+                                                                6,
+                                                                (Rook) rookSquareShort.getPiece(),
+                                                                rookSquareShort.getPosition(), // current rook position
+                                                                5));
                     }
                 }
             }
-            // CASTLING LONG
+            // CASTLING LONG "QUEENSIDE"
             if (!this.board.getSquare(1).isOccupied() &&
                 !this.board.getSquare(2).isOccupied() &&
                 !this.board.getSquare(3).isOccupied()) {
-                final Square queenSideRookSquare = this.board.getSquare(0);
+                final Square rookSquareLong = this.board.getSquare(0);
                 if (Player.getCaptureMovesOnSquare(1, legalMovesOpponent).isEmpty() &&
                     Player.getCaptureMovesOnSquare(2, legalMovesOpponent).isEmpty() &&
                     Player.getCaptureMovesOnSquare(3, legalMovesOpponent).isEmpty() &&
-                    queenSideRookSquare.getPiece().getType() == ROOK) {
-                    if (queenSideRookSquare.isOccupied() &&
-                        queenSideRookSquare.getPiece().isFirstMove()) {
-                        castlingMoves.add(null); // TODO: add Queen-side castling move (i.e. long)
+                    rookSquareLong.getPiece().getType() == ROOK) {
+                    if (rookSquareLong.isOccupied() &&
+                        rookSquareLong.getPiece().isFirstMove()) {
+                        castlingMoves.add(new CastlingLongMove(this.board,
+                                                               this.king,
+                                                               2,
+                                                               (Rook) rookSquareLong.getPiece(),
+                                                               rookSquareLong.getPosition(), // current rook position
+                                                               3));
                     }
                 }
             }

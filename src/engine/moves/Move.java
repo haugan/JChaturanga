@@ -16,11 +16,11 @@ public abstract class Move {
     /**
      * @param board TODO: comment this
      * @param movedPiece to be created at a numbered destination Square on a new Board.
-     * @param destinationPosition numbered position of the Square that is moved to.
-     */
+     * @param destinationPosition numbered position of the Square that is moved to. */
     private Move(final Board board,
                  final Piece movedPiece,
                  final int destinationPosition) {
+
         this.board = board;
         this.movedPiece = movedPiece;
         this.destinationPosition = destinationPosition;
@@ -33,14 +33,15 @@ public abstract class Move {
      * The hash table thus iterates "the area", and uses the key's equals() method to find the right key,
      * in order to retrieve the correct object stored with that key.
      *
-     * @return hash code of key that is created, stored, and used for retrieving an object from a hash table.
-     */
+     * @return hash code of key that is created, stored, and used for retrieving an object from a hash table. */
     @Override
     public int hashCode() {
-        final int prime = 31;
+
+        final int i = 31;
         int hashCode = 1;
-        hashCode = prime * hashCode + this.getDestinationPosition();
-        hashCode = prime * hashCode + this.movedPiece.hashCode();
+        hashCode = i * hashCode + this.getDestinationPosition();
+        hashCode = i * hashCode + this.movedPiece.hashCode();
+
         return hashCode;
     }
 
@@ -49,61 +50,54 @@ public abstract class Move {
      * A Piece object copy might have changed from the original (e.g. new position on Board).
      * (ref. http://tutorials.jenkov.com/java-collections/hashcode-equals.html)
      * @param obj that is tested for equality.
-     * @return true (if the two objects has equal "states", i.e. same variable values, etc.)
-     */
+     * @return true (if the two objects has equal "states", i.e. same variable values, etc.) */
     @Override
     public boolean equals(final Object obj) {
+
         if (this == obj) return true;
         if (!(obj instanceof Move)) return false;
+
         final Move other = (Move) obj;
         return
                 this.getDestinationPosition() == other.getDestinationPosition() &&
                 this.getMovedPiece().equals(other.getMovedPiece());
     }
 
+    /**
+     * @return numbered position of the Square a Piece is moved from. */
+    public int getCurrentPosition() {return this.getMovedPiece().getPosition();}
+    public int getDestinationPosition() {return this.destinationPosition;}
+    public Piece getMovedPiece() {return this.movedPiece;}
+    public Piece getCapturedPiece() {return null;}
+
     public boolean isCaptureMove() {return false;}
     public boolean isCastlingMove() {return false;}
-
-    public Piece getCapturedPiece() {return null;}
-    public Piece getMovedPiece() {return this.movedPiece;}
-
-    /**
-     * @return numbered position of the Square a Piece is moved from.
-     */
-    public int getCurrentPosition() {return this.getMovedPiece().getPosition();}
-
-    /**
-     * @return numbered position of the Square a Piece is moved to.
-     */
-    public int getDestinationPosition() {return this.destinationPosition;}
 
     /**
      * Loop through all Pieces on Board, create new Board, and set Pieces on it (incl. the moved one).
      * Also, set opposing Player to be next in turn to move.
-     * @return a new Board displaying new Piece positions after performed move.
-     */
+     * @return a new Board displaying new Piece positions after performed move. */
     public Board perform() {
-        final BoardBuilder builder = new BoardBuilder();
+
+        final BoardBuilder bB = new BoardBuilder();
 
         // INCOMING BOARD'S CURRENT PLAYER PIECES
         for (final Piece p : this.board.getCurrentPlayer().getPieces()) {
             if (!this.movedPiece.equals(p)) {
-                builder.setPiece(p); // .. (all) that wasn't moved, to same positions (but, on new Board)
+                bB.setPiece(p); // .. (all) that wasn't moved, to same positions (but, on new Board)
             }
         }
 
         // INCOMING BOARD'S OPPONENT PIECES
         for (final Piece p : this.board.getCurrentPlayer().getOpponent().getPieces()) {
-            builder.setPiece(p); // .. (all) that wasn't moved, to same positions (but, on new Board)
+            bB.setPiece(p); // .. (all) that wasn't moved, to same positions (but, on new Board)
         }
 
         // RETURNED BOARD'S NEW PIECE POSITIONS
-        builder.setPiece(
-                this.movedPiece.performMove(this)
-        );
+        bB.setPiece(this.movedPiece.performMove(this));
 
-        builder.setNextToMove(this.board.getCurrentPlayer().getOpponent().getColor());
-        return builder.createBoard();
+        bB.setNextToMove(this.board.getCurrentPlayer().getOpponent().getColor());
+        return bB.createBoard();
     }
 
     // INNER CLASS!
@@ -130,9 +124,7 @@ public abstract class Move {
     // INNER CLASS!
     public static final class IllegalMove extends Move {
 
-        public IllegalMove() {
-            super(null, null, -1);
-        } // representing a "null" Move
+        public IllegalMove() {super(null, null, -1);} // "null" Move
 
         @Override
         public Board perform() {
@@ -148,11 +140,11 @@ public abstract class Move {
         /**
          * @param board TODO: comment this
          * @param movedPiece to be created at a numbered destination Square on a new Board.
-         * @param destinationPosition numbered position of the Square that is moved to.
-         */
+         * @param destinationPosition numbered position of the Square that is moved to. */
         public NeutralMove(final Board board,
                            final Piece movedPiece,
                            final int destinationPosition) {
+
             super(board, movedPiece, destinationPosition);
         }
     }
@@ -162,11 +154,11 @@ public abstract class Move {
         /**
          * @param board TODO: comment this
          * @param movedPiece to be created at a numbered destination Square on a new Board.
-         * @param destinationPosition numbered position of the Square that is moved to.
-         */
+         * @param destinationPosition numbered position of the Square that is moved to. */
         public PawnNeutralSingleMove(final Board board,
                                      final Piece movedPiece,
                                      final int destinationPosition) {
+
             super(board, movedPiece, destinationPosition);
         }
     }
@@ -176,45 +168,51 @@ public abstract class Move {
         /**
          * @param board TODO: comment this
          * @param movedPiece to be created at a numbered destination Square on a new Board.
-         * @param destinationPosition numbered position of the Square that is moved to.
-         */
+         * @param destinationPosition numbered position of the Square that is moved to. */
         public PawnNeutralDoubleMove(final Board board,
                                      final Piece movedPiece,
                                      final int destinationPosition) {
+
             super(board, movedPiece, destinationPosition);
         }
 
         @Override
         public Board perform() {
-            final BoardBuilder b = new BoardBuilder();
+
+            final BoardBuilder bB = new BoardBuilder();
+
             for (final Piece p : this.board.getCurrentPlayer().getPieces()) {
-                if (!this.movedPiece.equals(p)) b.setPiece(p);
+                if (!this.movedPiece.equals(p)) bB.setPiece(p);
             }
+
             for (final Piece p : this.board.getCurrentPlayer().getOpponent().getPieces()) {
-                b.setPiece(p);
+                bB.setPiece(p);
             }
+
             final Pawn movedPawn = (Pawn) this.movedPiece.performMove(this);
-            b.setPiece(movedPawn);
-            b.setEnPassantPawn(movedPawn);
-            b.setNextToMove(this.board.getCurrentPlayer().getOpponent().getColor());
-            return b.createBoard();
+            bB.setPiece(movedPawn);
+            bB.setEnPassantPawn(movedPawn);
+
+            bB.setNextToMove(this.board.getCurrentPlayer().getOpponent().getColor());
+            return bB.createBoard();
         }
     }
 
     // INNER CLASS!
     public static class CaptureMove extends Move {
+
         final Piece capturedPiece;
 
         /**
          * @param board TODO: comment this
          * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to.
-         * @param capturedPiece to be removed from new Board (?).
-         */
+         * @param capturedPiece to be removed from new Board (?). */
         public CaptureMove(final Board board,
                            final Piece movedPiece,
                            final int destinationPosition,
                            final Piece capturedPiece) {
+
             super(board, movedPiece, destinationPosition);
             this.capturedPiece = capturedPiece;
         }
@@ -224,8 +222,10 @@ public abstract class Move {
 
         @Override
         public boolean equals(final Object obj) {
+
             if (this == obj) return true;
             if (!(obj instanceof CaptureMove)) return false;
+
             final CaptureMove other = (CaptureMove) obj;
             return
                 super.equals(other) &&
@@ -234,12 +234,8 @@ public abstract class Move {
 
         @Override
         public Board perform() {return null;}
-
-        @Override
-        public boolean isCaptureMove() {return true;}
-
-        @Override
         public Piece getCapturedPiece() {return this.capturedPiece;}
+        public boolean isCaptureMove() {return true;}
     }
 
     // INNER CLASS!
@@ -247,12 +243,12 @@ public abstract class Move {
         /**
          * @param board TODO: comment this
          * @param movedPiece to be created at a numbered destination Square on a new Board.
-         * @param destinationPosition numbered position of the Square that is moved to.
-         */
+         * @param destinationPosition numbered position of the Square that is moved to. */
         public PawnCaptureMove(final Board board,
                                final Piece movedPiece,
                                final int destinationPosition,
                                final Piece capturedPiece) {
+
             super(board, movedPiece, destinationPosition, capturedPiece);
         }
     }
@@ -262,12 +258,12 @@ public abstract class Move {
         /**
          * @param board TODO: comment this
          * @param movedPiece to be created at a numbered destination Square on a new Board.
-         * @param destinationPosition numbered position of the Square that is moved to.
-         */
+         * @param destinationPosition numbered position of the Square that is moved to. */
         public EnPassantMove(final Board board,
                              final Piece movedPiece,
                              final int destinationPosition,
                              final Piece capturedPiece) {
+
             super(board, movedPiece, destinationPosition, capturedPiece);
         }
     }
@@ -282,102 +278,89 @@ public abstract class Move {
         /**
          * @param board TODO: comment this
          * @param movedPiece to be created at a numbered destination Square on a new Board.
-         * @param destinationPosition numbered position of the Square that is moved to.
-         */
+         * @param destinationPosition numbered position of the Square that is moved to. */
         public CastlingMove(final Board board,
                             final Piece movedPiece,
                             final int destinationPosition,
                             final Rook castlingRook,
                             final int rookPositionCurrent,
                             final int rookPositionDestination) {
+
             super(board, movedPiece, destinationPosition);
             this.castlingRook = castlingRook;
             this.rookPositionCurrent = rookPositionCurrent;
             this.rookPositionDestination = rookPositionDestination;
         }
 
-        public Rook getCastlingRook() {
-            return this.castlingRook;
-        }
+        public Rook getCastlingRook() {return this.castlingRook;}
 
         @Override
-        public boolean isCastlingMove() {
-            return true;
-        }
+        public boolean isCastlingMove() {return true;}
 
         @Override
         public Board perform() {
-            final BoardBuilder builder = new BoardBuilder();
+
+            final BoardBuilder bB = new BoardBuilder();
 
             // INCOMING BOARD'S CURRENT PLAYER PIECES
             for (final Piece p : this.board.getCurrentPlayer().getPieces()) {
-                if (!this.movedPiece.equals(p) &&
-                    !this.castlingRook.equals(p)) {
-                    builder.setPiece(p); // .. (all) that wasn't moved, to same positions (but, on new Board)
+                if (!this.movedPiece.equals(p) && !this.castlingRook.equals(p)) {
+                    bB.setPiece(p); // .. (all) that wasn't moved, to same positions (but, on new Board)
                 }
             }
 
             // INCOMING BOARD'S OPPONENT PIECES
             for (final Piece p : this.board.getCurrentPlayer().getOpponent().getPieces()) {
-                builder.setPiece(p); // .. (all) that wasn't moved, to same positions (but, on new Board)
+                bB.setPiece(p); // .. (all) that wasn't moved, to same positions (but, on new Board)
             }
 
-            builder.setPiece(
-                    this.movedPiece.performMove(this)
-            ); // the moved King
-
-            builder.setPiece(
-                    new Rook(this.rookPositionDestination, this.castlingRook.getColor())
+            bB.setPiece(this.movedPiece.performMove(this)); // the moved King
+            bB.setPiece(new Rook(this.rookPositionDestination,
+                                 this.castlingRook.getColor())
             ); // create new Piece (representing the moved Rook)
 
-            builder.setNextToMove(this.board.getCurrentPlayer().getOpponent().getColor());
-            return builder.createBoard();
+            bB.setNextToMove(this.board.getCurrentPlayer().getOpponent().getColor());
+            return bB.createBoard();
         }
     }
 
     // INNER CLASS!
     public static final class CastlingLongMove extends CastlingMove {
-        /**
-         * Queenside castling.
-         * @param board TODO: comment this
-         * @param movedPiece to be created at a numbered destination Square on a new Board.
-         * @param destinationPosition numbered position of the Square that is moved to.
-         */
+
         public CastlingLongMove(final Board board,
-                                final Piece movedPiece,
-                                final int destinationPosition,
+                                final Piece king,
+                                final int kingPositionDestination,
                                 final Rook castlingRook,
                                 final int rookPositionCurrent,
                                 final int rookPositionDestination) {
-            super(board, movedPiece, destinationPosition, castlingRook, rookPositionCurrent, rookPositionDestination);
+
+            super(board, king, kingPositionDestination,
+                  castlingRook, rookPositionCurrent, rookPositionDestination);
         }
 
         @Override
         public String toString() {
-            return "O-O-O"; // PGN notation for castling long
+            return "O-O-O"; // PGN notation for Queen-side castling
         }
     }
 
     // INNER CLASS!
     public static final class CastlingShortMove extends CastlingMove {
-        /**
-         * Kingside castling.
-         * @param board TODO: comment this
-         * @param movedPiece to be created at a numbered destination Square on a new Board.
-         * @param destinationPosition numbered position of the Square that is moved to.
-         */
+
         public CastlingShortMove(final Board board,
-                                 final Piece movedPiece,
-                                 final int destinationPosition,
+                                 final Piece king,
+                                 final int kingPositionDestination,
                                  final Rook castlingRook,
                                  final int rookPositionCurrent,
                                  final int rookPositionDestination) {
-            super(board, movedPiece, destinationPosition, castlingRook, rookPositionCurrent, rookPositionDestination);
+
+            super(board, king, kingPositionDestination,
+                  castlingRook, rookPositionCurrent, rookPositionDestination);
         }
 
         @Override
         public String toString() {
-            return "O-O"; // PGN notation for castling short
+            return "O-O"; // PGN notation for King-side castling
         }
     }
 
