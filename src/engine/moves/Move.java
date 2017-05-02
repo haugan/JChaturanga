@@ -4,6 +4,7 @@ import engine.board.Board;
 import engine.board.Board.BoardBuilder;
 import engine.pieces.Pawn;
 import engine.pieces.Piece;
+import engine.pieces.Rook;
 
 public abstract class Move {
 
@@ -84,23 +85,24 @@ public abstract class Move {
     public Board perform() {
         final BoardBuilder builder = new BoardBuilder();
 
-        // INCOMING BOARD'S CURRENT PLAYER'S PIECES
+        // INCOMING BOARD'S CURRENT PLAYER PIECES
         for (final Piece p : this.board.getCurrentPlayer().getPieces()) {
             if (!this.movedPiece.equals(p)) {
                 builder.setPiece(p); // .. (all) that wasn't moved, to same positions (but, on new Board)
             }
         }
 
-        // INCOMING BOARD'S OPPONENT'S PIECES
+        // INCOMING BOARD'S OPPONENT PIECES
         for (final Piece p : this.board.getCurrentPlayer().getOpponent().getPieces()) {
             builder.setPiece(p); // .. (all) that wasn't moved, to same positions (but, on new Board)
         }
 
+        // RETURNED BOARD'S NEW PIECE POSITIONS
         builder.setPiece(
                 this.movedPiece.performMove(this)
-        ); // create new Piece (representing the moved one) and set it to new Board
-        builder.setNextToMove(this.board.getCurrentPlayer().getOpponent().getColor());
+        );
 
+        builder.setNextToMove(this.board.getCurrentPlayer().getOpponent().getColor());
         return builder.createBoard();
     }
 
@@ -272,6 +274,11 @@ public abstract class Move {
 
     // INNER CLASS!
     static abstract class CastlingMove extends Move {
+
+        protected final Rook castlingRook;
+        protected final int rookPositionCurrent;
+        protected final int rookPositionDestination;
+
         /**
          * @param board TODO: comment this
          * @param movedPiece to be created at a numbered destination Square on a new Board.
@@ -279,36 +286,98 @@ public abstract class Move {
          */
         public CastlingMove(final Board board,
                             final Piece movedPiece,
-                            final int destinationPosition) {
+                            final int destinationPosition,
+                            final Rook castlingRook,
+                            final int rookPositionCurrent,
+                            final int rookPositionDestination) {
             super(board, movedPiece, destinationPosition);
+            this.castlingRook = castlingRook;
+            this.rookPositionCurrent = rookPositionCurrent;
+            this.rookPositionDestination = rookPositionDestination;
+        }
+
+        public Rook getCastlingRook() {
+            return this.castlingRook;
+        }
+
+        @Override
+        public boolean isCastlingMove() {
+            return true;
+        }
+
+        @Override
+        public Board perform() {
+            final BoardBuilder builder = new BoardBuilder();
+
+            // INCOMING BOARD'S CURRENT PLAYER PIECES
+            for (final Piece p : this.board.getCurrentPlayer().getPieces()) {
+                if (!this.movedPiece.equals(p) &&
+                    !this.castlingRook.equals(p)) {
+                    builder.setPiece(p); // .. (all) that wasn't moved, to same positions (but, on new Board)
+                }
+            }
+
+            // INCOMING BOARD'S OPPONENT PIECES
+            for (final Piece p : this.board.getCurrentPlayer().getOpponent().getPieces()) {
+                builder.setPiece(p); // .. (all) that wasn't moved, to same positions (but, on new Board)
+            }
+
+            builder.setPiece(
+                    this.movedPiece.performMove(this)
+            ); // the moved King
+
+            builder.setPiece(
+                    new Rook(this.rookPositionDestination, this.castlingRook.getColor())
+            ); // create new Piece (representing the moved Rook)
+
+            builder.setNextToMove(this.board.getCurrentPlayer().getOpponent().getColor());
+            return builder.createBoard();
         }
     }
 
     // INNER CLASS!
     public static final class CastlingLongMove extends CastlingMove {
         /**
+         * Queenside castling.
          * @param board TODO: comment this
          * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to.
          */
         public CastlingLongMove(final Board board,
                                 final Piece movedPiece,
-                                final int destinationPosition) {
-            super(board, movedPiece, destinationPosition);
+                                final int destinationPosition,
+                                final Rook castlingRook,
+                                final int rookPositionCurrent,
+                                final int rookPositionDestination) {
+            super(board, movedPiece, destinationPosition, castlingRook, rookPositionCurrent, rookPositionDestination);
+        }
+
+        @Override
+        public String toString() {
+            return "O-O-O"; // PGN notation for castling long
         }
     }
 
     // INNER CLASS!
     public static final class CastlingShortMove extends CastlingMove {
         /**
+         * Kingside castling.
          * @param board TODO: comment this
          * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to.
          */
         public CastlingShortMove(final Board board,
                                  final Piece movedPiece,
-                                 final int destinationPosition) {
-            super(board, movedPiece, destinationPosition);
+                                 final int destinationPosition,
+                                 final Rook castlingRook,
+                                 final int rookPositionCurrent,
+                                 final int rookPositionDestination) {
+            super(board, movedPiece, destinationPosition, castlingRook, rookPositionCurrent, rookPositionDestination);
+        }
+
+        @Override
+        public String toString() {
+            return "O-O"; // PGN notation for castling short
         }
     }
 

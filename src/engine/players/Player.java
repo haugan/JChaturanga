@@ -43,7 +43,7 @@ public abstract class Player {
               which in turn causes the Board class to instantiate more Players, and so on..
          */
 
-        this.inCheck = !Player.isAttemptingCapture(
+        this.inCheck = !Player.getCaptureMovesOnSquare(
                 this.king.getPosition(), legalMovesOpponent
         ).isEmpty(); // current Player is in check if returned list contains legal Moves
     }
@@ -64,21 +64,24 @@ public abstract class Player {
     public abstract Player getOpponent();
 
     /**
-     * Check opponent's legal Moves for possible check positions.
-     * @param position TODO: comment this
-     * @param legalMovesOpponent TODO: comment this
-     * @return list of Moves that captures (i.e. overlaps destination position with) Player's current King-position.
+     * @param legalMovesPlayer
+     * @param legalMovesOpponent
+     * @return collection of legal castling Moves for current Player.
      */
-    private static Collection<Move> isAttemptingCapture(final int position,
-                                                        final Collection<Move> legalMovesOpponent) {
-        final List<Move> legalCaptureMovesOpponent = new ArrayList<>();
-        for (final Move m : legalMovesOpponent) {
-            if (position == m.getDestinationPosition()) {
-                legalCaptureMovesOpponent.add(m);
+    protected abstract Collection<Move> getCastlingMoves(final Collection<Move> legalMovesPlayer,
+                                                         final Collection<Move> legalMovesOpponent);
+
+    /**
+     * @return a King Piece object from a list of active "in-game" Pieces currently on the Board.
+     */
+    public King initializeKing() {
+        for (final Piece p : getPieces()) {
+            if (p.getType() == KING) { // alternative solution #17 @15:30 ? getType().isKing()
+                return (King) p;
             }
         }
 
-        return ImmutableList.copyOf(legalCaptureMovesOpponent);
+        throw new RuntimeException("Chess board is not valid without the King piece!"); // preferred unreachable
     }
 
     /**
@@ -97,7 +100,7 @@ public abstract class Player {
         final Board newBoard = move.perform(); // new Board switches current Player to "next color"
 
         // MOVE LEAVES PLAYER IN CHECK
-        Collection<Move> checkMoves = isAttemptingCapture(
+        Collection<Move> checkMoves = getCaptureMovesOnSquare(
                 newBoard.getCurrentPlayer()
                         .getOpponent()
                         .getKing()
@@ -120,16 +123,20 @@ public abstract class Player {
     public boolean isAttemptingLegalMove(final Move attemptedMove) {return this.legalMoves.contains(attemptedMove);}
 
     /**
-     * @return a King Piece object from a list of active "in-game" Pieces currently on the Board.
+     * Check if a given Square position is capturable by any legal Moves from opposing Player.
+     * @param position of Square to check if any legal capture move can reach.
+     * @param legalMovesOpponent collected by Move type.
+     * @return list of Moves that overlaps their destination position with current Player's Piece-position.
      */
-    public King initializeKing() {
-        for (final Piece p : getPieces()) {
-            if (p.getType() == KING) { // alternative solution #17 @15:30 ? getType().isKing()
-                return (King) p;
+    protected static Collection<Move> getCaptureMovesOnSquare(final int position,
+                                                              final Collection<Move> legalMovesOpponent) {
+        final List<Move> captureMovesOpponent = new ArrayList<>();
+        for (final Move m : legalMovesOpponent) {
+            if (position == m.getDestinationPosition()) {
+                captureMovesOpponent.add(m);
             }
         }
-
-        throw new RuntimeException("Chess board is not valid without the King piece!"); // preferred unreachable
+        return ImmutableList.copyOf(captureMovesOpponent);
     }
 
     /**
@@ -161,7 +168,6 @@ public abstract class Player {
                 return true;
             }
         }
-
         return false;
     }
 
