@@ -54,19 +54,19 @@ public abstract class Player {
     public King getKing() {return this.king;}
 
     /**
-     * @return TODO: comment this!
+     * @return TODO: comment this
      */
     public Collection<Move> getLegalMoves() {return this.legalMoves;}
 
-    // TODO: comment these methods!
+    // TODO: comment these
     public abstract Collection<Piece> getPieces();
     public abstract PlayerColor getColor();
     public abstract Player getOpponent();
 
     /**
      * Check opponent's legal Moves for possible check positions.
-     * @param position TODO: comment this!
-     * @param legalMovesOpponent TODO: comment this!
+     * @param position TODO: comment this
+     * @param legalMovesOpponent TODO: comment this
      * @return list of Moves that captures (i.e. overlaps destination position with) Player's current King-position.
      */
     private static Collection<Move> isAttemptingCapture(final int position,
@@ -147,7 +147,7 @@ public abstract class Player {
      */
     public boolean isStalemated() {return !this.inCheck && !this.canEscape();}
 
-    // TODO: implement this method!
+    // TODO: implement this
     public boolean isCastled() {return false;}
 
     /**

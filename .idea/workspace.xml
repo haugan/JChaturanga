@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9aa4b97-5364-492a-b265-ce45f8ca49c0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/board/Board.java" afterPath="$PROJECT_DIR$/src/engine/board/Board.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/moves/Move.java" afterPath="$PROJECT_DIR$/src/engine/moves/Move.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/pieces/Bishop.java" afterPath="$PROJECT_DIR$/src/engine/pieces/Bishop.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/pieces/King.java" afterPath="$PROJECT_DIR$/src/engine/pieces/King.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/pieces/Knight.java" afterPath="$PROJECT_DIR$/src/engine/pieces/Knight.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/pieces/Pawn.java" afterPath="$PROJECT_DIR$/src/engine/pieces/Pawn.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/pieces/Piece.java" afterPath="$PROJECT_DIR$/src/engine/pieces/Piece.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/pieces/Queen.java" afterPath="$PROJECT_DIR$/src/engine/pieces/Queen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/pieces/Rook.java" afterPath="$PROJECT_DIR$/src/engine/pieces/Rook.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/players/Player.java" afterPath="$PROJECT_DIR$/src/engine/players/Player.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/MavenJS/target/" />
@@ -28,61 +19,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/engine/board/Board.java">
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/engine/players/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="497">
-              <caret line="189" column="84" lean-forward="false" selection-start-line="189" selection-start-column="84" selection-end-line="189" selection-end-column="84" />
+            <state relative-caret-position="775">
+              <caret line="149" column="27" lean-forward="false" selection-start-line="149" selection-start-column="27" selection-end-line="149" selection-end-column="27" />
               <folding>
-                <element signature="method#Board#0;class#Board#0" expanded="false" />
-                <element signature="method#toString#0;class#Board#0" expanded="false" />
-                <element signature="method#initializeBoard#0;class#Board#0" expanded="false" />
-                <element signature="method#createSquareList#0;class#Board#0" expanded="false" />
-                <element signature="method#getIngamePieces#0;class#Board#0" expanded="false" />
-                <element signature="method#getLegalMoves#0;class#Board#0" expanded="false" />
-                <element signature="method#getBothPlayersLegalMoves#0;class#Board#0" expanded="false" />
-                <element signature="method#setPiece#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
-                <element signature="method#setNextToMove#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Move.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/engine/moves/Move.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="195" column="17" lean-forward="false" selection-start-line="195" selection-start-column="17" selection-end-line="195" selection-end-column="17" />
-              <folding>
-                <element signature="method#Move#0;class#Move#0" expanded="false" />
-                <element signature="method#hashCode#0;class#Move#0" expanded="false" />
-                <element signature="method#equals#0;class#Move#0" expanded="false" />
-                <element signature="method#perform#0;class#Move#0" expanded="false" />
-                <element signature="class#MoveFactory#0;class#Move#0" expanded="false" />
-                <element signature="method#createMove#0;class#MoveFactory#0;class#Move#0" expanded="false" />
-                <element signature="class#IllegalMove#0;class#Move#0" expanded="false" />
-                <element signature="class#NeutralMove#0;class#Move#0" expanded="false" />
-                <element signature="class#PawnNeutralSingleMove#0;class#Move#0" expanded="false" />
-                <element signature="class#CaptureMove#0;class#Move#0" expanded="false" />
-                <element signature="method#equals#0;class#CaptureMove#0;class#Move#0" expanded="false" />
-                <element signature="class#PawnCaptureMove#0;class#Move#0" expanded="false" />
-                <element signature="class#EnPassantMove#0;class#Move#0" expanded="false" />
-                <element signature="class#CastlingMove#0;class#Move#0" expanded="false" />
-                <element signature="class#CastlingLongMove#0;class#Move#0" expanded="false" />
-                <element signature="class#CastlingShortMove#0;class#Move#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Piece.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/engine/pieces/Piece.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
-              <folding>
-                <element signature="method#Piece#0;class#Piece#0" expanded="false" />
-                <element signature="method#createHashCode#0;class#Piece#0" expanded="false" />
+                <element signature="method#Player#0;class#Player#0" expanded="false" />
+                <element signature="method#isAttemptingCapture#0;class#Player#0" expanded="false" />
+                <element signature="method#performMove#0;class#Player#0" expanded="false" />
+                <element signature="method#initializeKing#0;class#Player#0" expanded="false" />
+                <element signature="method#canEscape#0;class#Player#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -116,7 +63,6 @@
         <option value="$PROJECT_DIR$/src/engine/pieces/Knight.java" />
         <option value="$PROJECT_DIR$/src/engine/pieces/King.java" />
         <option value="$PROJECT_DIR$/src/engine/pieces/Bishop.java" />
-        <option value="$PROJECT_DIR$/src/engine/players/Player.java" />
         <option value="$PROJECT_DIR$/src/engine/players/WhitePlayer.java" />
         <option value="$PROJECT_DIR$/src/engine/players/BlackPlayer.java" />
         <option value="$PROJECT_DIR$/src/engine/players/PlayerColor.java" />
@@ -125,6 +71,7 @@
         <option value="$PROJECT_DIR$/src/engine/pieces/Piece.java" />
         <option value="$PROJECT_DIR$/src/engine/moves/Move.java" />
         <option value="$PROJECT_DIR$/src/engine/board/Board.java" />
+        <option value="$PROJECT_DIR$/src/engine/players/Player.java" />
       </list>
     </option>
   </component>
@@ -889,14 +836,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/players/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-100">
-          <caret line="131" column="84" lean-forward="false" selection-start-line="131" selection-start-column="36" selection-end-line="131" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/players/WhitePlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -962,17 +901,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/pieces/Piece.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
-          <folding>
-            <element signature="method#Piece#0;class#Piece#0" expanded="false" />
-            <element signature="method#createHashCode#0;class#Piece#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/moves/Move.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
@@ -1000,7 +928,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/board/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
+        <state relative-caret-position="1428">
           <caret line="189" column="84" lean-forward="false" selection-start-line="189" selection-start-column="84" selection-end-line="189" selection-end-column="84" />
           <folding>
             <element signature="method#Board#0;class#Board#0" expanded="false" />
@@ -1012,6 +940,32 @@
             <element signature="method#getBothPlayersLegalMoves#0;class#Board#0" expanded="false" />
             <element signature="method#setPiece#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
             <element signature="method#setNextToMove#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/pieces/Piece.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+          <folding>
+            <element signature="method#Piece#0;class#Piece#0" expanded="false" />
+            <element signature="method#equals#0;class#Piece#0" expanded="false" />
+            <element signature="method#createHashCode#0;class#Piece#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/players/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="775">
+          <caret line="149" column="27" lean-forward="false" selection-start-line="149" selection-start-column="27" selection-end-line="149" selection-end-column="27" />
+          <folding>
+            <element signature="method#Player#0;class#Player#0" expanded="false" />
+            <element signature="method#isAttemptingCapture#0;class#Player#0" expanded="false" />
+            <element signature="method#performMove#0;class#Player#0" expanded="false" />
+            <element signature="method#initializeKing#0;class#Player#0" expanded="false" />
+            <element signature="method#canEscape#0;class#Player#0" expanded="false" />
           </folding>
         </state>
       </provider>
