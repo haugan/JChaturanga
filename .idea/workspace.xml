@@ -3,8 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="a9aa4b97-5364-492a-b265-ce45f8ca49c0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/board/Board.java" afterPath="$PROJECT_DIR$/src/engine/board/Board.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/moves/Move.java" afterPath="$PROJECT_DIR$/src/engine/moves/Move.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/pieces/Bishop.java" afterPath="$PROJECT_DIR$/src/engine/pieces/Bishop.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/pieces/King.java" afterPath="$PROJECT_DIR$/src/engine/pieces/King.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/pieces/Knight.java" afterPath="$PROJECT_DIR$/src/engine/pieces/Knight.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/pieces/Pawn.java" afterPath="$PROJECT_DIR$/src/engine/pieces/Pawn.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/pieces/Piece.java" afterPath="$PROJECT_DIR$/src/engine/pieces/Piece.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/pieces/Queen.java" afterPath="$PROJECT_DIR$/src/engine/pieces/Queen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/pieces/Rook.java" afterPath="$PROJECT_DIR$/src/engine/pieces/Rook.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/MavenJS/target/" />
@@ -21,11 +28,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Move.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/engine/board/Board.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="497">
+              <caret line="189" column="84" lean-forward="false" selection-start-line="189" selection-start-column="84" selection-end-line="189" selection-end-column="84" />
+              <folding>
+                <element signature="method#Board#0;class#Board#0" expanded="false" />
+                <element signature="method#toString#0;class#Board#0" expanded="false" />
+                <element signature="method#initializeBoard#0;class#Board#0" expanded="false" />
+                <element signature="method#createSquareList#0;class#Board#0" expanded="false" />
+                <element signature="method#getIngamePieces#0;class#Board#0" expanded="false" />
+                <element signature="method#getLegalMoves#0;class#Board#0" expanded="false" />
+                <element signature="method#getBothPlayersLegalMoves#0;class#Board#0" expanded="false" />
+                <element signature="method#setPiece#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
+                <element signature="method#setNextToMove#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Move.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/engine/moves/Move.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="647">
-              <caret line="214" column="16" lean-forward="false" selection-start-line="214" selection-start-column="16" selection-end-line="214" selection-end-column="16" />
+            <state relative-caret-position="600">
+              <caret line="195" column="17" lean-forward="false" selection-start-line="195" selection-start-column="17" selection-end-line="195" selection-end-column="17" />
               <folding>
                 <element signature="method#Move#0;class#Move#0" expanded="false" />
                 <element signature="method#hashCode#0;class#Move#0" expanded="false" />
@@ -36,7 +63,8 @@
                 <element signature="class#IllegalMove#0;class#Move#0" expanded="false" />
                 <element signature="class#NeutralMove#0;class#Move#0" expanded="false" />
                 <element signature="class#PawnNeutralSingleMove#0;class#Move#0" expanded="false" />
-                <element signature="class#PawnNeutralDoubleMove#0;class#Move#0" expanded="false" />
+                <element signature="class#CaptureMove#0;class#Move#0" expanded="false" />
+                <element signature="method#equals#0;class#CaptureMove#0;class#Move#0" expanded="false" />
                 <element signature="class#PawnCaptureMove#0;class#Move#0" expanded="false" />
                 <element signature="class#EnPassantMove#0;class#Move#0" expanded="false" />
                 <element signature="class#CastlingMove#0;class#Move#0" expanded="false" />
@@ -50,8 +78,8 @@
       <file leaf-file-name="Piece.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/engine/pieces/Piece.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+            <state relative-caret-position="360">
+              <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
               <folding>
                 <element signature="method#Piece#0;class#Piece#0" expanded="false" />
                 <element signature="method#createHashCode#0;class#Piece#0" expanded="false" />
@@ -82,7 +110,6 @@
         <option value="$PROJECT_DIR$/src/application/JChaturanga.java" />
         <option value="$PROJECT_DIR$/src/application/JavaSjakk.java" />
         <option value="$PROJECT_DIR$/src/engine/board/BoardUtilities.java" />
-        <option value="$PROJECT_DIR$/src/engine/board/Board.java" />
         <option value="$PROJECT_DIR$/src/engine/pieces/Rook.java" />
         <option value="$PROJECT_DIR$/src/engine/pieces/Queen.java" />
         <option value="$PROJECT_DIR$/src/engine/pieces/Pawn.java" />
@@ -95,8 +122,9 @@
         <option value="$PROJECT_DIR$/src/engine/players/PlayerColor.java" />
         <option value="$PROJECT_DIR$/src/engine/board/Square.java" />
         <option value="$PROJECT_DIR$/src/engine/moves/MoveTransaction.java" />
-        <option value="$PROJECT_DIR$/src/engine/moves/Move.java" />
         <option value="$PROJECT_DIR$/src/engine/pieces/Piece.java" />
+        <option value="$PROJECT_DIR$/src/engine/moves/Move.java" />
+        <option value="$PROJECT_DIR$/src/engine/board/Board.java" />
       </list>
     </option>
   </component>
@@ -542,7 +570,14 @@
       <option name="project" value="LOCAL" />
       <updated>1493642624641</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Implementing overridden methods">
+      <created>1493643493783</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1493643493783</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -567,8 +602,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14799154" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3109426" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14799154" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40063426" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -630,11 +665,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Implemented overridden hashCode() and equals() methods for equality testing and creation of key value identifier for searching through areas in memory, locationg the correct key and thus the object in question." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented overridden hashCode() and equals() methods for equality testing and creation of key value identifier for searching through areas in memory, locationg the correct key and thus the object in question." />
+    <MESSAGE value="Implementing overridden methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementing overridden methods" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -775,7 +811,7 @@
           <folding>
             <element signature="method#Rook#0;class#Rook#0" expanded="false" />
             <element signature="method#calculateLegalMoves#0;class#Rook#0" expanded="false" />
-            <element signature="method#movePiece#0;class#Rook#0" expanded="false" />
+            <element signature="method#performMove#0;class#Rook#0" expanded="false" />
             <element signature="method#isOnColumnA#0;class#Rook#0" expanded="false" />
             <element signature="method#isOnColumnH#0;class#Rook#0" expanded="false" />
           </folding>
@@ -789,7 +825,7 @@
           <folding>
             <element signature="method#Queen#0;class#Queen#0" expanded="false" />
             <element signature="method#calculateLegalMoves#0;class#Queen#0" expanded="false" />
-            <element signature="method#movePiece#0;class#Queen#0" expanded="false" />
+            <element signature="method#performMove#0;class#Queen#0" expanded="false" />
             <element signature="method#isOnColumnA#0;class#Queen#0" expanded="false" />
             <element signature="method#isOnColumnH#0;class#Queen#0" expanded="false" />
           </folding>
@@ -803,7 +839,7 @@
           <folding>
             <element signature="method#Pawn#0;class#Pawn#0" expanded="false" />
             <element signature="method#calculateLegalMoves#0;class#Pawn#0" expanded="false" />
-            <element signature="method#movePiece#0;class#Pawn#0" expanded="false" />
+            <element signature="method#performMove#0;class#Pawn#0" expanded="false" />
             <element signature="method#addDiagonalCaptureMove#0;class#Pawn#0" expanded="false" />
           </folding>
         </state>
@@ -816,7 +852,7 @@
           <folding>
             <element signature="method#Knight#0;class#Knight#0" expanded="false" />
             <element signature="method#calculateLegalMoves#0;class#Knight#0" expanded="false" />
-            <element signature="method#movePiece#0;class#Knight#0" expanded="false" />
+            <element signature="method#performMove#0;class#Knight#0" expanded="false" />
             <element signature="method#isOnColumnA#0;class#Knight#0" expanded="false" />
             <element signature="method#isOnColumnB#0;class#Knight#0" expanded="false" />
             <element signature="method#isOnColumnG#0;class#Knight#0" expanded="false" />
@@ -832,7 +868,7 @@
           <folding>
             <element signature="method#King#0;class#King#0" expanded="false" />
             <element signature="method#calculateLegalMoves#0;class#King#0" expanded="false" />
-            <element signature="method#movePiece#0;class#King#0" expanded="false" />
+            <element signature="method#performMove#0;class#King#0" expanded="false" />
             <element signature="method#isOnColumnA#0;class#King#0" expanded="false" />
             <element signature="method#isOnColumnH#0;class#King#0" expanded="false" />
           </folding>
@@ -846,7 +882,7 @@
           <folding>
             <element signature="method#Bishop#0;class#Bishop#0" expanded="false" />
             <element signature="method#calculateLegalMoves#0;class#Bishop#0" expanded="false" />
-            <element signature="method#movePiece#0;class#Bishop#0" expanded="false" />
+            <element signature="method#performMove#0;class#Bishop#0" expanded="false" />
             <element signature="method#isOnColumnA#0;class#Bishop#0" expanded="false" />
             <element signature="method#isOnColumnH#0;class#Bishop#0" expanded="false" />
           </folding>
@@ -882,24 +918,6 @@
         <state relative-caret-position="750">
           <caret line="30" column="33" lean-forward="true" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/board/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
-          <caret line="238" column="0" lean-forward="true" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
-          <folding>
-            <element signature="method#Board#0;class#Board#0" expanded="false" />
-            <element signature="method#toString#0;class#Board#0" expanded="false" />
-            <element signature="method#initializeBoard#0;class#Board#0" expanded="false" />
-            <element signature="method#createSquareList#0;class#Board#0" expanded="false" />
-            <element signature="method#getIngamePieces#0;class#Board#0" expanded="false" />
-            <element signature="method#getLegalMoves#0;class#Board#0" expanded="false" />
-            <element signature="method#getBothPlayersLegalMoves#0;class#Board#0" expanded="false" />
-            <element signature="method#setPiece#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
-            <element signature="method#setNextToMove#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -946,8 +964,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/pieces/Piece.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+        <state relative-caret-position="360">
+          <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
           <folding>
             <element signature="method#Piece#0;class#Piece#0" expanded="false" />
             <element signature="method#createHashCode#0;class#Piece#0" expanded="false" />
@@ -957,8 +975,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/moves/Move.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="647">
-          <caret line="214" column="16" lean-forward="false" selection-start-line="214" selection-start-column="16" selection-end-line="214" selection-end-column="16" />
+        <state relative-caret-position="600">
+          <caret line="195" column="17" lean-forward="false" selection-start-line="195" selection-start-column="17" selection-end-line="195" selection-end-column="17" />
           <folding>
             <element signature="method#Move#0;class#Move#0" expanded="false" />
             <element signature="method#hashCode#0;class#Move#0" expanded="false" />
@@ -969,12 +987,31 @@
             <element signature="class#IllegalMove#0;class#Move#0" expanded="false" />
             <element signature="class#NeutralMove#0;class#Move#0" expanded="false" />
             <element signature="class#PawnNeutralSingleMove#0;class#Move#0" expanded="false" />
-            <element signature="class#PawnNeutralDoubleMove#0;class#Move#0" expanded="false" />
+            <element signature="class#CaptureMove#0;class#Move#0" expanded="false" />
+            <element signature="method#equals#0;class#CaptureMove#0;class#Move#0" expanded="false" />
             <element signature="class#PawnCaptureMove#0;class#Move#0" expanded="false" />
             <element signature="class#EnPassantMove#0;class#Move#0" expanded="false" />
             <element signature="class#CastlingMove#0;class#Move#0" expanded="false" />
             <element signature="class#CastlingLongMove#0;class#Move#0" expanded="false" />
             <element signature="class#CastlingShortMove#0;class#Move#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/board/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="189" column="84" lean-forward="false" selection-start-line="189" selection-start-column="84" selection-end-line="189" selection-end-column="84" />
+          <folding>
+            <element signature="method#Board#0;class#Board#0" expanded="false" />
+            <element signature="method#toString#0;class#Board#0" expanded="false" />
+            <element signature="method#initializeBoard#0;class#Board#0" expanded="false" />
+            <element signature="method#createSquareList#0;class#Board#0" expanded="false" />
+            <element signature="method#getIngamePieces#0;class#Board#0" expanded="false" />
+            <element signature="method#getLegalMoves#0;class#Board#0" expanded="false" />
+            <element signature="method#getBothPlayersLegalMoves#0;class#Board#0" expanded="false" />
+            <element signature="method#setPiece#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
+            <element signature="method#setNextToMove#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -81,7 +81,7 @@ public class Bishop extends Piece {
      * @return Piece that will move to new Board.
      */
     @Override
-    public Bishop movePiece(final Move move) {
+    public Bishop performMove(final Move move) {
         return new Bishop(
                 move.getDestinationPosition(),
                 move.getMovedPiece().getColor()

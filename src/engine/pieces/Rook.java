@@ -81,7 +81,7 @@ public class Rook extends Piece {
      * @return Piece that will move to new Board.
      */
     @Override
-    public Rook movePiece(final Move move) {
+    public Rook performMove(final Move move) {
         return new Rook(
                 move.getDestinationPosition(),
                 move.getMovedPiece().getColor()

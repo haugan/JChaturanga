@@ -76,7 +76,7 @@ public class King extends Piece {
      * @return Piece that will move to new Board.
      */
     @Override
-    public King movePiece(final Move move) {
+    public King performMove(final Move move) {
         return new King(
                 move.getDestinationPosition(),
                 move.getMovedPiece().getColor()

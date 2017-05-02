@@ -81,7 +81,7 @@ public class Queen extends Piece {
      * @return Piece that will move to new Board.
      */
     @Override
-    public Queen movePiece(final Move move) {
+    public Queen performMove(final Move move) {
         return new Queen(
                 move.getDestinationPosition(),
                 move.getMovedPiece().getColor()

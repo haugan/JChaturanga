@@ -2,6 +2,7 @@ package engine.moves;
 
 import engine.board.Board;
 import engine.board.Board.BoardBuilder;
+import engine.pieces.Pawn;
 import engine.pieces.Piece;
 
 public abstract class Move {
@@ -96,7 +97,7 @@ public abstract class Move {
         }
 
         builder.setPiece(
-                this.movedPiece.movePiece(this)
+                this.movedPiece.performMove(this)
         ); // create new Piece (representing the moved one) and set it to new Board
         builder.setNextToMove(this.board.getCurrentPlayer().getOpponent().getColor());
 
@@ -180,6 +181,22 @@ public abstract class Move {
                                      final int destinationPosition) {
             super(board, movedPiece, destinationPosition);
         }
+
+        @Override
+        public Board perform() {
+            final BoardBuilder b = new BoardBuilder();
+            for (final Piece p : this.board.getCurrentPlayer().getPieces()) {
+                if (!this.movedPiece.equals(p)) b.setPiece(p);
+            }
+            for (final Piece p : this.board.getCurrentPlayer().getOpponent().getPieces()) {
+                b.setPiece(p);
+            }
+            final Pawn movedPawn = (Pawn) this.movedPiece.performMove(this);
+            b.setPiece(movedPawn);
+            b.setEnPassantPawn(movedPawn);
+            b.setNextToMove(this.board.getCurrentPlayer().getOpponent().getColor());
+            return b.createBoard();
+        }
     }
 
     // INNER CLASS!
@@ -201,9 +218,7 @@ public abstract class Move {
         }
 
         @Override
-        public int hashCode() {
-            return this.capturedPiece.hashCode() + super.hashCode();
-        }
+        public int hashCode() {return this.capturedPiece.hashCode() + super.hashCode();}
 
         @Override
         public boolean equals(final Object obj) {
@@ -216,19 +231,13 @@ public abstract class Move {
         }
 
         @Override
-        public Board perform() {
-            return null;
-        }
+        public Board perform() {return null;}
 
         @Override
-        public boolean isCaptureMove() {
-            return true;
-        }
+        public boolean isCaptureMove() {return true;}
 
         @Override
-        public Piece getCapturedPiece() {
-            return this.capturedPiece;
-        }
+        public Piece getCapturedPiece() {return this.capturedPiece;}
     }
 
     // INNER CLASS!

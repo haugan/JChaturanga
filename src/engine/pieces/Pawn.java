@@ -96,7 +96,7 @@ public class Pawn extends Piece {
      * @return Piece that will move to new Board.
      */
     @Override
-    public Pawn movePiece(final Move move) {
+    public Pawn performMove(final Move move) {
         return new Pawn(
                 move.getDestinationPosition(),
                 move.getMovedPiece().getColor()

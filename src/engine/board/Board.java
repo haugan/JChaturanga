@@ -166,7 +166,6 @@ public class Board {
     }
 
     /**
-     * TODO: comment this
      * @return TODO: comment this
      */
     public Iterable<Move> getBothPlayersLegalMoves() {
@@ -178,29 +177,11 @@ public class Board {
         );
     }
 
-    /**
-     * @return TODO: comment this
-     */
     public Player getBlackPlayer() {return this.blackPlayer;}
-
-    /**
-     * @return TODO: comment this
-     */
     public Player getWhitePlayer() {return this.whitePlayer;}
-
-    /**
-     * @return TODO: comment this
-     */
     public Player getCurrentPlayer() {return this.currentPlayer;}
 
-    /**
-     * @return TODO: comment this
-     */
     public Collection<Piece> getBlackPieces() {return this.blackPieces;}
-
-    /**
-     * @return TODO: comment this
-     */
     public Collection<Piece> getWhitePieces() {return this.whitePieces;}
 
     // INNER CLASS!
@@ -208,6 +189,7 @@ public class Board {
 
         Map<Integer, Piece> squarePieceMap; // holding Squares "ID" (0-63) and their occupying Piece
         PlayerColor nextToMove;
+        Pawn enPassantPawn; // holds Pawn that could be captured "en passant" by opposing Player
 
         /**
          * TODO: comment this
@@ -223,20 +205,14 @@ public class Board {
             return this;
         }
 
-        /**
-         * @param color of the player who's next to move.
-         * @return an instance of this Builder class.
-         */
         public BoardBuilder setNextToMove(final PlayerColor color) {
             this.nextToMove = color;
             return this;
         }
 
-        /**
-         * @return an instance of this Builder class.
-         */
         public Board createBoard() {return new Board(this);}
 
+        public void setEnPassantPawn(final Pawn enPassantPawn) {this.enPassantPawn = enPassantPawn;}
     }
 
 }

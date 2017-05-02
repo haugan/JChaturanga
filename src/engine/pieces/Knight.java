@@ -78,7 +78,7 @@ public class Knight extends Piece {
      * @return Piece that will move to new Board.
      */
     @Override
-    public Knight movePiece(final Move move) {
+    public Knight performMove(final Move move) {
         return new Knight(
                 move.getDestinationPosition(),
                 move.getMovedPiece().getColor()

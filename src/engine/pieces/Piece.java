@@ -102,7 +102,7 @@ public abstract class Piece {
      * @param move object containing new position for Piece, and color of "moving" Player.
      * @return new Piece with updated position.
      */
-    public abstract Piece movePiece(final Move move);
+    public abstract Piece performMove(final Move move);
 
     // INNER CLASS!
     public enum PieceType {
@@ -115,7 +115,6 @@ public abstract class Piece {
 
         @Override
         public String toString() {return this.type;}
-
     }
 
 }
