@@ -21,11 +21,7 @@ public abstract class Player {
     protected final King king;
     protected final Collection<Move> legalMovesAll;
     private final boolean inCheck;
-
-    /**
-     * @param board
-     * @param legalMovesPlayer
-     * @param legalMovesOpponent */
+    
     protected Player(final Board board,
                      final Collection<Move> legalMovesPlayer,
                      final Collection<Move> legalMovesOpponent) {
@@ -55,7 +51,6 @@ public abstract class Player {
     public abstract Player getOpponent();
     protected abstract Collection<Move> getCastlingMoves(final Collection<Move> legalMovesPlayer,
                                                          final Collection<Move> legalMovesOpponent);
-
     public King getKing() {return this.king;}
     public Collection<Move> getLegalMoves() {return this.legalMovesAll;}
 
