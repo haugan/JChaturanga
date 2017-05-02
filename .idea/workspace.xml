@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9aa4b97-5364-492a-b265-ce45f8ca49c0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/moves/Move.java" afterPath="$PROJECT_DIR$/src/engine/moves/Move.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/players/BlackPlayer.java" afterPath="$PROJECT_DIR$/src/engine/players/BlackPlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/players/Player.java" afterPath="$PROJECT_DIR$/src/engine/players/Player.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/players/WhitePlayer.java" afterPath="$PROJECT_DIR$/src/engine/players/WhitePlayer.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -26,7 +23,7 @@
       <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/engine/players/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="582">
+            <state relative-caret-position="1205">
               <caret line="131" column="105" lean-forward="false" selection-start-line="131" selection-start-column="105" selection-end-line="131" selection-end-column="105" />
               <folding>
                 <element signature="method#Player#0;class#Player#0" expanded="false" />
@@ -42,27 +39,27 @@
       <file leaf-file-name="WhitePlayer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/engine/players/WhitePlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="545">
-              <caret line="36" column="59" lean-forward="false" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
+            <state relative-caret-position="441">
+              <caret line="51" column="40" lean-forward="false" selection-start-line="51" selection-start-column="40" selection-end-line="51" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlackPlayer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BlackPlayer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/engine/players/BlackPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="779">
-              <caret line="61" column="9" lean-forward="true" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
+            <state relative-caret-position="675">
+              <caret line="63" column="21" lean-forward="true" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Move.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Move.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/engine/moves/Move.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
+            <state relative-caret-position="103">
               <caret line="356" column="25" lean-forward="false" selection-start-line="356" selection-start-column="25" selection-end-line="356" selection-end-column="25" />
               <folding>
                 <element signature="method#Move#0;class#Move#0" expanded="false" />
@@ -78,21 +75,6 @@
                 <element signature="method#equals#0;class#CaptureMove#0;class#Move#0" expanded="false" />
                 <element signature="class#PawnCaptureMove#0;class#Move#0" expanded="false" />
                 <element signature="class#EnPassantMove#0;class#Move#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Rook.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/engine/pieces/Rook.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="23" column="46" lean-forward="true" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
-              <folding>
-                <element signature="method#calculateLegalMoves#0;class#Rook#0" expanded="false" />
-                <element signature="method#performMove#0;class#Rook#0" expanded="false" />
-                <element signature="method#isOnColumnA#0;class#Rook#0" expanded="false" />
-                <element signature="method#isOnColumnH#0;class#Rook#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -132,9 +114,9 @@
         <option value="$PROJECT_DIR$/src/engine/pieces/Piece.java" />
         <option value="$PROJECT_DIR$/src/engine/board/Board.java" />
         <option value="$PROJECT_DIR$/src/engine/players/Player.java" />
+        <option value="$PROJECT_DIR$/src/engine/moves/Move.java" />
         <option value="$PROJECT_DIR$/src/engine/players/WhitePlayer.java" />
         <option value="$PROJECT_DIR$/src/engine/players/BlackPlayer.java" />
-        <option value="$PROJECT_DIR$/src/engine/moves/Move.java" />
       </list>
     </option>
   </component>
@@ -979,20 +961,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/players/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="131" column="105" lean-forward="false" selection-start-line="131" selection-start-column="105" selection-end-line="131" selection-end-column="105" />
-          <folding>
-            <element signature="method#Player#0;class#Player#0" expanded="false" />
-            <element signature="method#initializeKing#0;class#Player#0" expanded="false" />
-            <element signature="method#performMove#0;class#Player#0" expanded="false" />
-            <element signature="method#getCaptureMovesOnSquare#0;class#Player#0" expanded="false" />
-            <element signature="method#canEscape#0;class#Player#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/pieces/Piece.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2158">
@@ -1005,25 +973,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/players/WhitePlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="36" column="59" lean-forward="false" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/players/BlackPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="61" column="9" lean-forward="true" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/pieces/Rook.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
+        <state relative-caret-position="286">
           <caret line="23" column="46" lean-forward="true" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
           <folding>
             <element signature="method#calculateLegalMoves#0;class#Rook#0" expanded="false" />
@@ -1036,7 +988,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/moves/Move.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
+        <state relative-caret-position="103">
           <caret line="356" column="25" lean-forward="false" selection-start-line="356" selection-start-column="25" selection-end-line="356" selection-end-column="25" />
           <folding>
             <element signature="method#Move#0;class#Move#0" expanded="false" />
@@ -1053,6 +1005,36 @@
             <element signature="class#PawnCaptureMove#0;class#Move#0" expanded="false" />
             <element signature="class#EnPassantMove#0;class#Move#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/players/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1205">
+          <caret line="131" column="105" lean-forward="false" selection-start-line="131" selection-start-column="105" selection-end-line="131" selection-end-column="105" />
+          <folding>
+            <element signature="method#Player#0;class#Player#0" expanded="false" />
+            <element signature="method#initializeKing#0;class#Player#0" expanded="false" />
+            <element signature="method#performMove#0;class#Player#0" expanded="false" />
+            <element signature="method#getCaptureMovesOnSquare#0;class#Player#0" expanded="false" />
+            <element signature="method#canEscape#0;class#Player#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/players/WhitePlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="51" column="40" lean-forward="false" selection-start-line="51" selection-start-column="40" selection-end-line="51" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/players/BlackPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="63" column="21" lean-forward="true" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>

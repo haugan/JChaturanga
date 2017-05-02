@@ -36,7 +36,7 @@ public class WhitePlayer extends Player {
                                                 final Collection<Move> legalMovesOpponent) {
         final List<Move> castlingMoves = new ArrayList<>();
         if (this.king.isFirstMove() && !this.isChecked()) {
-            // CASTLING SHORT
+            // CASTLING SHORT "KINGSIDE"
             if (!this.board.getSquare(61).isOccupied() &&
                 !this.board.getSquare(62).isOccupied()) {
                 final Square kingSideRookSquare = this.board.getSquare(63);
@@ -49,14 +49,19 @@ public class WhitePlayer extends Player {
                     }
                 }
             }
-            // CASTLING LONG
+            // CASTLING LONG "QUEENSIDE"
             if (!this.board.getSquare(59).isOccupied() &&
                 !this.board.getSquare(58).isOccupied() &&
                 !this.board.getSquare(57).isOccupied()) {
                 final Square queenSideRookSquare = this.board.getSquare(56);
-                if (queenSideRookSquare.isOccupied() &&
-                    queenSideRookSquare.getPiece().isFirstMove()) {
-                    castlingMoves.add(null); // TODO: add Queen-side castling move (i.e. long)
+                if (Player.getCaptureMovesOnSquare(59, legalMovesOpponent).isEmpty() &&
+                    Player.getCaptureMovesOnSquare(58, legalMovesOpponent).isEmpty() &&
+                    Player.getCaptureMovesOnSquare(57, legalMovesOpponent).isEmpty() &&
+                    queenSideRookSquare.getPiece().getType() == ROOK) {
+                    if (queenSideRookSquare.isOccupied() &&
+                        queenSideRookSquare.getPiece().isFirstMove()) {
+                        castlingMoves.add(null); // TODO: add Queen-side castling move (i.e. long)
+                    }
                 }
             }
         }

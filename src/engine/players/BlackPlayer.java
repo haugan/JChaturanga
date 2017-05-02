@@ -54,9 +54,14 @@ public class BlackPlayer extends Player {
                 !this.board.getSquare(2).isOccupied() &&
                 !this.board.getSquare(3).isOccupied()) {
                 final Square queenSideRookSquare = this.board.getSquare(0);
-                if (queenSideRookSquare.isOccupied() &&
-                    queenSideRookSquare.getPiece().isFirstMove()) {
-                    castlingMoves.add(null); // TODO: add Queen-side castling move (i.e. long)
+                if (Player.getCaptureMovesOnSquare(1, legalMovesOpponent).isEmpty() &&
+                    Player.getCaptureMovesOnSquare(2, legalMovesOpponent).isEmpty() &&
+                    Player.getCaptureMovesOnSquare(3, legalMovesOpponent).isEmpty() &&
+                    queenSideRookSquare.getPiece().getType() == ROOK) {
+                    if (queenSideRookSquare.isOccupied() &&
+                        queenSideRookSquare.getPiece().isFirstMove()) {
+                        castlingMoves.add(null); // TODO: add Queen-side castling move (i.e. long)
+                    }
                 }
             }
         }
