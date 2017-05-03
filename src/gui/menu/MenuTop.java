@@ -16,8 +16,8 @@ public class MenuTop {
         // FILE MENU
         Menu fileM = new Menu("_File");
         MenuItem newMI = new MenuItem("New");
-        MenuItem saveMI = new MenuItem("Save...");
-        MenuItem loadMI = new MenuItem("Load...");
+        MenuItem saveMI = new MenuItem("Save PGN...");
+        MenuItem loadMI = new MenuItem("Load PGN...");
         MenuItem exitMI = new MenuItem("Exit");
         newMI.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.SHORTCUT_DOWN));
         saveMI.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN));
@@ -36,8 +36,8 @@ public class MenuTop {
 
         // EDIT MENU
         Menu editM = new Menu("_Edit");
-        MenuItem undoMI = new MenuItem("Undo");
-        MenuItem redoMI = new MenuItem("Redo");
+        MenuItem undoMI = new MenuItem("Undo move");
+        MenuItem redoMI = new MenuItem("Redo move");
         MenuItem optionsMI = new MenuItem("Options...");
         undoMI.setAccelerator(new KeyCodeCombination(KeyCode.Z, KeyCombination.SHORTCUT_DOWN));
         redoMI.setAccelerator(new KeyCodeCombination(KeyCode.R, KeyCombination.SHORTCUT_DOWN));
@@ -50,7 +50,7 @@ public class MenuTop {
 
         // TOOLS MENU
         Menu toolsM = new Menu("_Tools");
-        CheckMenuItem hintsCMI = new CheckMenuItem("Show hints");
+        CheckMenuItem hintsCMI = new CheckMenuItem("Show legal moves");
         CheckMenuItem coordsCMI = new CheckMenuItem("Show coordinates");
         hintsCMI.setSelected(false);
         hintsCMI.setAccelerator(new KeyCodeCombination(KeyCode.H, KeyCombination.SHORTCUT_DOWN));
