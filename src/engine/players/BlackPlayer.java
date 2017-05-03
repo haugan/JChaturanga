@@ -37,8 +37,11 @@ public class BlackPlayer extends Player {
     @Override
     protected Collection<Move> getCastlingMoves(final Collection<Move> legalMovesPlayer,
                                                 final Collection<Move> legalMovesOpponent) {
+
         final List<Move> castlingMoves = new ArrayList<>();
+
         if (this.king.isFirstMove() && !this.isChecked()) {
+
             // CASTLING SHORT "KINGSIDE"
             if (!this.board.getSquare(5).isOccupied() &&
                 !this.board.getSquare(6).isOccupied()) {
@@ -57,6 +60,7 @@ public class BlackPlayer extends Player {
                     }
                 }
             }
+
             // CASTLING LONG "QUEENSIDE"
             if (!this.board.getSquare(1).isOccupied() &&
                 !this.board.getSquare(2).isOccupied() &&
@@ -78,6 +82,7 @@ public class BlackPlayer extends Player {
                 }
             }
         }
+
         return ImmutableList.copyOf(castlingMoves);
     }
 
