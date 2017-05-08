@@ -8,9 +8,11 @@ import javafx.stage.Stage;
 
 public class JChaturanga extends Application {
 
+    public static Board board;
+
     public static void main(String[] args) {
-        Board boardEngine = Board.initializeBoard();
-        System.out.println(boardEngine); // print ASCII board
+        board = Board.initializeBoard();
+        System.out.println(board); // print ASCII board
         launch(args); // launch JavaFX
     }
 

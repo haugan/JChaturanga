@@ -11,6 +11,8 @@ public enum PlayerColor {
         public boolean isBlack() {return true;}
         @Override
         public boolean isWhite() {return false;}
+        @Override
+        public String toString() {return "b";}
     },
 
     WHITE {
@@ -22,6 +24,8 @@ public enum PlayerColor {
         public boolean isBlack() {return false;}
         @Override
         public boolean isWhite() {return true;}
+        @Override
+        public String toString() {return "w";}
     };
 
     /**

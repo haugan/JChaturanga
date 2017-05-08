@@ -1,6 +1,10 @@
 package gui.board;
 
+import application.JChaturanga;
+import engine.board.Board;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -23,41 +27,59 @@ public class ChessBoardGrid extends GridPane {
 
     public ChessBoardGrid() {
         setPrefSize(BOARD_WIDTH, BOARD_HEIGHT);
-        final List<SquareStack> boardSquares = new ArrayList<>(64);
+
+        // TODO: look into solutions for sharing board state between classes
+        initializeGrid(JChaturanga.board);
+    }
+
+    private void initializeGrid(final Board board) {
+        int squarePosition = 0;
         SquareStack boardSquare;
-        int pos = 0;
-        for (int col = 0; col < SQUARES_ON_COL; col++) {
-            for (int row = 0; row < SQUARES_ON_ROW; row++) {
-                if ((col + row) % 2 == 0) {
-                    boardSquare = new SquareStack(pos,0,0, LIGHT_SQUARE);
+        final List<SquareStack> boardSquares = new ArrayList<>(64);
+
+        for (int row = 0; row < SQUARES_ON_COL; row++) {
+            for (int col = 0; col < SQUARES_ON_ROW; col++) {
+
+                if ((row + col) % 2 == 0) {
+                    boardSquare = new SquareStack(squarePosition,0,0, LIGHT_SQUARE, board);
                 } else {
-                    boardSquare = new SquareStack(pos,0,0, DARK_SQUARE);
+                    boardSquare = new SquareStack(squarePosition,0,0, DARK_SQUARE, board);
                 }
-                boardSquares.add(boardSquare); // add square stack to list of panes
-                this.add(boardSquare, col, row); // add square stack to parent grid
-                System.out.println("square" + pos + ": (" + col + "," + row + ")");
-                pos++; // position (and ID) of SquareStack pane
+
+                boardSquares.add(boardSquare); // add SquareStack to list of panes
+                this.add(boardSquare, col, row); // add SquareStack to parent GridPane
+                System.out.println("square" + squarePosition + " (col:" + col + ", row:" + row + ")");
+                squarePosition++; // ID of SquareStack pane
             }
         }
+
     }
 
     // INNER CLASS!
     public class SquareStack extends StackPane {
 
-        int squareID;
+        int squarePosition;
         double xPos, yPos;
-        Color backgroundColor;
+        Color bgColor;
         SquareGraphic squareGraphic;
         PieceGraphic pieceGraphic;
 
-        public SquareStack(int squareID, double xPos, double yPos, Color backgroundColor) {
-            this.squareID = squareID;
+        public SquareStack(int squarePosition, double xPos, double yPos, Color bgColor, Board board) {
+            this.squarePosition = squarePosition;
             this.xPos = xPos;
             this.yPos = yPos;
-            this.backgroundColor = backgroundColor;
-            squareGraphic = new SquareGraphic(xPos, yPos, backgroundColor);
-            pieceGraphic = new PieceGraphic();
-            this.getChildren().addAll(squareGraphic, pieceGraphic);
+            this.bgColor = bgColor;
+            squareGraphic = new SquareGraphic(xPos, yPos, bgColor);
+
+            if (board.getSquare(squarePosition).isOccupied()) { // Square contains Piece
+                String color = board.getSquare(squarePosition).getPiece().getColor().toString();
+                String type = board.getSquare(squarePosition).getPiece().getType().toString();
+                pieceGraphic = new PieceGraphic(color + type); // identifier references filename of image
+                this.getChildren().addAll(squareGraphic, pieceGraphic);
+            } else {
+                this.getChildren().add(squareGraphic);
+            }
+
         }
 
     }
@@ -65,8 +87,8 @@ public class ChessBoardGrid extends GridPane {
     // INNER CLASS!
     public class SquareGraphic extends Rectangle {
 
-        public SquareGraphic(double xPos, double yPos, Color backgroundColor) {
-            super(SQUARE_WIDTH, SQUARE_HEIGHT, backgroundColor);
+        public SquareGraphic(double xPos, double yPos, Color bgColor) {
+            super(SQUARE_WIDTH, SQUARE_HEIGHT, bgColor);
             this.setX(xPos); // position is relative to parent node (i.e. StackPane)
             this.setY(yPos); // position is relative to parent node (i.e. StackPane)
         }
@@ -75,7 +97,16 @@ public class ChessBoardGrid extends GridPane {
 
     // INNER CLASS!
     public class PieceGraphic extends Canvas {
-        // TODO: nodes can be styled with CSS!
+
+        public PieceGraphic(String identifier) {
+            super(SQUARE_WIDTH, SQUARE_HEIGHT);
+            GraphicsContext graphics = this.getGraphicsContext2D();
+            String imgURL = "/res/img/" + identifier + ".png";
+            Image img = new Image(imgURL);
+            graphics.drawImage(img, 0, 0, SQUARE_WIDTH, SQUARE_HEIGHT);
+            System.out.println("piece: " + identifier);
+        }
+
     }
 
 }

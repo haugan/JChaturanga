@@ -17,10 +17,7 @@ public abstract class Move {
      * @param board TODO: comment this
      * @param movedPiece to be created at a numbered destination Square on a new Board.
      * @param destinationPosition numbered position of the Square that is moved to. */
-    private Move(final Board board,
-                 final Piece movedPiece,
-                 final int destinationPosition) {
-
+    private Move(final Board board, final Piece movedPiece, final int destinationPosition) {
         this.board = board;
         this.movedPiece = movedPiece;
         this.destinationPosition = destinationPosition;
@@ -141,10 +138,7 @@ public abstract class Move {
          * @param board TODO: comment this
          * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to. */
-        public NeutralMove(final Board board,
-                           final Piece movedPiece,
-                           final int destinationPosition) {
-
+        public NeutralMove(final Board board, final Piece movedPiece, final int destinationPosition) {
             super(board, movedPiece, destinationPosition);
         }
     }
@@ -155,10 +149,7 @@ public abstract class Move {
          * @param board TODO: comment this
          * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to. */
-        public PawnNeutralSingleMove(final Board board,
-                                     final Piece movedPiece,
-                                     final int destinationPosition) {
-
+        public PawnNeutralSingleMove(final Board board, final Piece movedPiece, final int destinationPosition) {
             super(board, movedPiece, destinationPosition);
         }
     }
@@ -169,10 +160,7 @@ public abstract class Move {
          * @param board TODO: comment this
          * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to. */
-        public PawnNeutralDoubleMove(final Board board,
-                                     final Piece movedPiece,
-                                     final int destinationPosition) {
-
+        public PawnNeutralDoubleMove(final Board board, final Piece movedPiece, final int destinationPosition) {
             super(board, movedPiece, destinationPosition);
         }
 
@@ -208,11 +196,8 @@ public abstract class Move {
          * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to.
          * @param capturedPiece to be removed from new Board (?). */
-        public CaptureMove(final Board board,
-                           final Piece movedPiece,
-                           final int destinationPosition,
-                           final Piece capturedPiece) {
-
+        public CaptureMove(final Board board, final Piece movedPiece,
+                           final int destinationPosition, final Piece capturedPiece) {
             super(board, movedPiece, destinationPosition);
             this.capturedPiece = capturedPiece;
         }
@@ -244,11 +229,8 @@ public abstract class Move {
          * @param board TODO: comment this
          * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to. */
-        public PawnCaptureMove(final Board board,
-                               final Piece movedPiece,
-                               final int destinationPosition,
-                               final Piece capturedPiece) {
-
+        public PawnCaptureMove(final Board board, final Piece movedPiece,
+                               final int destinationPosition, final Piece capturedPiece) {
             super(board, movedPiece, destinationPosition, capturedPiece);
         }
     }
@@ -259,11 +241,8 @@ public abstract class Move {
          * @param board TODO: comment this
          * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to. */
-        public EnPassantMove(final Board board,
-                             final Piece movedPiece,
-                             final int destinationPosition,
-                             final Piece capturedPiece) {
-
+        public EnPassantMove(final Board board, final Piece movedPiece,
+                             final int destinationPosition, final Piece capturedPiece) {
             super(board, movedPiece, destinationPosition, capturedPiece);
         }
     }
@@ -279,13 +258,9 @@ public abstract class Move {
          * @param board TODO: comment this
          * @param movedPiece to be created at a numbered destination Square on a new Board.
          * @param destinationPosition numbered position of the Square that is moved to. */
-        public CastlingMove(final Board board,
-                            final Piece movedPiece,
-                            final int destinationPosition,
-                            final Rook castlingRook,
-                            final int rookPositionCurrent,
-                            final int rookPositionDestination) {
-
+        public CastlingMove(final Board board, final Piece movedPiece,
+                            final int destinationPosition, final Rook castlingRook,
+                            final int rookPositionCurrent, final int rookPositionDestination) {
             super(board, movedPiece, destinationPosition);
             this.castlingRook = castlingRook;
             this.rookPositionCurrent = rookPositionCurrent;
@@ -327,13 +302,9 @@ public abstract class Move {
     // INNER CLASS!
     public static final class CastlingLongMove extends CastlingMove {
 
-        public CastlingLongMove(final Board board,
-                                final Piece king,
-                                final int kingPositionDestination,
-                                final Rook castlingRook,
-                                final int rookPositionCurrent,
-                                final int rookPositionDestination) {
-
+        public CastlingLongMove(final Board board, final Piece king,
+                                final int kingPositionDestination, final Rook castlingRook,
+                                final int rookPositionCurrent, final int rookPositionDestination) {
             super(board, king, kingPositionDestination,
                   castlingRook, rookPositionCurrent, rookPositionDestination);
         }
@@ -347,13 +318,9 @@ public abstract class Move {
     // INNER CLASS!
     public static final class CastlingShortMove extends CastlingMove {
 
-        public CastlingShortMove(final Board board,
-                                 final Piece king,
-                                 final int kingPositionDestination,
-                                 final Rook castlingRook,
-                                 final int rookPositionCurrent,
-                                 final int rookPositionDestination) {
-
+        public CastlingShortMove(final Board board, final Piece king,
+                                 final int kingPositionDestination, final Rook castlingRook,
+                                 final int rookPositionCurrent, final int rookPositionDestination) {
             super(board, king, kingPositionDestination,
                   castlingRook, rookPositionCurrent, rookPositionDestination);
         }
