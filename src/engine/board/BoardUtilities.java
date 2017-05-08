@@ -9,8 +9,14 @@ public class BoardUtilities {
     public static final boolean[] COLUMN_B = initializeColumn(1); // second file..
     public static final boolean[] COLUMN_G = initializeColumn(6); // seventh file..
     public static final boolean[] COLUMN_H = initializeColumn(7); // eighth file..
-    public static final boolean[] ROW_2 = initializeRow(8); // second rank (row) of Board
-    public static final boolean[] ROW_7 = initializeRow(48); // seventh rank..
+    public static final boolean[] ROW_8 = initializeRow(0);  // eighth rank (row) of Board
+    public static final boolean[] ROW_7 = initializeRow(8);  // seventh rank..
+    public static final boolean[] ROW_6 = initializeRow(16); // sixth rank..
+    public static final boolean[] ROW_5 = initializeRow(24); // fifth rank..
+    public static final boolean[] ROW_4 = initializeRow(32); // fourth rank..
+    public static final boolean[] ROW_3 = initializeRow(40); // third rank..
+    public static final boolean[] ROW_2 = initializeRow(48); // second rank..
+    public static final boolean[] ROW_1 = initializeRow(56); // first rank..
 
     private BoardUtilities() {
         throw new RuntimeException("The BoardUtilities class is not instantiable!");

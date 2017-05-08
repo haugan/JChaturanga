@@ -25,16 +25,18 @@ public class ChessBoardGrid extends GridPane {
         setPrefSize(BOARD_WIDTH, BOARD_HEIGHT);
         final List<SquareStack> boardSquares = new ArrayList<>(64);
         SquareStack boardSquare;
+        int pos = 0;
         for (int col = 0; col < SQUARES_ON_COL; col++) {
             for (int row = 0; row < SQUARES_ON_ROW; row++) {
                 if ((col + row) % 2 == 0) {
-                    boardSquare = new SquareStack(0,0, LIGHT_SQUARE);
+                    boardSquare = new SquareStack(pos,0,0, LIGHT_SQUARE);
                 } else {
-                    boardSquare = new SquareStack(0,0, DARK_SQUARE);
+                    boardSquare = new SquareStack(pos,0,0, DARK_SQUARE);
                 }
                 boardSquares.add(boardSquare); // add square stack to list of panes
                 this.add(boardSquare, col, row); // add square stack to parent grid
-                System.out.println("square: " + col + "," + row);
+                System.out.println("square" + pos + ": (" + col + "," + row + ")");
+                pos++; // position (and ID) of SquareStack pane
             }
         }
     }
@@ -42,12 +44,14 @@ public class ChessBoardGrid extends GridPane {
     // INNER CLASS!
     public class SquareStack extends StackPane {
 
+        int squareID;
         double xPos, yPos;
         Color backgroundColor;
         SquareGraphic squareGraphic;
         PieceGraphic pieceGraphic;
 
-        public SquareStack(double xPos, double yPos, Color backgroundColor) {
+        public SquareStack(int squareID, double xPos, double yPos, Color backgroundColor) {
+            this.squareID = squareID;
             this.xPos = xPos;
             this.yPos = yPos;
             this.backgroundColor = backgroundColor;

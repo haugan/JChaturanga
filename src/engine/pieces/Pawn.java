@@ -55,8 +55,8 @@ public class Pawn extends Piece {
                 );
 
             } else if (offset == 16 && isFirstMove() &&
-                      (ROW_7[this.position] && getColor().isBlack()) ||
-                      (ROW_2[this.position] && getColor().isWhite())) { // jump move
+                      (ROW_2[this.position] && getColor().isBlack()) ||
+                      (ROW_7[this.position] && getColor().isWhite())) { // jump move
 
                 final int possibleBetweenPosition = this.position +
                                                    (this.color.getMoveDirection() * 8); // position that's jumped over
