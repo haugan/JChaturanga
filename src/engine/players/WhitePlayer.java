@@ -48,23 +48,25 @@ public class WhitePlayer extends Player {
 
                 final Square rookSquareShort = this.board.getSquare(63); // kingside Rook Square
 
-                if (Player.getCaptureMovesOnSquare(61, legalMovesOpponent).isEmpty() &&
-                    Player.getCaptureMovesOnSquare(62, legalMovesOpponent).isEmpty() &&
-                    rookSquareShort.getPiece().getType() == ROOK) { // see: #26 @15:20 getPiece().isRook()
+                if (rookSquareShort.isOccupied() && rookSquareShort.getPiece().isFirstMove()) {
 
-                    if (rookSquareShort.isOccupied() &&
-                        rookSquareShort.getPiece().isFirstMove()) {
+                    if (Player.getCaptureMovesOnSquare(61, legalMovesOpponent).isEmpty() &&
+                        Player.getCaptureMovesOnSquare(62, legalMovesOpponent).isEmpty() &&
+                        rookSquareShort.getPiece().getType() == ROOK) { // see: #26 @15:20 getPiece().isRook()
 
-                        castlingMoves.add(new CastlingShortMove(this.board,
-                                                                this.king,
-                                                                62,
-                                                                (Rook) rookSquareShort.getPiece(),
-                                                                rookSquareShort.getPosition(), // "from position"
-                                                                61));       // .. to
+                        castlingMoves.add(
+                                new CastlingShortMove(
+                                        this.board,
+                                        this.king,
+                                        62,
+                                        (Rook) rookSquareShort.getPiece(),
+                                        rookSquareShort.getPosition(), // from position
+                                        61)         // to destination
+                        );
 
-                    } // current Rook Square has Piece which hasn't moved yet
+                    } // castling Squares are free (not under attack), and kingside Square contains a Rook
 
-                } // castling Squares are free (not under attack), and kingside Square contains a Rook
+                } // kingside Square has Piece which hasn't moved yet
 
             } // castling Squares are empty (not occupied by any Piece)
 
@@ -75,24 +77,26 @@ public class WhitePlayer extends Player {
 
                 final Square rookSquareLong = this.board.getSquare(56); // queenside Rook Square
 
-                if (Player.getCaptureMovesOnSquare(59, legalMovesOpponent).isEmpty() &&
-                    Player.getCaptureMovesOnSquare(58, legalMovesOpponent).isEmpty() &&
-                    Player.getCaptureMovesOnSquare(57, legalMovesOpponent).isEmpty() &&
-                    rookSquareLong.getPiece().getType() == ROOK) {
+                if (rookSquareLong.isOccupied() && rookSquareLong.getPiece().isFirstMove()) {
 
-                    if (rookSquareLong.isOccupied() &&
-                        rookSquareLong.getPiece().isFirstMove()) {
+                    if (Player.getCaptureMovesOnSquare(59, legalMovesOpponent).isEmpty() &&
+                        Player.getCaptureMovesOnSquare(58, legalMovesOpponent).isEmpty() &&
+                        Player.getCaptureMovesOnSquare(57, legalMovesOpponent).isEmpty() &&
+                        rookSquareLong.getPiece().getType() == ROOK) {
 
-                        castlingMoves.add(new CastlingLongMove(this.board,
-                                                               this.king,
-                                                               58,
-                                                               (Rook) rookSquareLong.getPiece(),
-                                                               rookSquareLong.getPosition(), // "from position"
-                                                               59));      // .. to
+                        castlingMoves.add(
+                                new CastlingLongMove(
+                                        this.board,
+                                        this.king,
+                                        58,
+                                        (Rook) rookSquareLong.getPiece(),
+                                        rookSquareLong.getPosition(), // from position
+                                        59)        // to destination
+                        );
 
-                    } // current Rook Square has Piece which hasn't moved yet
+                    } // castling Squares are free (not under attack), and kingside Square contains a Rook
 
-                } // castling Squares are free (not under attack), and kingside Square contains a Rook
+                } // queenside Square has Piece which hasn't moved yet
 
             } // castling Squares are empty (not occupied by any Piece)
 
