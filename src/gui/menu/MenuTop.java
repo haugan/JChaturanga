@@ -23,7 +23,7 @@ public class MenuTop {
         saveMI.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN));
         loadMI.setAccelerator(new KeyCodeCombination(KeyCode.L, KeyCombination.SHORTCUT_DOWN));
         exitMI.setAccelerator(new KeyCodeCombination(KeyCode.E, KeyCombination.SHORTCUT_DOWN));
-        exitMI.setOnAction(actionEvent -> {
+        exitMI.setOnAction(e -> {
             System.out.println("Exiting application...");
             Platform.exit();}
         );
@@ -63,9 +63,8 @@ public class MenuTop {
         MenuItem savePNGMI = new MenuItem("Save as PNG...");
         MenuItem saveGIFMI = new MenuItem("Save as GIF...");
         toolsM.setMnemonicParsing(true);
-        screenshotM.getItems().addAll(savePNGMI,
-                                      saveGIFMI);
         toolsM.getItems().add(screenshotM);
+        screenshotM.getItems().addAll(savePNGMI, saveGIFMI);
 
         // HELP MENU
         Menu helpM = new Menu("_Help");
