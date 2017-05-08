@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9aa4b97-5364-492a-b265-ce45f8ca49c0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/application/JChaturanga.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/application/JChaturanga.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/JChaturanga.java" afterPath="$PROJECT_DIR$/src/application/JChaturanga.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/board/BoardUtilities.java" afterPath="$PROJECT_DIR$/src/engine/board/BoardUtilities.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/pieces/Pawn.java" afterPath="$PROJECT_DIR$/src/engine/pieces/Pawn.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java" afterPath="$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/players/BlackPlayer.java" afterPath="$PROJECT_DIR$/src/engine/players/BlackPlayer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/players/WhitePlayer.java" afterPath="$PROJECT_DIR$/src/engine/players/WhitePlayer.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/MavenJS/target/" />
@@ -27,8 +23,8 @@
       <file leaf-file-name="BlackPlayer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/engine/players/BlackPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
-              <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+            <state relative-caret-position="700">
+              <caret line="75" column="84" lean-forward="false" selection-start-line="75" selection-start-column="84" selection-end-line="75" selection-end-column="84" />
               <folding />
             </state>
           </provider>
@@ -37,8 +33,8 @@
       <file leaf-file-name="WhitePlayer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/engine/players/WhitePlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="662">
-              <caret line="80" column="17" lean-forward="true" selection-start-line="67" selection-start-column="16" selection-end-line="80" selection-end-column="17" />
+            <state relative-caret-position="364">
+              <caret line="75" column="84" lean-forward="false" selection-start-line="75" selection-start-column="84" selection-end-line="75" selection-end-column="84" />
               <folding />
             </state>
           </provider>
@@ -84,8 +80,6 @@
         <option value="$PROJECT_DIR$/src/engine/players/Player.java" />
         <option value="$PROJECT_DIR$/src/engine/board/Square.java" />
         <option value="$PROJECT_DIR$/src/engine/moves/Move.java" />
-        <option value="$PROJECT_DIR$/src/engine/players/WhitePlayer.java" />
-        <option value="$PROJECT_DIR$/src/engine/players/BlackPlayer.java" />
         <option value="$PROJECT_DIR$/src/JavaSjakk.java" />
         <option value="$PROJECT_DIR$/src/gui/menu/TopMenu.java" />
         <option value="$PROJECT_DIR$/src/gui/ChessBoard.java" />
@@ -102,6 +96,8 @@
         <option value="$PROJECT_DIR$/src/application/JChaturanga.java" />
         <option value="$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java" />
         <option value="$PROJECT_DIR$/src/engine/board/BoardUtilities.java" />
+        <option value="$PROJECT_DIR$/src/engine/players/WhitePlayer.java" />
+        <option value="$PROJECT_DIR$/src/engine/players/BlackPlayer.java" />
       </list>
     </option>
   </component>
@@ -669,7 +665,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23347548" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23347548" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1142,16 +1138,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/players/BlackPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+        <state relative-caret-position="700">
+          <caret line="75" column="84" lean-forward="false" selection-start-line="75" selection-start-column="84" selection-end-line="75" selection-end-column="84" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/players/WhitePlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
-          <caret line="80" column="17" lean-forward="true" selection-start-line="67" selection-start-column="16" selection-end-line="80" selection-end-column="17" />
+        <state relative-caret-position="364">
+          <caret line="75" column="84" lean-forward="false" selection-start-line="75" selection-start-column="84" selection-end-line="75" selection-end-column="84" />
           <folding />
         </state>
       </provider>

@@ -40,47 +40,62 @@ public class BlackPlayer extends Player {
 
         final List<Move> castlingMoves = new ArrayList<>();
 
-        if (this.king.isFirstMove() && !this.isChecked()) {
+        if (this.king.isFirstMove() && !this.isChecked()) { // if King hasn't moved yet, and Player isn't in check
 
             // CASTLING SHORT "KINGSIDE"
             if (!this.board.getSquare(5).isOccupied() &&
                 !this.board.getSquare(6).isOccupied()) {
-                final Square rookSquareShort = this.board.getSquare(7);
+
+                final Square rookSquareShort = this.board.getSquare(7); // kingside Rook Square
+
                 if (Player.getCaptureMovesOnSquare(5, legalMovesOpponent).isEmpty() &&
                     Player.getCaptureMovesOnSquare(6, legalMovesOpponent).isEmpty() &&
-                    rookSquareShort.getPiece().getType() == ROOK) { // #26 @15:20 getPiece().isRook()
+                    rookSquareShort.getPiece().getType() == ROOK) { // see: #26 @15:20 getPiece().isRook()
+
                     if (rookSquareShort.isOccupied() &&
                         rookSquareShort.getPiece().isFirstMove()) {
+
                         castlingMoves.add(new CastlingShortMove(this.board,
                                                                 this.king,
                                                                 6,
                                                                 (Rook) rookSquareShort.getPiece(),
-                                                                rookSquareShort.getPosition(), // current rook position
-                                                                5));
-                    }
-                }
-            }
+                                                                rookSquareShort.getPosition(), // "from position"
+                                                                5));        // .. to
+
+                    } // current Rook Square has Piece which hasn't moved yet
+
+                } // castling Squares are free (not under attack), and kingside Square contains a Rook
+
+            } // castling Squares are empty (not occupied by any Piece)
 
             // CASTLING LONG "QUEENSIDE"
             if (!this.board.getSquare(1).isOccupied() &&
                 !this.board.getSquare(2).isOccupied() &&
                 !this.board.getSquare(3).isOccupied()) {
-                final Square rookSquareLong = this.board.getSquare(0);
+
+                final Square rookSquareLong = this.board.getSquare(0); // queenside Rook Square
+
                 if (Player.getCaptureMovesOnSquare(1, legalMovesOpponent).isEmpty() &&
                     Player.getCaptureMovesOnSquare(2, legalMovesOpponent).isEmpty() &&
                     Player.getCaptureMovesOnSquare(3, legalMovesOpponent).isEmpty() &&
                     rookSquareLong.getPiece().getType() == ROOK) {
+
                     if (rookSquareLong.isOccupied() &&
                         rookSquareLong.getPiece().isFirstMove()) {
+
                         castlingMoves.add(new CastlingLongMove(this.board,
                                                                this.king,
                                                                2,
                                                                (Rook) rookSquareLong.getPiece(),
-                                                               rookSquareLong.getPosition(), // current rook position
-                                                               3));
-                    }
-                }
-            }
+                                                               rookSquareLong.getPosition(), // "from position"
+                                                               3));       // .. to
+
+                    } // current Rook Square has Piece which hasn't moved yet
+
+                } // castling Squares are free (not under attack), and kingside Square contains a Rook
+
+            } // castling Squares are empty (not occupied by any Piece)
+
         }
 
         return ImmutableList.copyOf(castlingMoves);
