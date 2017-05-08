@@ -1,4 +1,4 @@
-package gui;
+package gui.board;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.FlowPane;

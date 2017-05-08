@@ -4,6 +4,7 @@ public class BoardUtilities {
 
     public static final int SQUARES_ON_BOARD = 64; // number of Squares on chess Board
     public static final int SQUARES_ON_ROW = SQUARES_ON_BOARD / 8; // number of Squares on each row
+    public static final int SQUARES_ON_COL = SQUARES_ON_BOARD / 8; // number of Squares on each column
     public static final boolean[] COLUMN_A = initializeColumn(0); // first file (column) of Board
     public static final boolean[] COLUMN_B = initializeColumn(1); // second file..
     public static final boolean[] COLUMN_G = initializeColumn(6); // seventh file..

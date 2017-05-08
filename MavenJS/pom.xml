@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ASD3000</groupId>
-    <artifactId>JChaturanga</artifactId>
+    <artifactId>application.JChaturanga</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>

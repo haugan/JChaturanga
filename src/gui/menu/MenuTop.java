@@ -23,7 +23,7 @@ public class MenuTop {
         saveMI.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN));
         loadMI.setAccelerator(new KeyCodeCombination(KeyCode.L, KeyCombination.SHORTCUT_DOWN));
         exitMI.setAccelerator(new KeyCodeCombination(KeyCode.E, KeyCombination.SHORTCUT_DOWN));
-        exitMI.setOnAction(ae -> {
+        exitMI.setOnAction(actionEvent -> {
             System.out.println("Exiting application...");
             Platform.exit();}
         );
