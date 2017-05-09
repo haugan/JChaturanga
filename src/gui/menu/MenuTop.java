@@ -54,6 +54,7 @@ public class MenuTop {
         Menu toolsM = new Menu("_Tools");
         CheckMenuItem tooltipsCMI = new CheckMenuItem("Show tooltips");
         tooltipsCMI.setAccelerator(new KeyCodeCombination(KeyCode.T, KeyCombination.SHORTCUT_DOWN));
+        tooltipsCMI.setSelected(true);
         tooltipsCMI.setOnAction(e -> {
             if (!tooltipsEnabled) {
                 tooltipsEnabled = true;

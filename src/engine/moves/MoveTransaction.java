@@ -8,9 +8,7 @@ public class MoveTransaction {
     private final Move move;
     private final MoveTransactionResult result;
 
-    public MoveTransaction(final Board board,
-                           final Move move,
-                           final MoveTransactionResult result) {
+    public MoveTransaction(final Board board, final Move move, final MoveTransactionResult result) {
         this.board = board;
         this.move = move;
         this.result = result;

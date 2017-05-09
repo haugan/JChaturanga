@@ -19,17 +19,17 @@ public abstract class Player {
 
     protected final Board board;
     protected final King king;
-    protected final Collection<Move> legalMovesAll;
+    protected final Collection<Move> legalMoves;
     private final boolean inCheck;
 
     protected Player(final Board board,
-                     final Collection<Move> legalMovesPlayer,
-                     final Collection<Move> legalMovesOpponent) {
+                     final Collection<Move> legalMovesPlayer, final Collection<Move> legalMovesOpponent) {
 
         this.board = board;
         this.king = initializeKing();
-        this.legalMovesAll = ImmutableList.copyOf(
-                Iterables.concat(legalMovesPlayer, legalMovesOpponent)
+
+        legalMoves = ImmutableList.copyOf(
+                Iterables.concat(legalMovesPlayer, getCastlingMoves(legalMovesPlayer, legalMovesOpponent))
         );
 
         /*
@@ -51,7 +51,7 @@ public abstract class Player {
     protected abstract Collection<Move> getCastlingMoves(final Collection<Move> legalMovesPlayer,
                                                          final Collection<Move> legalMovesOpponent);
     public King getKing() {return this.king;}
-    public Collection<Move> getLegalMoves() {return this.legalMovesAll;}
+    public Collection<Move> getLegalMoves() {return this.legalMoves;}
 
     /**
      * Check if a given Square position is capturable by any legal Moves from opposing Player.
@@ -92,8 +92,7 @@ public abstract class Player {
 
         // MOVE IS NOT LEGAL
         if (!isAttemptingLegalMove(move)) {
-            return new MoveTransaction(
-                    this.board, move, CANCELED
+            return new MoveTransaction(this.board, move, CANCELED
             ); // return same Board as before attempted Move (i.e. current positioning)
         }
 
@@ -109,20 +108,17 @@ public abstract class Player {
                                         newBoard.getCurrentPlayer()
                                                 .getLegalMoves()
         ); // get check attempts against opponent's King (after move, current player is the opponent)
+
         if (!checkMoves.isEmpty()) {
-            return new MoveTransaction(
-                    this.board, move, PLAYER_CHECKED
-            );
+            return new MoveTransaction(this.board, move, PLAYER_CHECKED);
         } // if list isn't empty, the King is checked
 
         // MOVE IS LEGAL
-        return new MoveTransaction(
-                newBoard, move, COMPLETED
-        ); // return new Board with new positions
+        return new MoveTransaction(newBoard, move, COMPLETED); // return new Board with new positions
     }
 
     public boolean isAttemptingLegalMove(final Move attemptedMove) {
-        return this.legalMovesAll.contains(attemptedMove);
+        return this.legalMoves.contains(attemptedMove);
     }
 
     public boolean isChecked() {return this.inCheck;}
@@ -135,9 +131,9 @@ public abstract class Player {
      * @return true (if any of the Player's current legal Moves removes him from check by opponent). */
     protected boolean canEscape() {
 
-        for (final Move m : this.legalMovesAll) {
-            final MoveTransaction t = performMove(m);
-            if (t.getResult().isMovePerformed()) {
+        for (final Move m : this.legalMoves) {
+            final MoveTransaction transaction = performMove(m);
+            if (transaction.getResult() == COMPLETED) {
                 return true;
             }
         }

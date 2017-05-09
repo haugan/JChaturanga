@@ -102,9 +102,7 @@ public abstract class Move {
 
         private MoveFactory() {throw new RuntimeException("The MoveFactory class is not instantiable!");}
 
-        public static Move createMove(final Board board,
-                                      final int currentPosition, // ..from Square number i
-                                      final int destinationPosition) { // ..to Square number i
+        public static Move createMove(final Board board, final int currentPosition, final int destinationPosition) {
 
             for (final Move m : board.getBothPlayersLegalMoves()) {
                 if (m.getCurrentPosition() == currentPosition &&
@@ -121,7 +119,9 @@ public abstract class Move {
     // INNER CLASS!
     public static final class IllegalMove extends Move {
 
-        public IllegalMove() {super(null, null, -1);} // "null" Move
+        public IllegalMove() {
+            super(null, null, -1);
+        } // "null" Move
 
         @Override
         public Board perform() {

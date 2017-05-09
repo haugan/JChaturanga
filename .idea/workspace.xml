@@ -2,10 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9aa4b97-5364-492a-b265-ce45f8ca49c0" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/MoveTransactionResult$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/MoveTransactionResult$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/MoveTransactionResult$3.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/application/JChaturanga.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/application/JChaturanga.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$CaptureMove.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$CaptureMove.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$CastlingLongMove.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$CastlingLongMove.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$CastlingMove.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$CastlingMove.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$CastlingShortMove.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$CastlingShortMove.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$EnPassantMove.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$EnPassantMove.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$IllegalMove.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$IllegalMove.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$MoveFactory.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$MoveFactory.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$NeutralMove.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$NeutralMove.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$PawnCaptureMove.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$PawnCaptureMove.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$PawnNeutralDoubleMove.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$PawnNeutralDoubleMove.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$PawnNeutralSingleMove.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/Move$PawnNeutralSingleMove.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/MoveTransactionResult.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/engine/moves/MoveTransactionResult.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/players/Player.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/engine/players/Player.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$PieceGraphic.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$PieceGraphic.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$SquareGraphic.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$SquareGraphic.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$SquareStack.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$SquareStack.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/menu/MenuTop.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/gui/menu/MenuTop.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/JChaturanga.java" afterPath="$PROJECT_DIR$/src/application/JChaturanga.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/moves/Move.java" afterPath="$PROJECT_DIR$/src/engine/moves/Move.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/moves/MoveTransaction.java" afterPath="$PROJECT_DIR$/src/engine/moves/MoveTransaction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/moves/MoveTransactionResult.java" afterPath="$PROJECT_DIR$/src/engine/moves/MoveTransactionResult.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/players/Player.java" afterPath="$PROJECT_DIR$/src/engine/players/Player.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java" afterPath="$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/menu/MenuTop.java" afterPath="$PROJECT_DIR$/src/gui/menu/MenuTop.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -18,7 +43,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/JavaSjakk$JChaturanga.coverage" NAME="JChaturanga Coverage Results" MODIFIED="1494252172333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/JavaSjakk$JChaturanga.coverage" NAME="JChaturanga Coverage Results" MODIFIED="1494342865044" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>.*</FILTER>
     </SUITE>
   </component>
@@ -31,8 +56,8 @@
       <file leaf-file-name="JChaturanga.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/JChaturanga.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+            <state relative-caret-position="150">
+              <caret line="10" column="23" lean-forward="false" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -40,21 +65,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChessBoardGrid.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ChessBoardGrid.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1073">
-              <caret line="145" column="5" lean-forward="true" selection-start-line="145" selection-start-column="5" selection-end-line="145" selection-end-column="5" />
+            <state relative-caret-position="265">
+              <caret line="116" column="49" lean-forward="true" selection-start-line="116" selection-start-column="49" selection-end-line="116" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#ChessBoardGrid#0;class#ChessBoardGrid#0" expanded="false" />
-                <element signature="method#initializeGrid#0;class#ChessBoardGrid#0" expanded="false" />
-                <element signature="method#SquareStack#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
-                <element signature="e#2639#2940#0" expanded="false" />
-                <element signature="e#3000#3217#0" expanded="false" />
+                <element signature="e#3397#3643#0" expanded="false" />
+                <element signature="e#3724#3891#0" expanded="false" />
                 <element signature="method#drawGraphics#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
                 <element signature="method#setSquareColors#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
                 <element signature="method#showTooltips#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
+                <element signature="method#clearUserSelections#0;class#ChessBoardGrid#0" expanded="false" />
                 <element signature="method#SquareGraphic#0;class#SquareGraphic#0;class#ChessBoardGrid#0" expanded="false" />
                 <element signature="method#PieceGraphic#0;class#PieceGraphic#0;class#ChessBoardGrid#0" expanded="false" />
               </folding>
@@ -62,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MenuTop.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/gui/menu/MenuTop.java">
+      <file leaf-file-name="MoveTransaction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/engine/moves/MoveTransaction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="62" column="58" lean-forward="true" selection-start-line="62" selection-start-column="58" selection-end-line="62" selection-end-column="58" />
+            <state relative-caret-position="250">
+              <caret line="10" column="63" lean-forward="false" selection-start-line="10" selection-start-column="63" selection-end-line="10" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -106,7 +129,6 @@
         <option value="$PROJECT_DIR$/src/engine/pieces/King.java" />
         <option value="$PROJECT_DIR$/src/engine/pieces/Bishop.java" />
         <option value="$PROJECT_DIR$/src/engine/board/Board.java" />
-        <option value="$PROJECT_DIR$/src/engine/players/Player.java" />
         <option value="$PROJECT_DIR$/src/engine/board/Square.java" />
         <option value="$PROJECT_DIR$/src/JavaSjakk.java" />
         <option value="$PROJECT_DIR$/src/gui/menu/TopMenu.java" />
@@ -123,13 +145,15 @@
         <option value="$PROJECT_DIR$/src/engine/board/BoardUtilities.java" />
         <option value="$PROJECT_DIR$/src/engine/players/WhitePlayer.java" />
         <option value="$PROJECT_DIR$/src/engine/players/BlackPlayer.java" />
-        <option value="$PROJECT_DIR$/src/engine/moves/Move.java" />
         <option value="$PROJECT_DIR$/src/engine/players/PlayerColor.java" />
-        <option value="$PROJECT_DIR$/src/application/JChaturanga.java" />
-        <option value="$PROJECT_DIR$/src/engine/moves/MoveTransaction.java" />
         <option value="$PROJECT_DIR$/src/engine/pieces/Piece.java" />
-        <option value="$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java" />
+        <option value="$PROJECT_DIR$/src/application/JChaturanga.java" />
         <option value="$PROJECT_DIR$/src/gui/menu/MenuTop.java" />
+        <option value="$PROJECT_DIR$/src/engine/moves/MoveTransactionResult.java" />
+        <option value="$PROJECT_DIR$/src/engine/players/Player.java" />
+        <option value="$PROJECT_DIR$/src/engine/moves/Move.java" />
+        <option value="$PROJECT_DIR$/src/engine/moves/MoveTransaction.java" />
+        <option value="$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java" />
       </list>
     </option>
   </component>
@@ -378,7 +402,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="SearchEverywhereHistoryKey" value="menutop&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/gui/menu/MenuTop.java&#10;menu&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/gui/menu/MenuTop.java&#10;BoardUti&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/board/BoardUtilities.java&#10;parameter name hints&#9;null&#9;null&#10;whitepl&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/players/WhitePlayer.java&#10;Move&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/moves/Move.java" />
+    <property name="SearchEverywhereHistoryKey" value="menu&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/gui/menu/MenuTop.java&#10;menutop&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/gui/menu/MenuTop.java&#10;BoardUti&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/board/BoardUtilities.java&#10;parameter name hints&#9;null&#9;null&#10;whitepl&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/players/WhitePlayer.java&#10;Move&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/moves/Move.java" />
     <property name="last_opened_file_path" value="D:/Dev/IntelliJ Projects/JavaFXIntroByExample/04-LayoutUIControls/GridPaneDemo" />
     <property name="extract.method.default.visibility" value="private" />
   </component>
@@ -692,27 +716,27 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25520834" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14799154" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25520834" sideWeight="0.49577168" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15187891" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23678647" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="combo" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Coverage" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25520834" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23678647" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -794,14 +818,12 @@
           <caret line="24" column="58" lean-forward="false" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#ChessBoardGrid#0;class#ChessBoardGrid#0" expanded="false" />
-            <element signature="method#initializeGrid#0;class#ChessBoardGrid#0" expanded="false" />
-            <element signature="method#SquareStack#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
-            <element signature="e#2639#2940#0" expanded="false" />
-            <element signature="e#3000#3217#0" expanded="false" />
+            <element signature="e#3397#3643#0" expanded="false" />
+            <element signature="e#3724#3891#0" expanded="false" />
             <element signature="method#drawGraphics#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#setSquareColors#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#showTooltips#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
+            <element signature="method#clearUserSelections#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#SquareGraphic#0;class#SquareGraphic#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#PieceGraphic#0;class#PieceGraphic#0;class#ChessBoardGrid#0" expanded="false" />
           </folding>
@@ -812,10 +834,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="676">
           <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="method#Bishop#0;class#Bishop#0" expanded="false" />
-            <element signature="method#isOnColumnH#0;class#Bishop#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -843,14 +861,12 @@
           <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#ChessBoardGrid#0;class#ChessBoardGrid#0" expanded="false" />
-            <element signature="method#initializeGrid#0;class#ChessBoardGrid#0" expanded="false" />
-            <element signature="method#SquareStack#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
-            <element signature="e#2639#2940#0" expanded="false" />
-            <element signature="e#3000#3217#0" expanded="false" />
+            <element signature="e#3397#3643#0" expanded="false" />
+            <element signature="e#3724#3891#0" expanded="false" />
             <element signature="method#drawGraphics#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#setSquareColors#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#showTooltips#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
+            <element signature="method#clearUserSelections#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#SquareGraphic#0;class#SquareGraphic#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#PieceGraphic#0;class#PieceGraphic#0;class#ChessBoardGrid#0" expanded="false" />
           </folding>
@@ -890,11 +906,9 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#toString#0;class#Board#0" expanded="false" />
             <element signature="method#createSquareList#0;class#Board#0" expanded="false" />
             <element signature="method#getIngamePieces#0;class#Board#0" expanded="false" />
             <element signature="method#getLegalMoves#0;class#Board#0" expanded="false" />
-            <element signature="method#getBothPlayersLegalMoves#0;class#Board#0" expanded="false" />
             <element signature="method#setPiece#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
             <element signature="method#setNextToMove#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
           </folding>
@@ -912,7 +926,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="15" column="21" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -921,11 +934,9 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#toString#0;class#Board#0" expanded="false" />
             <element signature="method#createSquareList#0;class#Board#0" expanded="false" />
             <element signature="method#getIngamePieces#0;class#Board#0" expanded="false" />
             <element signature="method#getLegalMoves#0;class#Board#0" expanded="false" />
-            <element signature="method#getBothPlayersLegalMoves#0;class#Board#0" expanded="false" />
             <element signature="method#setPiece#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
             <element signature="method#setNextToMove#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
           </folding>
@@ -943,7 +954,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="21" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -952,11 +962,9 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#toString#0;class#Board#0" expanded="false" />
             <element signature="method#createSquareList#0;class#Board#0" expanded="false" />
             <element signature="method#getIngamePieces#0;class#Board#0" expanded="false" />
             <element signature="method#getLegalMoves#0;class#Board#0" expanded="false" />
-            <element signature="method#getBothPlayersLegalMoves#0;class#Board#0" expanded="false" />
             <element signature="method#setPiece#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
             <element signature="method#setNextToMove#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
           </folding>
@@ -974,7 +982,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="15" column="21" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -989,7 +996,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-9">
           <caret line="15" column="21" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1014,31 +1020,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/moves/MoveTransactionResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/pieces/Rook.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="23" column="46" lean-forward="true" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/players/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="734">
-          <caret line="44" column="88" lean-forward="false" selection-start-line="44" selection-start-column="88" selection-end-line="44" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/board/Square.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="22" column="52" lean-forward="false" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -1069,35 +1054,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1614">
           <caret line="93" column="35" lean-forward="false" selection-start-line="93" selection-start-column="35" selection-end-line="93" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/board/ChessBoardFlowPane.java" />
-    <entry file="file://$PROJECT_DIR$/src/engine/players/WhitePlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2100">
-          <caret line="98" column="31" lean-forward="false" selection-start-line="98" selection-start-column="31" selection-end-line="98" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/pieces/Bishop.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="33" column="47" lean-forward="false" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
-          <folding>
-            <element signature="method#Bishop#0;class#Bishop#0" expanded="false" />
-            <element signature="method#isOnColumnH#0;class#Bishop#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/players/PlayerColor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="27" column="46" lean-forward="false" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1118,7 +1082,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="920">
           <caret line="800" column="33" lean-forward="true" selection-start-line="800" selection-start-column="33" selection-end-line="800" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1126,44 +1089,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="721">
           <caret line="44" column="9" lean-forward="false" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/pieces/Piece.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" column="62" lean-forward="false" selection-start-line="20" selection-start-column="62" selection-end-line="20" selection-end-column="62" />
-          <folding>
-            <element signature="method#equals#0;class#Piece#0" expanded="false" />
-            <element signature="method#createHashCode#0;class#Piece#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/moves/Move.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-200">
-          <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/moves/MoveTransaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/JChaturanga.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1171,22 +1096,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="307">
           <caret line="260" column="12" lean-forward="false" selection-start-line="260" selection-start-column="12" selection-end-line="260" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/board/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="66" column="24" lean-forward="false" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
-          <folding>
-            <element signature="method#createSquareList#0;class#Board#0" expanded="false" />
-            <element signature="method#getIngamePieces#0;class#Board#0" expanded="false" />
-            <element signature="method#getLegalMoves#0;class#Board#0" expanded="false" />
-            <element signature="method#getBothPlayersLegalMoves#0;class#Board#0" expanded="false" />
-            <element signature="method#setPiece#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
-            <element signature="method#setNextToMove#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1198,31 +1107,117 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java">
+    <entry file="file://$PROJECT_DIR$/src/engine/board/Square.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1073">
-          <caret line="145" column="5" lean-forward="true" selection-start-line="145" selection-start-column="5" selection-end-line="145" selection-end-column="5" />
+        <state relative-caret-position="-218">
+          <caret line="44" column="15" lean-forward="false" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/JChaturanga.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="23" lean-forward="false" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#ChessBoardGrid#0;class#ChessBoardGrid#0" expanded="false" />
-            <element signature="method#initializeGrid#0;class#ChessBoardGrid#0" expanded="false" />
-            <element signature="method#SquareStack#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
-            <element signature="e#2639#2940#0" expanded="false" />
-            <element signature="e#3000#3217#0" expanded="false" />
-            <element signature="method#drawGraphics#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
-            <element signature="method#setSquareColors#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
-            <element signature="method#showTooltips#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
-            <element signature="method#SquareGraphic#0;class#SquareGraphic#0;class#ChessBoardGrid#0" expanded="false" />
-            <element signature="method#PieceGraphic#0;class#PieceGraphic#0;class#ChessBoardGrid#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/pieces/Piece.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="78" column="18" lean-forward="true" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
+          <folding>
+            <element signature="method#equals#0;class#Piece#0" expanded="false" />
+            <element signature="method#createHashCode#0;class#Piece#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/players/PlayerColor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="27" column="43" lean-forward="true" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/menu/MenuTop.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="62" column="58" lean-forward="true" selection-start-line="62" selection-start-column="58" selection-end-line="62" selection-end-column="58" />
+        <state relative-caret-position="450">
+          <caret line="56" column="38" lean-forward="false" selection-start-line="56" selection-start-column="38" selection-end-line="56" selection-end-column="38" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/players/WhitePlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-50">
+          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/board/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="173" column="48" lean-forward="false" selection-start-line="173" selection-start-column="48" selection-end-line="173" selection-end-column="48" />
+          <folding>
+            <element signature="method#createSquareList#0;class#Board#0" expanded="false" />
+            <element signature="method#getIngamePieces#0;class#Board#0" expanded="false" />
+            <element signature="method#getLegalMoves#0;class#Board#0" expanded="false" />
+            <element signature="method#setPiece#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
+            <element signature="method#setNextToMove#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/players/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2025">
+          <caret line="94" column="39" lean-forward="false" selection-start-line="94" selection-start-column="39" selection-end-line="94" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/moves/Move.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2975">
+          <caret line="123" column="0" lean-forward="false" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/moves/MoveTransactionResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/moves/MoveTransaction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" column="63" lean-forward="false" selection-start-line="10" selection-start-column="63" selection-end-line="10" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="116" column="49" lean-forward="true" selection-start-line="116" selection-start-column="49" selection-end-line="116" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3397#3643#0" expanded="false" />
+            <element signature="e#3724#3891#0" expanded="false" />
+            <element signature="method#drawGraphics#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
+            <element signature="method#setSquareColors#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
+            <element signature="method#showTooltips#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
+            <element signature="method#clearUserSelections#0;class#ChessBoardGrid#0" expanded="false" />
+            <element signature="method#SquareGraphic#0;class#SquareGraphic#0;class#ChessBoardGrid#0" expanded="false" />
+            <element signature="method#PieceGraphic#0;class#PieceGraphic#0;class#ChessBoardGrid#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
