@@ -6,6 +6,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 
+import static gui.board.ChessBoardGrid.hintsEnabled;
+
 public class MenuTop {
 
     private MenuBar menuBar;
@@ -25,8 +27,8 @@ public class MenuTop {
         exitMI.setAccelerator(new KeyCodeCombination(KeyCode.E, KeyCombination.SHORTCUT_DOWN));
         exitMI.setOnAction(e -> {
             System.out.println("Exiting application...");
-            Platform.exit();}
-        );
+            Platform.exit();
+        });
         fileM.setMnemonicParsing(true);
         fileM.getItems().addAll(newMI,
                                 saveMI,
@@ -54,6 +56,11 @@ public class MenuTop {
         CheckMenuItem coordsCMI = new CheckMenuItem("Show coordinates");
         hintsCMI.setSelected(false);
         hintsCMI.setAccelerator(new KeyCodeCombination(KeyCode.H, KeyCombination.SHORTCUT_DOWN));
+        hintsCMI.setOnAction(e -> {
+            System.out.println("Showing legal moves...");
+            if (!hintsEnabled) hintsEnabled = true;
+            else hintsEnabled = false;
+        });
         coordsCMI.setAccelerator(new KeyCodeCombination(KeyCode.C, KeyCombination.SHORTCUT_DOWN));
         toolsM.setMnemonicParsing(true);
         toolsM.getItems().addAll(hintsCMI,

@@ -18,9 +18,7 @@ public abstract class Piece {
      * @param position of Square from top-left to bottom-right; 0 to 63.
      * @param color black or white.
      */
-    public Piece(final int position,
-                 final PlayerColor color,
-                 final PieceType type) {
+    public Piece(final int position, final PlayerColor color, final PieceType type) {
         this.position = position;
         this.color = color;
         this.type = type;
