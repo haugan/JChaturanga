@@ -6,7 +6,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 
-import static gui.board.ChessBoardGrid.hintsEnabled;
+import static gui.board.ChessBoardGrid.tooltipsEnabled;
 
 public class MenuTop {
 
@@ -53,18 +53,18 @@ public class MenuTop {
         // TOOLS MENU
         Menu toolsM = new Menu("_Tools");
         CheckMenuItem hintsCMI = new CheckMenuItem("Show legal moves");
-        CheckMenuItem coordsCMI = new CheckMenuItem("Show coordinates");
+        CheckMenuItem tooltipsCMI = new CheckMenuItem("Show tooltips");
         hintsCMI.setSelected(false);
         hintsCMI.setAccelerator(new KeyCodeCombination(KeyCode.H, KeyCombination.SHORTCUT_DOWN));
-        hintsCMI.setOnAction(e -> {
-            System.out.println("Showing legal moves...");
-            if (!hintsEnabled) hintsEnabled = true;
-            else hintsEnabled = false;
+        tooltipsCMI.setAccelerator(new KeyCodeCombination(KeyCode.T, KeyCombination.SHORTCUT_DOWN));
+        tooltipsCMI.setOnAction(e -> {
+            System.out.println("Showing tooltips...");
+            if (!tooltipsEnabled) tooltipsEnabled = true;
+            else tooltipsEnabled = false;
         });
-        coordsCMI.setAccelerator(new KeyCodeCombination(KeyCode.C, KeyCombination.SHORTCUT_DOWN));
         toolsM.setMnemonicParsing(true);
         toolsM.getItems().addAll(hintsCMI,
-                                 coordsCMI);
+                                 tooltipsCMI);
 
         Menu screenshotM = new Menu("_Screenshot");
         MenuItem savePNGMI = new MenuItem("Save as PNG...");

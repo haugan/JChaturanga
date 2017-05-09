@@ -2,6 +2,7 @@ package gui.board;
 
 import engine.board.Board;
 import engine.board.Square;
+import engine.pieces.Piece;
 import javafx.animation.FillTransition;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -21,7 +22,7 @@ import static javafx.scene.paint.Color.*;
 
 public class ChessBoardGrid extends GridPane {
 
-    public static boolean hintsEnabled = false; // TODO: implement methods for showing legal moves
+    public static boolean tooltipsEnabled = false;
     public static final int BOARD_WIDTH = 600;
     public static final int BOARD_HEIGHT = 600;
     public static final int SQUARE_WIDTH = BOARD_WIDTH / 8;
@@ -59,47 +60,43 @@ public class ChessBoardGrid extends GridPane {
         private SquareGraphic squareGraphic;
         private PieceGraphic pieceGraphic;
         private Color bgColor;
-        private int position;
-        private int col;
-        private int row;
 
         public SquareStack(final int position, final int col, final int row, final double xPos, final double yPos) {
 
-            this.position = position;
-            this.col = col;
-            this.row = row;
-
-            squareGraphic = new SquareGraphic(xPos, yPos); // background graphics of "chess square"
-            setSquareColors(); // relative to Square's position on board (alternating light & dark)
-            drawGraphics(board); // draw graphics using data from Board object
-
-            // TOOLTIP!
-            Square square = board.getSquare(position);
-            int pos = square.getPosition();
-            Tooltip tooltip = new Tooltip(
-                    "Position: " + pos + "\n"
-                        + "Column: " + col + "\n"
-                        + "Row: " + row
-            );
-            Tooltip.install(this, tooltip);
+            drawGraphics(board, position, xPos, yPos); // draw graphics using data from Board object
+            setSquareColors(position); // relative to Square's position on board (alternating light & dark)
 
             // EVENT HANDLERS!
             setOnMouseEntered(event -> {
                 FillTransition ft = new FillTransition(Duration.millis(100), squareGraphic, bgColor, ACTIVE_COLOR);
                 ft.play();
+                showTooltips(position, col, row); // show various info to user
                 //squareGraphic.setFill(ACTIVE_COLOR);
-            });
+            }); // animate fill colors "in"
             setOnMouseExited(event -> {
                 FillTransition ft = new FillTransition(Duration.millis(100), squareGraphic, ACTIVE_COLOR, bgColor);
                 ft.play();
                 //squareGraphic.setFill(bgColor);
-            });
+            }); // animate fill colors "out"
             setOnMouseClicked(event -> {
-                System.out.println("..");
+
             });
         }
 
-        private void setSquareColors() {
+        private void drawGraphics(final Board board, final int position, final double xPos, final double yPos) {
+            getChildren().clear(); // clear Board before drawing new
+            squareGraphic = new SquareGraphic(xPos, yPos); // background graphics of "chess square"
+            if (board.getSquare(position).isOccupied()) { // Square contains Piece
+                String color = board.getSquare(position).getPiece().getColor().toString();
+                String type = board.getSquare(position).getPiece().getType().toString();
+                pieceGraphic = new PieceGraphic(color + type); // identifier references piece image filename
+                getChildren().addAll(squareGraphic, pieceGraphic); // add "double node" to StackPane (i.e. occupied)
+            } else {
+                getChildren().add(squareGraphic); // add "single" node to StackPane (i.e. empty)
+            }
+        }
+
+        private void setSquareColors(final int position) {
             if (ROW_8[position] || ROW_6[position] || ROW_4[position] || ROW_2[position]) {
                 bgColor = position % 2 == 0 ? LIGHT_COLOR : DARK_COLOR;
                 squareGraphic.setFill(bgColor);
@@ -110,15 +107,28 @@ public class ChessBoardGrid extends GridPane {
             }
         }
 
-        private void drawGraphics(final Board board) {
-            getChildren().clear(); // clear Board before drawing new
-            if (board.getSquare(position).isOccupied()) { // Square contains Piece
-                String color = board.getSquare(position).getPiece().getColor().toString();
-                String type = board.getSquare(position).getPiece().getType().toString();
-                pieceGraphic = new PieceGraphic(color + type); // identifier references piece image filename
-                getChildren().addAll(squareGraphic, pieceGraphic); // add "double node" to StackPane (i.e. occupied)
-            } else {
-                getChildren().add(squareGraphic); // add "single" node to StackPane (i.e. empty)
+        private void showTooltips(int position, int col, int row) {
+            if (tooltipsEnabled) {
+                Tooltip tooltip;
+                Square square = board.getSquare(position);
+                int pos = square.getPosition();
+                if (square.isOccupied()) {
+                    Piece piece = square.getPiece();
+                    tooltip = new Tooltip(
+                            "Position: " + pos + "\n"
+                                    + "Column: " + col + "\n"
+                                    + "Row: " + row + "\n"
+                                    + "Piece: " + piece.toString().toUpperCase() + "\n"
+                                    + "Color: " + piece.getColor().toString().toUpperCase()
+                    );
+                } else {
+                    tooltip = new Tooltip(
+                            "Position: " + pos + "\n"
+                                    + "Column: " + col + "\n"
+                                    + "Row: " + row
+                    );
+                }
+                Tooltip.install(this, tooltip);
             }
         }
 
