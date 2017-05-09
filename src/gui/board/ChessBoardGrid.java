@@ -2,23 +2,22 @@ package gui.board;
 
 import engine.board.Board;
 import engine.board.Square;
-import engine.pieces.Piece;
-import engine.players.PlayerColor;
+import javafx.animation.FillTransition;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static engine.board.BoardUtilities.*;
-import static javafx.scene.paint.Color.BLANCHEDALMOND;
-import static javafx.scene.paint.Color.BURLYWOOD;
-import static javafx.scene.paint.Color.TOMATO;
+import static javafx.scene.paint.Color.*;
 
 public class ChessBoardGrid extends GridPane {
 
@@ -27,11 +26,11 @@ public class ChessBoardGrid extends GridPane {
     public static final int BOARD_HEIGHT = 600;
     public static final int SQUARE_WIDTH = BOARD_WIDTH / 8;
     public static final int SQUARE_HEIGHT = BOARD_HEIGHT / 8;
-    public static final Color LIGHT_SQUARE = BLANCHEDALMOND;
-    public static final Color DARK_SQUARE = BURLYWOOD;
-    public static final Color ACTIVE_SQUARE = TOMATO;
+    public static final Color LIGHT_COLOR = BLANCHEDALMOND;
+    public static final Color DARK_COLOR = BURLYWOOD;
+    public static final Color ACTIVE_COLOR = TOMATO;
     private List<SquareStack> squareStacks;
-    private Board board;
+    private Board board; // initialized from Board class when "starting fresh"
 
     public ChessBoardGrid() {
         setPrefSize(BOARD_WIDTH, BOARD_HEIGHT);
@@ -71,52 +70,55 @@ public class ChessBoardGrid extends GridPane {
             this.row = row;
 
             squareGraphic = new SquareGraphic(xPos, yPos); // background graphics of "chess square"
-            setBackgroundColor(); // relative to Square's position on board (alternating light & dark)
-            setSquareGraphics(board);
+            setSquareColors(); // relative to Square's position on board (alternating light & dark)
+            drawGraphics(board); // draw graphics using data from Board object
+
+            // TOOLTIP!
+            Square square = board.getSquare(position);
+            int pos = square.getPosition();
+            Tooltip tooltip = new Tooltip(
+                    "Position: " + pos + "\n"
+                        + "Column: " + col + "\n"
+                        + "Row: " + row
+            );
+            Tooltip.install(this, tooltip);
 
             // EVENT HANDLERS!
-            setOnMouseEntered(event -> squareGraphic.setFill(ACTIVE_SQUARE));
-            setOnMouseExited(event -> squareGraphic.setFill(bgColor));
+            setOnMouseEntered(event -> {
+                FillTransition ft = new FillTransition(Duration.millis(100), squareGraphic, bgColor, ACTIVE_COLOR);
+                ft.play();
+                //squareGraphic.setFill(ACTIVE_COLOR);
+            });
+            setOnMouseExited(event -> {
+                FillTransition ft = new FillTransition(Duration.millis(100), squareGraphic, ACTIVE_COLOR, bgColor);
+                ft.play();
+                //squareGraphic.setFill(bgColor);
+            });
             setOnMouseClicked(event -> {
-                Square square = board.getSquare(position);
-                int squarePos = square.getPosition();
-                Piece piece = square.getPiece();
-                PlayerColor color = null;
-                if (piece != null) {
-                    color = piece.getColor();
-                }
-                System.out.println("square " + squarePos);
-                System.out.println("column " + this.col);
-                System.out.println("row " + this.row);
-                if (piece != null) {
-                    System.out.println("piece " + piece.toString().toUpperCase());
-                }
-                if (color != null) {
-                    System.out.println("color " + color.toString().toUpperCase());
-                }
+                System.out.println("..");
             });
         }
 
-        private void setBackgroundColor() {
+        private void setSquareColors() {
             if (ROW_8[position] || ROW_6[position] || ROW_4[position] || ROW_2[position]) {
-                bgColor = position % 2 == 0 ? LIGHT_SQUARE : DARK_SQUARE;
+                bgColor = position % 2 == 0 ? LIGHT_COLOR : DARK_COLOR;
                 squareGraphic.setFill(bgColor);
             }
             else if (ROW_7[position] || ROW_5[position] || ROW_3[position] || ROW_1[position]) {
-                bgColor = position % 2 != 0 ? LIGHT_SQUARE : DARK_SQUARE;
+                bgColor = position % 2 != 0 ? LIGHT_COLOR : DARK_COLOR;
                 squareGraphic.setFill(bgColor);
             }
         }
 
-        private void setSquareGraphics(final Board board) {
-            getChildren().remove(pieceGraphic);
+        private void drawGraphics(final Board board) {
+            getChildren().clear(); // clear Board before drawing new
             if (board.getSquare(position).isOccupied()) { // Square contains Piece
                 String color = board.getSquare(position).getPiece().getColor().toString();
                 String type = board.getSquare(position).getPiece().getType().toString();
-                pieceGraphic = new PieceGraphic(color + type); // identifier references filename of image
-                getChildren().addAll(squareGraphic, pieceGraphic); // add stacked nodes to this StackPane
+                pieceGraphic = new PieceGraphic(color + type); // identifier references piece image filename
+                getChildren().addAll(squareGraphic, pieceGraphic); // add "double node" to StackPane (i.e. occupied)
             } else {
-                getChildren().add(squareGraphic); // add single node to this StackPane
+                getChildren().add(squareGraphic); // add "single" node to StackPane (i.e. empty)
             }
         }
 
