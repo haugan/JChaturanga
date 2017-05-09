@@ -52,19 +52,19 @@ public class MenuTop {
 
         // TOOLS MENU
         Menu toolsM = new Menu("_Tools");
-        CheckMenuItem hintsCMI = new CheckMenuItem("Show legal moves");
         CheckMenuItem tooltipsCMI = new CheckMenuItem("Show tooltips");
-        hintsCMI.setSelected(false);
-        hintsCMI.setAccelerator(new KeyCodeCombination(KeyCode.H, KeyCombination.SHORTCUT_DOWN));
         tooltipsCMI.setAccelerator(new KeyCodeCombination(KeyCode.T, KeyCombination.SHORTCUT_DOWN));
         tooltipsCMI.setOnAction(e -> {
-            System.out.println("Showing tooltips...");
-            if (!tooltipsEnabled) tooltipsEnabled = true;
-            else tooltipsEnabled = false;
+            if (!tooltipsEnabled) {
+                tooltipsEnabled = true;
+                System.out.println("Tooltips enabled..");
+            } else {
+                tooltipsEnabled = false;
+                System.out.println("Tooltips disabled..");
+            }
         });
         toolsM.setMnemonicParsing(true);
-        toolsM.getItems().addAll(hintsCMI,
-                                 tooltipsCMI);
+        toolsM.getItems().add(tooltipsCMI);
 
         Menu screenshotM = new Menu("_Screenshot");
         MenuItem savePNGMI = new MenuItem("Save as PNG...");

@@ -5,9 +5,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$PieceGraphic.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$PieceGraphic.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$SquareGraphic.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$SquareGraphic.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$SquareStack.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$SquareStack.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java" afterPath="$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/menu/MenuTop.java" afterPath="$PROJECT_DIR$/src/gui/menu/MenuTop.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -45,12 +43,17 @@
       <file leaf-file-name="ChessBoardGrid.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="133" column="0" lean-forward="true" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+            <state relative-caret-position="1073">
+              <caret line="145" column="5" lean-forward="true" selection-start-line="145" selection-start-column="5" selection-end-line="145" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#ChessBoardGrid#0;class#ChessBoardGrid#0" expanded="false" />
+                <element signature="method#initializeGrid#0;class#ChessBoardGrid#0" expanded="false" />
+                <element signature="method#SquareStack#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
                 <element signature="e#2639#2940#0" expanded="false" />
                 <element signature="e#3000#3217#0" expanded="false" />
+                <element signature="method#drawGraphics#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
+                <element signature="method#setSquareColors#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
                 <element signature="method#showTooltips#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
                 <element signature="method#SquareGraphic#0;class#SquareGraphic#0;class#ChessBoardGrid#0" expanded="false" />
                 <element signature="method#PieceGraphic#0;class#PieceGraphic#0;class#ChessBoardGrid#0" expanded="false" />
@@ -62,18 +65,8 @@
       <file leaf-file-name="MenuTop.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gui/menu/MenuTop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="58" column="71" lean-forward="false" selection-start-line="58" selection-start-column="71" selection-end-line="58" selection-end-column="71" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BoardUtilities.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/engine/board/BoardUtilities.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="11" column="83" lean-forward="true" selection-start-line="11" selection-start-column="83" selection-end-line="11" selection-end-column="83" />
+            <state relative-caret-position="600">
+              <caret line="62" column="58" lean-forward="true" selection-start-line="62" selection-start-column="58" selection-end-line="62" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -135,8 +128,8 @@
         <option value="$PROJECT_DIR$/src/application/JChaturanga.java" />
         <option value="$PROJECT_DIR$/src/engine/moves/MoveTransaction.java" />
         <option value="$PROJECT_DIR$/src/engine/pieces/Piece.java" />
-        <option value="$PROJECT_DIR$/src/gui/menu/MenuTop.java" />
         <option value="$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java" />
+        <option value="$PROJECT_DIR$/src/gui/menu/MenuTop.java" />
       </list>
     </option>
   </component>
@@ -385,7 +378,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="SearchEverywhereHistoryKey" value="menu&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/gui/menu/MenuTop.java&#10;BoardUti&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/board/BoardUtilities.java&#10;parameter name hints&#9;null&#9;null&#10;whitepl&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/players/WhitePlayer.java&#10;Move&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/moves/Move.java" />
+    <property name="SearchEverywhereHistoryKey" value="menutop&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/gui/menu/MenuTop.java&#10;menu&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/gui/menu/MenuTop.java&#10;BoardUti&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/board/BoardUtilities.java&#10;parameter name hints&#9;null&#9;null&#10;whitepl&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/players/WhitePlayer.java&#10;Move&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/moves/Move.java" />
     <property name="last_opened_file_path" value="D:/Dev/IntelliJ Projects/JavaFXIntroByExample/04-LayoutUIControls/GridPaneDemo" />
     <property name="extract.method.default.visibility" value="private" />
   </component>
@@ -801,8 +794,13 @@
           <caret line="24" column="58" lean-forward="false" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#ChessBoardGrid#0;class#ChessBoardGrid#0" expanded="false" />
+            <element signature="method#initializeGrid#0;class#ChessBoardGrid#0" expanded="false" />
+            <element signature="method#SquareStack#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="e#2639#2940#0" expanded="false" />
             <element signature="e#3000#3217#0" expanded="false" />
+            <element signature="method#drawGraphics#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
+            <element signature="method#setSquareColors#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#showTooltips#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#SquareGraphic#0;class#SquareGraphic#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#PieceGraphic#0;class#PieceGraphic#0;class#ChessBoardGrid#0" expanded="false" />
@@ -845,8 +843,13 @@
           <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#ChessBoardGrid#0;class#ChessBoardGrid#0" expanded="false" />
+            <element signature="method#initializeGrid#0;class#ChessBoardGrid#0" expanded="false" />
+            <element signature="method#SquareStack#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="e#2639#2940#0" expanded="false" />
             <element signature="e#3000#3217#0" expanded="false" />
+            <element signature="method#drawGraphics#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
+            <element signature="method#setSquareColors#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#showTooltips#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#SquareGraphic#0;class#SquareGraphic#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#PieceGraphic#0;class#PieceGraphic#0;class#ChessBoardGrid#0" expanded="false" />
@@ -1197,12 +1200,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="133" column="0" lean-forward="true" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+        <state relative-caret-position="1073">
+          <caret line="145" column="5" lean-forward="true" selection-start-line="145" selection-start-column="5" selection-end-line="145" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#ChessBoardGrid#0;class#ChessBoardGrid#0" expanded="false" />
+            <element signature="method#initializeGrid#0;class#ChessBoardGrid#0" expanded="false" />
+            <element signature="method#SquareStack#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="e#2639#2940#0" expanded="false" />
             <element signature="e#3000#3217#0" expanded="false" />
+            <element signature="method#drawGraphics#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
+            <element signature="method#setSquareColors#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#showTooltips#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#SquareGraphic#0;class#SquareGraphic#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#PieceGraphic#0;class#PieceGraphic#0;class#ChessBoardGrid#0" expanded="false" />
@@ -1212,8 +1220,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/menu/MenuTop.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="58" column="71" lean-forward="false" selection-start-line="58" selection-start-column="71" selection-end-line="58" selection-end-column="71" />
+        <state relative-caret-position="600">
+          <caret line="62" column="58" lean-forward="true" selection-start-line="62" selection-start-column="58" selection-end-line="62" selection-end-column="58" />
           <folding />
         </state>
       </provider>
