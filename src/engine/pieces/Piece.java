@@ -14,15 +14,11 @@ public abstract class Piece {
     private final boolean isFirstMove;
     private final int hashCode; // keeps cached value (Piece is immutable, needs only calc. hash code once)
 
-    /**
-     * @param position of Square from top-left to bottom-right; 0 to 63.
-     * @param color black or white.
-     */
     public Piece(final int position, final PlayerColor color, final PieceType type) {
         this.position = position;
         this.color = color;
         this.type = type;
-        isFirstMove = false;
+        isFirstMove = true; // TODO: set false when first move is done (?)
         hashCode = createHashCode();
     }
 

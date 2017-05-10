@@ -2,6 +2,7 @@ package engine.pieces;
 
 import com.google.common.collect.ImmutableList;
 import engine.board.Board;
+import engine.board.Square;
 import engine.moves.Move;
 import engine.moves.Move.CaptureMove;
 import engine.moves.Move.NeutralMove;
@@ -15,78 +16,63 @@ import static engine.board.BoardUtilities.*;
 
 public class Pawn extends Piece {
 
-    public static final int[] MOVE_PATTERN = {7, 8, 9, 16}; // offset Squares from current position
+    private static final int[] OFFSET_PATTERN = {7, 8, 9, 16}; // .. Squares from current position
+    private int currPos; // current numbered Square position of Piece
+    private PlayerColor color;
 
-    public Pawn(final int position, final PlayerColor color) {
-        super(position, color, PieceType.PAWN);
+    public Pawn(final int currentPosition, final PlayerColor color) {
+        super(currentPosition, color, PieceType.PAWN);
+        currPos = currentPosition;
+        this.color = color;
     }
-
-    private void addDiagonalCaptureMove(final Board board, final List<Move> legalMoves,
-                                        final int destinationPosition) {
-
-        if (board.getSquare(destinationPosition).isOccupied()) { // some Piece occupying destination Square
-            final Piece occupyingPiece = board.getSquare(destinationPosition).getPiece();
-            if (this.color != occupyingPiece.color) { // enemy Piece occupying Square
-                legalMoves.add(
-                        new CaptureMove(board, this, destinationPosition, occupyingPiece)
-                );
-            }
-        }
-
-    }
-
-    @Override
-    public String toString() {return PieceType.PAWN.toString();}
 
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();
 
-        for (final int offset : MOVE_PATTERN) {
-            final int possibleMovePosition =
-                    this.position + (
-                            this.color.getMoveDirection() * offset
-                    ); // constants of -1 and 1 from PlayerColor give correct move pattern values for both directions
+        for (final int offset : OFFSET_PATTERN) {
 
-            if (!isValidSquarePosition(possibleMovePosition)) {
-                continue; // if position is out of bounds, jump to next iteration of for-loop
+            final int movePos = currPos + (color.getMoveDirection() * offset); // direction values (up -1 / down +1)
+            final Square destSquare = board.getSquare(movePos); // move destination Square
+
+            // SKIP EVERYTHING IF MOVE POSITION IS OUTSIDE BOARD
+            if (!isValidSquarePosition(movePos)) {
+                continue; // if currPos is out of bounds, jump to next iteration of for-loop
             }
 
-            if (offset == 8 && !board.getSquare(possibleMovePosition).isOccupied()) { // neutral move
-                legalMoves.add(
-                        new NeutralMove(board, this, possibleMovePosition)
-                );
+            // SINGLE MOVE
+            if (offset == 8 && !destSquare.isOccupied()) { // neutral move
+                legalMoves.add(new NeutralMove(board, this, movePos));
 
+            // DOUBLE JUMP
             } else if (offset == 16 && isFirstMove() &&
-                      (ROW_2[this.position] && getColor().isBlack()) ||
-                      (ROW_7[this.position] && getColor().isWhite())) { // jump move
+                      ((ROW_7[currPos] && getColor().isBlack()) || (ROW_2[currPos] && getColor().isWhite()))
+            ) {
 
-                final int possibleBetweenPosition = this.position +
-                                                   (this.color.getMoveDirection() * 8); // position that's jumped over
+                final int jumpedPos = currPos + (color.getMoveDirection() * 8);
+                final Square jumpedSquare = board.getSquare(jumpedPos);
 
-                if (!board.getSquare(possibleBetweenPosition).isOccupied() &&
-                    !board.getSquare(possibleMovePosition).isOccupied()) { // both Squares are free, Pawn can jump
-                    legalMoves.add(
-                            new NeutralMove(board, this, possibleMovePosition)
-                    );
+                if (!jumpedSquare.isOccupied() && !destSquare.isOccupied()) {
+                    legalMoves.add(new NeutralMove(board, this, movePos));
                 }
 
-            } else if (offset == 7 &&
-                      !(
-                        (COLUMN_A[this.position] && this.color.isBlack()) ||
-                        (COLUMN_H[this.position] && this.color.isWhite())
-                      )) { // diagonal capture move is possible (i.e. in bounds)
+            // DIAGONAL CAPTURE "WEST"
+            } else if (offset == 7 && destSquare.isOccupied() &&
+                      !((COLUMN_A[currPos] && color.isBlack()) || (COLUMN_H[currPos] && color.isWhite()))) {
 
-                addDiagonalCaptureMove(board, legalMoves, possibleMovePosition);
+                // TODO: if (move position contains opposing piece)
+                if (color != destSquare.getPiece().getColor()) {
+                    addDiagonalCaptureMove(board, legalMoves, movePos);
+                }
 
-            } else if (offset == 9 &&
-                      !(
-                        (COLUMN_A[this.position] && this.color.isWhite()) ||
-                        (COLUMN_H[this.position] && this.color.isBlack())
-                      )) { // diagonal capture move is possible (i.e. in bounds)
+            // DIAGONAL CAPTURE "EAST"
+            } else if (offset == 9 && destSquare.isOccupied() &&
+                      !((COLUMN_A[currPos] && color.isWhite()) || (COLUMN_H[currPos] && color.isBlack()))) {
 
-                addDiagonalCaptureMove(board, legalMoves, possibleMovePosition);
-
+                // TODO: if (move position contains opposing piece)
+                if (color != destSquare.getPiece().getColor()) {
+                    addDiagonalCaptureMove(board, legalMoves, movePos);
+                }
             }
 
         }
@@ -96,10 +82,22 @@ public class Pawn extends Piece {
 
     @Override
     public Pawn performMove(final Move move) {
-        return new Pawn(
-                move.getDestinationPosition(),
-                move.getMovedPiece().getColor()
-        );
+        return new Pawn(move.getDestinationPosition(), move.getMovedPiece().getColor());
+    }
+
+    @Override
+    public String toString() {return PieceType.PAWN.toString();}
+
+    private void addDiagonalCaptureMove(final Board board, final List<Move> legalMoves, final int movePosition) {
+        if (board.getSquare(movePosition).isOccupied()) { // some Piece occupying destination Square
+            final Piece occupyingPiece = board.getSquare(movePosition).getPiece();
+            if (color != occupyingPiece.color) { // enemy Piece occupying Square
+                legalMoves.add(
+                        new CaptureMove(board, this, movePosition, occupyingPiece)
+                );
+            }
+        }
+
     }
 
 }
