@@ -28,8 +28,8 @@ import static javafx.scene.paint.Color.*;
 
 public class ChessBoardGrid extends GridPane implements Observer {
 
-    private static boolean tooltipsEnabled = true;
-    private static boolean highlightEnabled = true;
+    private static boolean tooltipsEnabled = true; // showing tooltips in the GUI
+    private static boolean legalMovesEnabled = true; // showing legal moves in the GUI
     private static final int BOARD_WIDTH = 600;
     private static final int BOARD_HEIGHT = 600;
     private static final int SQUARE_WIDTH = BOARD_WIDTH / 8;
@@ -53,11 +53,11 @@ public class ChessBoardGrid extends GridPane implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         switch ((MenuChoices) arg) {
-            case TOGGLE_TOOLTIP:
+            case SHOW_TOOLTIP:
                 tooltipsEnabled = !tooltipsEnabled;
                 break;
-            case HIGHLIGHT_LEGAL_MOVES:
-                highlightEnabled = !highlightEnabled;
+            case SHOW_LEGAL_MOVES:
+                legalMovesEnabled = !legalMovesEnabled;
                 break;
         }
     }
@@ -177,7 +177,7 @@ public class ChessBoardGrid extends GridPane implements Observer {
             } else {
 
                 // TODO: refactor to method
-                if (highlightEnabled && pieceSelected != null) {
+                if (legalMovesEnabled && pieceSelected != null) {
                     highlightLegalMoves(board, position);
                 }
 

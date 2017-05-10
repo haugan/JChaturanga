@@ -8,8 +8,8 @@ import javafx.scene.input.KeyCombination;
 
 import java.util.Observable;
 
-import static gui.menu.MenuChoices.HIGHLIGHT_LEGAL_MOVES;
-import static gui.menu.MenuChoices.TOGGLE_TOOLTIP;
+import static gui.menu.MenuChoices.SHOW_LEGAL_MOVES;
+import static gui.menu.MenuChoices.SHOW_TOOLTIP;
 
 public class MenuTop extends Observable {
 
@@ -54,21 +54,21 @@ public class MenuTop extends Observable {
         tooltipsCMI.setOnAction(e -> {
             System.out.println("Toggling tooltips..");
             setChanged();
-            notifyObservers(TOGGLE_TOOLTIP);
+            notifyObservers(SHOW_TOOLTIP);
             clearChanged();
         });
 
-        CheckMenuItem highlightCMI = new CheckMenuItem("Highlight legal moves");
-        highlightCMI.setAccelerator(new KeyCodeCombination(KeyCode.L, KeyCombination.SHORTCUT_DOWN));
-        highlightCMI.setSelected(true);
-        highlightCMI.setOnAction(e -> {
-            System.out.println("Toggling highlighting..");
+        CheckMenuItem legalMovesCMI = new CheckMenuItem("Show legal moves");
+        legalMovesCMI.setAccelerator(new KeyCodeCombination(KeyCode.L, KeyCombination.SHORTCUT_DOWN));
+        legalMovesCMI.setSelected(true);
+        legalMovesCMI.setOnAction(e -> {
+            System.out.println("Toggling legal moves..");
             setChanged();
-            notifyObservers(HIGHLIGHT_LEGAL_MOVES);
+            notifyObservers(SHOW_LEGAL_MOVES);
             clearChanged();
         });
 
-        toolsM.getItems().addAll(tooltipsCMI, highlightCMI);
+        toolsM.getItems().addAll(tooltipsCMI, legalMovesCMI);
 
         // HELP MENU
         Menu helpM = new Menu("Help");
