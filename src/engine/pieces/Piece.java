@@ -11,14 +11,14 @@ public abstract class Piece {
     protected final int position;
     protected final PlayerColor color;
     private final PieceType type;
-    private final boolean isFirstMove;
+    private boolean isFirstMove;
     private final int hashCode; // keeps cached value (Piece is immutable, needs only calc. hash code once)
 
     public Piece(final int position, final PlayerColor color, final PieceType type) {
         this.position = position;
         this.color = color;
         this.type = type;
-        isFirstMove = true; // TODO: set false when first move is done (?)
+        isFirstMove = true; // TODO: init with true, then change (?) maybe no need for constructor param
         hashCode = createHashCode();
     }
 

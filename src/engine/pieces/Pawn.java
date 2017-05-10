@@ -13,17 +13,20 @@ import java.util.Collection;
 import java.util.List;
 
 import static engine.board.BoardUtilities.*;
+import static engine.pieces.Piece.PieceType.PAWN;
 
 public class Pawn extends Piece {
 
     private static final int[] OFFSET_PATTERN = {7, 8, 9, 16}; // .. Squares from current position
     private int currPos; // current numbered Square position of Piece
     private PlayerColor color;
+    private final boolean isFirstMove;
 
-    public Pawn(final int currentPosition, final PlayerColor color) {
-        super(currentPosition, color, PieceType.PAWN);
+    public Pawn(final int currentPosition, final PlayerColor color, boolean isFirstMove) {
+        super(currentPosition, color, PAWN);
         currPos = currentPosition;
         this.color = color;
+        this.isFirstMove = isFirstMove;
     }
 
     @Override
@@ -45,7 +48,7 @@ public class Pawn extends Piece {
                 legalMoves.add(new NeutralMove(board, this, movePos));
 
             // DOUBLE JUMP
-            } else if (offset == 16 && isFirstMove() &&
+            } else if (offset == 16 && this.isFirstMove() &&
                       ((ROW_7[currPos] && getColor().isBlack()) || (ROW_2[currPos] && getColor().isWhite()))
             ) {
 
@@ -82,11 +85,11 @@ public class Pawn extends Piece {
 
     @Override
     public Pawn performMove(final Move move) {
-        return new Pawn(move.getDestinationPosition(), move.getMovedPiece().getColor());
+        return new Pawn(move.getDestinationPosition(), move.getMovedPiece().getColor(), false);
     }
 
     @Override
-    public String toString() {return PieceType.PAWN.toString();}
+    public String toString() {return PAWN.toString();}
 
     private void addDiagonalCaptureMove(final Board board, final List<Move> legalMoves, final int movePosition) {
         if (board.getSquare(movePosition).isOccupied()) { // some Piece occupying destination Square

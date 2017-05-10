@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9aa4b97-5364-492a-b265-ce45f8ca49c0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/pieces/Pawn.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/engine/pieces/Pawn.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/pieces/Piece$PieceType.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/engine/pieces/Piece$PieceType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/engine/pieces/Piece.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/engine/pieces/Piece.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/board/Board.java" afterPath="$PROJECT_DIR$/src/engine/board/Board.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/pieces/Pawn.java" afterPath="$PROJECT_DIR$/src/engine/pieces/Pawn.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/pieces/Piece.java" afterPath="$PROJECT_DIR$/src/engine/pieces/Piece.java" />
     </list>
@@ -29,14 +26,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BoardUtilities.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/engine/board/BoardUtilities.java">
+      <file leaf-file-name="Piece.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/engine/pieces/Piece.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1000">
-              <caret line="58" column="26" lean-forward="false" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
+            <state relative-caret-position="400">
+              <caret line="20" column="104" lean-forward="true" selection-start-line="20" selection-start-column="104" selection-end-line="20" selection-end-column="104" />
               <folding>
-                <element signature="method#initializeColumn#0;class#BoardUtilities#0" expanded="false" />
-                <element signature="method#initializeRow#0;class#BoardUtilities#0" expanded="false" />
+                <element signature="method#equals#0;class#Piece#0" expanded="false" />
+                <element signature="class#PieceType#0;class#Piece#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -45,11 +42,28 @@
       <file leaf-file-name="Pawn.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/engine/pieces/Pawn.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="48" column="22" lean-forward="false" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
+            <state relative-caret-position="425">
+              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding>
-                <element signature="method#performMove#0;class#Pawn#0" expanded="false" />
                 <element signature="method#addDiagonalCaptureMove#0;class#Pawn#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/engine/board/Board.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="951">
+              <caret line="99" column="0" lean-forward="true" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+              <folding>
+                <element signature="method#toString#0;class#Board#0" expanded="false" />
+                <element signature="method#createSquareList#0;class#Board#0" expanded="false" />
+                <element signature="method#getIngamePieces#0;class#Board#0" expanded="false" />
+                <element signature="method#getLegalMoves#0;class#Board#0" expanded="false" />
+                <element signature="method#getBothPlayersLegalMoves#0;class#Board#0" expanded="false" />
+                <element signature="method#setPiece#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
+                <element signature="method#setNextToMove#0;class#BoardBuilder#0;class#Board#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -108,7 +122,6 @@
         <option value="$PROJECT_DIR$/src/engine/players/BlackPlayer.java" />
         <option value="$PROJECT_DIR$/src/engine/players/WhitePlayer.java" />
         <option value="$PROJECT_DIR$/src/engine/players/Player.java" />
-        <option value="$PROJECT_DIR$/src/engine/board/Board.java" />
         <option value="$PROJECT_DIR$/src/gui/main/MainGUI.java" />
         <option value="$PROJECT_DIR$/src/engine/board/BoardDirection.java" />
         <option value="$PROJECT_DIR$/src/application/UserPreferences.java" />
@@ -116,6 +129,7 @@
         <option value="$PROJECT_DIR$/src/gui/menu/MenuChoices.java" />
         <option value="$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java" />
         <option value="$PROJECT_DIR$/src/gui/menu/MenuTop.java" />
+        <option value="$PROJECT_DIR$/src/engine/board/Board.java" />
         <option value="$PROJECT_DIR$/src/engine/pieces/Pawn.java" />
         <option value="$PROJECT_DIR$/src/engine/pieces/Piece.java" />
       </list>
@@ -366,7 +380,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="SearchEverywhereHistoryKey" value="menu&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/gui/menu/MenuTop.java&#10;menutop&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/gui/menu/MenuTop.java&#10;BoardUti&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/board/BoardUtilities.java&#10;parameter name hints&#9;null&#9;null&#10;whitepl&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/players/WhitePlayer.java&#10;Move&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/moves/Move.java" />
+    <property name="SearchEverywhereHistoryKey" value="Piece&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/pieces/Piece.java&#10;menu&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/gui/menu/MenuTop.java&#10;menutop&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/gui/menu/MenuTop.java&#10;BoardUti&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/board/BoardUtilities.java&#10;parameter name hints&#9;null&#9;null&#10;whitepl&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/players/WhitePlayer.java&#10;Move&#9;FILE&#9;file://C:/Users/haugis/Desktop/ASDProsjekt/JavaSjakk/src/engine/moves/Move.java" />
     <property name="last_opened_file_path" value="D:/Dev/IntelliJ Projects/JavaFXIntroByExample/04-LayoutUIControls/GridPaneDemo" />
     <property name="extract.method.default.visibility" value="private" />
   </component>
@@ -752,7 +766,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="28" />
+      <option name="time" value="30" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -841,6 +855,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="15" column="21" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -869,6 +884,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="21" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -897,6 +913,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="15" column="21" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -911,6 +928,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-9">
           <caret line="15" column="21" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1201,24 +1219,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/pieces/Piece.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" column="19" lean-forward="false" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="19" />
-          <folding>
-            <element signature="method#createHashCode#0;class#Piece#0" expanded="false" />
-            <element signature="class#PieceType#0;class#Piece#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/board/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2075">
-          <caret line="187" column="48" lean-forward="true" selection-start-line="187" selection-start-column="48" selection-end-line="187" selection-end-column="48" />
+        <state relative-caret-position="951">
+          <caret line="99" column="0" lean-forward="true" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
           <folding>
             <element signature="method#toString#0;class#Board#0" expanded="false" />
-            <element signature="method#initializeBoard#0;class#Board#0" expanded="false" />
             <element signature="method#createSquareList#0;class#Board#0" expanded="false" />
             <element signature="method#getIngamePieces#0;class#Board#0" expanded="false" />
             <element signature="method#getLegalMoves#0;class#Board#0" expanded="false" />
@@ -1229,12 +1235,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/engine/pieces/Piece.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="20" column="104" lean-forward="true" selection-start-line="20" selection-start-column="104" selection-end-line="20" selection-end-column="104" />
+          <folding>
+            <element signature="method#equals#0;class#Piece#0" expanded="false" />
+            <element signature="class#PieceType#0;class#Piece#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/pieces/Pawn.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="48" column="22" lean-forward="false" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
+        <state relative-caret-position="425">
+          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding>
-            <element signature="method#performMove#0;class#Pawn#0" expanded="false" />
             <element signature="method#addDiagonalCaptureMove#0;class#Pawn#0" expanded="false" />
           </folding>
         </state>
