@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9aa4b97-5364-492a-b265-ce45f8ca49c0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/menu/MenuChoices.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$PieceGraphic.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$SquareGraphic.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$SquareStack.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$PieceGraphic.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$PieceGraphic.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$SquareGraphic.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$SquareGraphic.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$SquareStack.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid$SquareStack.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/gui/board/ChessBoardGrid.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JChaturanga/gui/menu/MenuTop.class" afterPath="$PROJECT_DIR$/out/production/JChaturanga/gui/menu/MenuTop.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/engine/moves/Move.java" afterPath="$PROJECT_DIR$/src/engine/moves/Move.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java" afterPath="$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/menu/MenuTop.java" afterPath="$PROJECT_DIR$/src/gui/menu/MenuTop.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/MavenJS/target/" />
@@ -58,15 +55,14 @@
       <file leaf-file-name="ChessBoardGrid.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-875">
-              <caret line="31" column="50" lean-forward="false" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
+            <state relative-caret-position="985">
+              <caret line="218" column="13" lean-forward="true" selection-start-line="218" selection-start-column="13" selection-end-line="218" selection-end-column="13" />
               <folding>
                 <element signature="method#initializeGrid#0;class#ChessBoardGrid#0" expanded="false" />
                 <element signature="method#clearUserSelections#0;class#ChessBoardGrid#0" expanded="false" />
-                <element signature="e#4293#4600#0" expanded="false" />
-                <element signature="e#4682#4849#0" expanded="false" />
+                <element signature="e#4661#4828#0" expanded="false" />
                 <element signature="method#setSquareColors#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
-                <element signature="method#showTooltips#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
+                <element signature="method#highlightLegalMoves#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
                 <element signature="class#PieceGraphic#0;class#ChessBoardGrid#0" expanded="false" />
               </folding>
             </state>
@@ -175,8 +171,8 @@
         <option value="$PROJECT_DIR$/src/application/UserPreferences.java" />
         <option value="$PROJECT_DIR$/src/gui/menu/MenuChoices.java" />
         <option value="$PROJECT_DIR$/src/engine/moves/Move.java" />
-        <option value="$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java" />
         <option value="$PROJECT_DIR$/src/gui/menu/MenuTop.java" />
+        <option value="$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java" />
       </list>
     </option>
   </component>
@@ -740,7 +736,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14799154" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3217768" sideWeight="0.49577168" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25135428" sideWeight="0.49577168" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -837,9 +833,9 @@
             <element signature="method#initializeGrid#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#redrawStacks#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#clearUserSelections#0;class#ChessBoardGrid#0" expanded="false" />
-            <element signature="e#4293#4600#0" expanded="false" />
-            <element signature="e#4682#4849#0" expanded="false" />
-            <element signature="e#4912#6578#0" expanded="false" />
+            <element signature="e#4272#4579#0" expanded="false" />
+            <element signature="e#4661#4828#0" expanded="false" />
+            <element signature="e#4891#6557#0" expanded="false" />
             <element signature="method#drawGraphics#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#setSquareColors#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#showTooltips#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
@@ -1287,15 +1283,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/board/ChessBoardGrid.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-875">
-          <caret line="31" column="50" lean-forward="false" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
+        <state relative-caret-position="985">
+          <caret line="218" column="13" lean-forward="true" selection-start-line="218" selection-start-column="13" selection-end-line="218" selection-end-column="13" />
           <folding>
             <element signature="method#initializeGrid#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="method#clearUserSelections#0;class#ChessBoardGrid#0" expanded="false" />
-            <element signature="e#4293#4600#0" expanded="false" />
-            <element signature="e#4682#4849#0" expanded="false" />
+            <element signature="e#4661#4828#0" expanded="false" />
             <element signature="method#setSquareColors#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
-            <element signature="method#showTooltips#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
+            <element signature="method#highlightLegalMoves#0;class#SquareStack#0;class#ChessBoardGrid#0" expanded="false" />
             <element signature="class#PieceGraphic#0;class#ChessBoardGrid#0" expanded="false" />
           </folding>
         </state>

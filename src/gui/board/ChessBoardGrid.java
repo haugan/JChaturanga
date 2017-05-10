@@ -37,7 +37,7 @@ public class ChessBoardGrid extends GridPane implements Observer {
     private static final Color LIGHT_COLOR = BLANCHEDALMOND;
     private static final Color DARK_COLOR = BURLYWOOD;
     private static final Color ACTIVE_COLOR = TOMATO;
-    private static final Color HIGHLIGHT_COLOR = GREENYELLOW;
+    private static final Color HIGHLIGHT_COLOR = MEDIUMSPRINGGREEN;
     private List<SquareStack> squareStacks;
     private Board board; // initialized from Board class when "starting fresh"
     private Square squareSelected;
@@ -101,9 +101,8 @@ public class ChessBoardGrid extends GridPane implements Observer {
         private PieceGraphic pieceGraphic; // canvas object which holds image files for the chess pieces
         private Color bgColor;
 
-        public SquareStack(final ChessBoardGrid grid,
-                           final int position, final int col, final int row,
-                           final double xPos, final double yPos) {
+        public SquareStack(final ChessBoardGrid grid, final int position,
+                           final int col, final int row, final double xPos, final double yPos) {
 
             this.position = position;
             drawGraphics(board, position, xPos, yPos); // draw graphics using data from Board object
@@ -177,17 +176,9 @@ public class ChessBoardGrid extends GridPane implements Observer {
                 getChildren().addAll(squareGraphic, pieceGraphic); // add "double node" to StackPane (i.e. occupied)
             } else {
 
-                // TODO: implement highlighting of legal moves
+                // TODO: refactor to method
                 if (highlightEnabled && pieceSelected != null) {
-                    if (pieceSelected.getColor() == board.getCurrentPlayer().getColor()) {
-                        for (final Move legalMove : pieceSelected.calculateLegalMoves(board)) {
-                            int destinationPosition = legalMove.getDestinationPosition();
-                            if (destinationPosition == position) {
-                                bgColor = HIGHLIGHT_COLOR;
-                                squareGraphic.setFill(bgColor);
-                            }
-                        }
-                    }
+                    highlightLegalMoves(board, position);
                 }
 
                 getChildren().add(squareGraphic); // add "single" node to StackPane (i.e. empty)
@@ -214,26 +205,28 @@ public class ChessBoardGrid extends GridPane implements Observer {
                 Piece piece = square.getPiece();
                 tooltip = new Tooltip(
                         "Position: " + pos + "\n"
-                                + "Column: " + col + "\n"
-                                + "Row: " + row + "\n"
-                                + "Piece: " + piece.toString() + "\n"
-                                + "Color: " + piece.getColor().toString().toUpperCase()
+                            + "Column: " + col + "\n"
+                            + "Row: " + row + "\n"
+                            + "Piece: " + piece.toString() + "\n"
+                            + "Color: " + piece.getColor().toString().toUpperCase()
                 );
             } else {
                 tooltip = new Tooltip(
                         "Position: " + pos + "\n"
-                                + "Column: " + col + "\n"
-                                + "Row: " + row
+                            + "Column: " + col + "\n"
+                            + "Row: " + row
                 );
             }
             Tooltip.install(this, tooltip);
         }
 
-        public void highlightLegalMoves(final Board board) {
+        private void highlightLegalMoves(final Board board, final int position) {
             if (pieceSelected.getColor() == board.getCurrentPlayer().getColor()) {
-                for (final Move m : pieceSelected.calculateLegalMoves(board)) {
-                    if (m.getDestinationPosition() == position) {
-                        System.out.println("yo");
+                for (final Move legalMove : pieceSelected.calculateLegalMoves(board)) {
+                    int destinationPosition = legalMove.getDestinationPosition();
+                    if (destinationPosition == position) {
+                        bgColor = HIGHLIGHT_COLOR;
+                        squareGraphic.setFill(bgColor);
                     }
                 }
             }
