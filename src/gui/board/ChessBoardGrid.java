@@ -18,6 +18,8 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import static engine.board.BoardUtilities.*;
 import static engine.moves.Move.MoveFactory.createMove;
@@ -26,7 +28,7 @@ import static javafx.scene.input.MouseButton.PRIMARY;
 import static javafx.scene.input.MouseButton.SECONDARY;
 import static javafx.scene.paint.Color.*;
 
-public class ChessBoardGrid extends GridPane {
+public class ChessBoardGrid extends GridPane implements Observer {
 
     public static boolean tooltipsEnabled = true;
     private static final int BOARD_WIDTH = 600;
@@ -46,6 +48,11 @@ public class ChessBoardGrid extends GridPane {
         setPrefSize(BOARD_WIDTH, BOARD_HEIGHT);
         board = Board.initializeBoard();
         initializeGrid();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        tooltipsEnabled = (boolean) arg;
     }
 
     private void initializeGrid() {
@@ -78,7 +85,6 @@ public class ChessBoardGrid extends GridPane {
         pieceSelected = null;
         System.out.println("Selection canceled");
     }
-
 
     // INNER CLASS!
     public class SquareStack extends StackPane { // "stacking" background and piece graphics in one square
@@ -168,11 +174,11 @@ public class ChessBoardGrid extends GridPane {
 
         private void setSquareColors(final int position) {
             if (ROW_8[position] || ROW_6[position] || ROW_4[position] || ROW_2[position]) {
-                bgColor = position % 2 == 0 ? LIGHT_COLOR : DARK_COLOR;
+                bgColor = (position % 2 == 0) ? LIGHT_COLOR : DARK_COLOR;
                 squareGraphic.setFill(bgColor);
             }
             else if (ROW_7[position] || ROW_5[position] || ROW_3[position] || ROW_1[position]) {
-                bgColor = position % 2 != 0 ? LIGHT_COLOR : DARK_COLOR;
+                bgColor = (position % 2 != 0) ? LIGHT_COLOR : DARK_COLOR;
                 squareGraphic.setFill(bgColor);
             }
         }

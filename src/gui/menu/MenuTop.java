@@ -6,9 +6,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 
+import java.util.Observable;
+
 import static gui.board.ChessBoardGrid.tooltipsEnabled;
 
-public class MenuTop {
+public class MenuTop extends Observable {
 
     private MenuBar menuBar;
 
@@ -16,7 +18,7 @@ public class MenuTop {
         menuBar = new MenuBar();
 
         // FILE MENU
-        Menu fileM = new Menu("_File");
+        Menu fileM = new Menu("File");
         MenuItem newMI = new MenuItem("New");
         MenuItem saveMI = new MenuItem("Save PGN...");
         MenuItem loadMI = new MenuItem("Load PGN...");
@@ -26,18 +28,14 @@ public class MenuTop {
         loadMI.setAccelerator(new KeyCodeCombination(KeyCode.L, KeyCombination.SHORTCUT_DOWN));
         exitMI.setAccelerator(new KeyCodeCombination(KeyCode.E, KeyCombination.SHORTCUT_DOWN));
         exitMI.setOnAction(e -> {
-            System.out.println("Exiting application...");
+            System.out.println("Exiting application..");
             Platform.exit();
         });
         fileM.setMnemonicParsing(true);
-        fileM.getItems().addAll(newMI,
-                                saveMI,
-                                loadMI,
-                                new SeparatorMenuItem(),
-                                exitMI);
+        fileM.getItems().addAll(newMI, saveMI, loadMI, new SeparatorMenuItem(), exitMI);
 
         // EDIT MENU
-        Menu editM = new Menu("_Edit");
+        Menu editM = new Menu("Edit");
         MenuItem undoMI = new MenuItem("Undo move");
         MenuItem redoMI = new MenuItem("Redo move");
         MenuItem optionsMI = new MenuItem("Options...");
@@ -45,46 +43,35 @@ public class MenuTop {
         redoMI.setAccelerator(new KeyCodeCombination(KeyCode.R, KeyCombination.SHORTCUT_DOWN));
         optionsMI.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.SHORTCUT_DOWN));
         editM.setMnemonicParsing(true);
-        editM.getItems().addAll(undoMI,
-                                redoMI,
-                                new SeparatorMenuItem(),
-                                optionsMI);
+        editM.getItems().addAll(undoMI, redoMI, new SeparatorMenuItem(), optionsMI);
 
         // TOOLS MENU
-        Menu toolsM = new Menu("_Tools");
+        Menu toolsM = new Menu("Tools");
+        toolsM.setMnemonicParsing(true);
         CheckMenuItem tooltipsCMI = new CheckMenuItem("Show tooltips");
         tooltipsCMI.setAccelerator(new KeyCodeCombination(KeyCode.T, KeyCombination.SHORTCUT_DOWN));
         tooltipsCMI.setSelected(true);
         tooltipsCMI.setOnAction(e -> {
-            if (!tooltipsEnabled) {
-                tooltipsEnabled = true;
-                System.out.println("Tooltips enabled..");
-            } else {
-                tooltipsEnabled = false;
-                System.out.println("Tooltips disabled..");
-            }
+            System.out.println("Toggling tooltips..");
+            setChanged();
+            notifyObservers(!tooltipsEnabled);
+            clearChanged();
         });
-        toolsM.setMnemonicParsing(true);
-        toolsM.getItems().add(tooltipsCMI);
-
+        toolsM.getItems().addAll(tooltipsCMI);
         Menu screenshotM = new Menu("_Screenshot");
         MenuItem savePNGMI = new MenuItem("Save as PNG...");
         MenuItem saveGIFMI = new MenuItem("Save as GIF...");
-        toolsM.setMnemonicParsing(true);
         toolsM.getItems().add(screenshotM);
         screenshotM.getItems().addAll(savePNGMI, saveGIFMI);
 
         // HELP MENU
-        Menu helpM = new Menu("_Help");
+        Menu helpM = new Menu("Help");
         MenuItem aboutMI = new MenuItem("About");
         helpM.setMnemonicParsing(true);
         helpM.getItems().add(aboutMI);
 
         // ADD ALL SUB MENUS TO TOP MENU
-        menuBar.getMenus().addAll(fileM,
-                                  editM,
-                                  toolsM,
-                                  helpM);
+        menuBar.getMenus().addAll(fileM, editM, toolsM, helpM);
     }
 
     public MenuBar getMenuBar() {
