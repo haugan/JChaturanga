@@ -11,14 +11,14 @@ public abstract class Piece {
     protected final int position;
     protected final PlayerColor color;
     private final PieceType type;
-    private final boolean isFirstMove;
+    private final boolean firstMove;
     private final int hashCode; // keeps cached value (Piece is immutable, needs only calc. hash code once)
 
-    public Piece(final int position, final PlayerColor color, final PieceType type) {
+    public Piece(final int position, final PlayerColor color, final PieceType type, final boolean firstMove) {
         this.position = position;
         this.color = color;
         this.type = type;
-        isFirstMove = true;
+        this.firstMove = firstMove;
         hashCode = createHashCode();
     }
 
@@ -29,7 +29,7 @@ public abstract class Piece {
         int hashCode = type.hashCode();
         hashCode = 31 * hashCode + color.hashCode();
         hashCode = 31 * hashCode + position;
-        hashCode = 31 * hashCode + (getIsFirstMove() ? 1 : 0);
+        hashCode = 31 * hashCode + (isFirstMove() ? 1 : 0);
         return hashCode;
     }
 
@@ -61,7 +61,7 @@ public abstract class Piece {
             this.position == other.getPosition() &&
             this.color == other.getColor() &&
             this.type == other.getType() &&
-            this.getIsFirstMove() == other.getIsFirstMove(); // objects "contains" the same state
+            this.isFirstMove() == other.isFirstMove(); // objects "contains" the same state
     }
 
     public int getPosition() {return position;}
@@ -70,7 +70,7 @@ public abstract class Piece {
 
     public PieceType getType() {return type;}
 
-    public boolean getIsFirstMove() {return isFirstMove;}
+    public boolean isFirstMove() {return firstMove;}
 
     public abstract Collection<Move> calculateLegalMoves(final Board board);
 

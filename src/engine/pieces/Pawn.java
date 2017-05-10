@@ -23,9 +23,13 @@ public class Pawn extends Piece {
     private PlayerColor color;
 
     public Pawn(final int currentPosition, final PlayerColor color) {
-        super(currentPosition, color, PAWN);
+        super(currentPosition, color, PAWN, true);
         this.currentPosition = currentPosition;
         this.color = color;
+    }
+
+    public Pawn(final int currentPosition, final PlayerColor color, final boolean firstMove) {
+        super(currentPosition, color, PAWN, firstMove);
     }
 
     @Override
@@ -47,7 +51,7 @@ public class Pawn extends Piece {
                 legalMoves.add(new NeutralMove(board, this, movePos));
 
             // DOUBLE JUMP
-            } else if (offset == 16 &&
+            } else if (offset == 16 && isFirstMove() &&
                       ((ROW_7[currentPosition] && getColor().isBlack()) ||
                        (ROW_2[currentPosition] && getColor().isWhite()))) {
 

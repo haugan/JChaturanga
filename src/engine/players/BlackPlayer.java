@@ -40,7 +40,7 @@ public class BlackPlayer extends Player {
 
         final List<Move> castlingMoves = new ArrayList<>();
 
-        if (this.king.getIsFirstMove() && !this.isChecked()) { // if King hasn't moved yet, and Player isn't in check
+        if (this.king.isFirstMove() && !this.isChecked()) { // if King hasn't moved yet, and Player isn't in check
 
             // CASTLING SHORT "KINGSIDE"
             if (!this.board.getSquare(5).isOccupied() &&
@@ -48,7 +48,7 @@ public class BlackPlayer extends Player {
 
                 final Square rookSquareShort = this.board.getSquare(7); // kingside Rook Square
 
-                if (rookSquareShort.isOccupied() && rookSquareShort.getPiece().getIsFirstMove()) {
+                if (rookSquareShort.isOccupied() && rookSquareShort.getPiece().isFirstMove()) {
 
                     if (Player.getCaptureMovesOnSquare(5, legalMovesOpponent).isEmpty() &&
                         Player.getCaptureMovesOnSquare(6, legalMovesOpponent).isEmpty() &&
@@ -77,7 +77,7 @@ public class BlackPlayer extends Player {
 
                 final Square rookSquareLong = this.board.getSquare(0); // queenside Rook Square
 
-                if (rookSquareLong.isOccupied() && rookSquareLong.getPiece().getIsFirstMove()) {
+                if (rookSquareLong.isOccupied() && rookSquareLong.getPiece().isFirstMove()) {
 
                     if (Player.getCaptureMovesOnSquare(1, legalMovesOpponent).isEmpty() &&
                         Player.getCaptureMovesOnSquare(2, legalMovesOpponent).isEmpty() &&
