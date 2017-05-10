@@ -15,8 +15,10 @@ public class MainGUI extends BorderPane {
         Group root = new Group();
         MenuTop userMenu = new MenuTop();
         ChessBoardGrid chessGrid = new ChessBoardGrid();
-        this.setTop(userMenu.getMenuBar());
-        this.setCenter(chessGrid);
+
+        setTop(userMenu.getMenuBar());
+        setCenter(chessGrid);
+
         root.getChildren().add(this);
         gameScene = new Scene(root, Color.DIMGRAY);
     }
