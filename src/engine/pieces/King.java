@@ -13,17 +13,18 @@ import java.util.Collection;
 import java.util.List;
 
 import static engine.board.BoardUtilities.*;
+import static engine.pieces.Piece.PieceType.KING;
 
 public class King extends Piece {
 
     public static final int[] MOVE_PATTERN = {-9, -8, -7, -1, 9,  8,  7,  1};
 
     public King(final int position, final PlayerColor color) {
-        super(position, color, PieceType.KING);
+        super(position, color, KING);
     }
 
     @Override
-    public String toString() {return PieceType.KING.toString();}
+    public String toString() {return KING.toString();}
 
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {

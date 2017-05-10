@@ -13,17 +13,18 @@ import java.util.List;
 
 import static engine.board.BoardUtilities.*;
 import static engine.moves.Move.CaptureMove;
+import static engine.pieces.Piece.PieceType.KNIGHT;
 
 public class Knight extends Piece {
 
     private final static int[] MOVE_PATTERN = {-17, -15, -10, -6, 17,  15,  10,  6};
 
     public Knight(final int position, final PlayerColor color) {
-        super(position, color, PieceType.KNIGHT);
+        super(position, color, KNIGHT);
     }
 
     @Override
-    public String toString() {return PieceType.KNIGHT.toString();}
+    public String toString() {return KNIGHT.toString();}
 
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
@@ -42,9 +43,7 @@ public class Knight extends Piece {
 
                 final Square possibleSquareDestination = board.getSquare(possibleMovePosition);
                 if (!possibleSquareDestination.isOccupied()) { // possible square destination for move is empty
-                    legalMoves.add(
-                            new NeutralMove(board, this, possibleMovePosition)
-                    );
+                    legalMoves.add(new NeutralMove(board, this, possibleMovePosition));
                 } else {
                     final Piece occupyingPiece = possibleSquareDestination.getPiece();
                     final PlayerColor occupyingColor = occupyingPiece.getColor();

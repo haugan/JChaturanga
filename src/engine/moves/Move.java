@@ -13,11 +13,6 @@ public abstract class Move {
     final int destinationPosition;
     public static final Move ILLEGAL_MOVE = new IllegalMove(); // null Move
 
-    /**
-     * @param board TODO: comment this
-     * @param movedPiece to be created at a numbered destination Square on a new Board.
-     * @param destinationPosition numbered position of the Square that is moved to.
-     */
     private Move(final Board board, final Piece movedPiece, final int destinationPosition) {
         this.board = board;
         this.movedPiece = movedPiece;
@@ -75,21 +70,21 @@ public abstract class Move {
         final BoardBuilder bB = new BoardBuilder();
 
         // INCOMING BOARD'S CURRENT PLAYER PIECES
-        for (final Piece p : this.board.getCurrentPlayer().getPieces()) {
+        for (final Piece p : board.getCurrentPlayer().getPieces()) {
             if (!this.movedPiece.equals(p)) {
                 bB.setPiece(p); // .. (all) that wasn't moved, to same positions (but, on new Board)
             }
         }
 
         // INCOMING BOARD'S OPPONENT PIECES
-        for (final Piece p : this.board.getCurrentPlayer().getOpponent().getPieces()) {
+        for (final Piece p : board.getCurrentPlayer().getOpponent().getPieces()) {
             bB.setPiece(p); // .. (all) that wasn't moved, to same positions (but, on new Board)
         }
 
         // RETURNED BOARD'S NEW PIECE POSITIONS
-        bB.setPiece(this.movedPiece.performMove(this));
+        bB.setPiece(movedPiece.performMove(this));
 
-        bB.setNextToMove(this.board.getCurrentPlayer().getOpponent().getColor());
+        bB.setNextToMove(board.getCurrentPlayer().getOpponent().getColor());
         return bB.createBoard();
     }
 
@@ -139,18 +134,9 @@ public abstract class Move {
     }
 
     // INNER CLASS!
-    public static final class PawnNeutralSingleMove extends Move {
+    public static final class PawnDoubleMove extends Move {
 
-        public PawnNeutralSingleMove(final Board board, final Piece movedPiece, final int destinationPosition) {
-            super(board, movedPiece, destinationPosition);
-        }
-
-    }
-
-    // INNER CLASS!
-    public static final class PawnNeutralDoubleMove extends Move {
-
-        public PawnNeutralDoubleMove(final Board board, final Piece movedPiece, final int destinationPosition) {
+        public PawnDoubleMove(final Board board, final Piece movedPiece, final int destinationPosition) {
             super(board, movedPiece, destinationPosition);
         }
 

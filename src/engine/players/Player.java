@@ -99,13 +99,12 @@ public abstract class Player {
         final Board newBoard = move.perform(); // new Board switches current Player to "next color"
 
         // MOVE LEAVES PLAYER IN CHECK
-        Collection<Move> checkMoves = getCaptureMovesOnSquare(
-                                        newBoard.getCurrentPlayer()
-                                                .getOpponent()
-                                                .getKing()
-                                                .getPosition(),
-                                        newBoard.getCurrentPlayer()
-                                                .getLegalMoves()
+        Collection<Move> checkMoves = getCaptureMovesOnSquare(newBoard.getCurrentPlayer()
+                                                                      .getOpponent()
+                                                                      .getKing()
+                                                                      .getPosition(),
+                                                              newBoard.getCurrentPlayer()
+                                                                      .getLegalMoves()
         ); // get check attempts against opponent's King (after move, current player is the opponent)
 
         if (!checkMoves.isEmpty()) {

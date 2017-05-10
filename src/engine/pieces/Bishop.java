@@ -13,17 +13,18 @@ import java.util.List;
 import static engine.board.BoardUtilities.*;
 import static engine.moves.Move.CaptureMove;
 import static engine.moves.Move.NeutralMove;
+import static engine.pieces.Piece.PieceType.BISHOP;
 
 public class Bishop extends Piece {
 
     public static final int[] MOVE_PATTERN = {-9, -7, 9,  7};
 
     public Bishop(final int position, final PlayerColor color) {
-        super(position, color, PieceType.BISHOP);
+        super(position, color, BISHOP);
     }
 
     @Override
-    public String toString() {return PieceType.BISHOP.toString();}
+    public String toString() {return BISHOP.toString();}
 
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) { // loop through all possible "directions" from the piece's offset pattern

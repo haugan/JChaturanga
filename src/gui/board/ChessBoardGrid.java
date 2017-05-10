@@ -144,8 +144,7 @@ public class ChessBoardGrid extends GridPane implements Observer {
 
                         // CREATE & EXECUTE MOVE!
                         final Move move = createMove(board,
-                                                     squareSelected.getPosition(),
-                                                     squareDestination.getPosition());
+                                                     squareSelected.getPosition(), squareDestination.getPosition());
 
                         final MoveTransaction transaction = board.getCurrentPlayer().performMove(move);
 

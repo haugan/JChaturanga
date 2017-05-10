@@ -13,29 +13,19 @@ import java.util.Collection;
 import java.util.List;
 
 import static engine.board.BoardUtilities.*;
+import static engine.pieces.Piece.PieceType.QUEEN;
 
 public class Queen extends Piece {
 
     public static final int[] MOVE_PATTERN = {-9, -8, -7, -1, 9,  8,  7,  1}; // offset Squares from current position
 
-    /**
-     * @param position of Square from top-left to bottom-right; 0 to 63.
-     * @param color of Player; black or white.
-     */
     public Queen(final int position, final PlayerColor color) {
-        super(position, color, PieceType.QUEEN);
+        super(position, color, QUEEN);
     }
 
-    /**
-     * @return TODO: comment this
-     */
     @Override
-    public String toString() {return PieceType.QUEEN.toString();}
+    public String toString() {return QUEEN.toString();}
 
-    /**
-     * @param board TODO: comment this
-     * @return a list of legal Moves calculated from valid positions (e.g. not outside Board).
-     */
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) { // loop through all possible "directions" from the piece's offset pattern
         final List<Move> legalMoves = new ArrayList<>();
@@ -75,10 +65,6 @@ public class Queen extends Piece {
         return ImmutableList.copyOf(legalMoves);
     }
 
-    /**
-     * @param move object containing new position for Piece, and color of "moving" Player.
-     * @return Piece that will move to new Board.
-     */
     @Override
     public Queen performMove(final Move move) {
         return new Queen(
@@ -87,24 +73,10 @@ public class Queen extends Piece {
         );
     }
 
-    /**
-     * Valid move offset positions is dependent on certain Columns.
-     *
-     * @param position of Square from top-left to bottom-right; 0 to 63.
-     * @param offset value from move pattern (i.e. number of Squares from current to potential destination).
-     * @return true (if Piece occupies Square on 1st file; move offset thus not valid).
-     */
     private static boolean isOnColumnA(final int position, final int offset) {
         return COLUMN_A[position] && (offset == -9 || offset == -1 || offset == 7);
     }
 
-    /**
-     * Valid move offset positions is dependent on certain Columns.
-     *
-     * @param position of Square from top-left to bottom-right; 0 to 63.
-     * @param offset value from move pattern (i.e. number of Squares from current to potential destination).
-     * @return true (if Piece occupies Square on 8th file; move offset thus not valid).
-     */
     private static boolean isOnColumnH(final int position, final int offset) {
         return COLUMN_H[position] && (offset == -7 || offset == 1 || offset == 9);
     }
