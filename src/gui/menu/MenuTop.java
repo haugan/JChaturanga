@@ -8,7 +8,8 @@ import javafx.scene.input.KeyCombination;
 
 import java.util.Observable;
 
-import static gui.board.ChessBoardGrid.tooltipsEnabled;
+import static gui.menu.MenuChoices.HIGHLIGHT_LEGAL_MOVES;
+import static gui.menu.MenuChoices.TOGGLE_TOOLTIP;
 
 public class MenuTop extends Observable {
 
@@ -38,31 +39,36 @@ public class MenuTop extends Observable {
         Menu editM = new Menu("Edit");
         MenuItem undoMI = new MenuItem("Undo move");
         MenuItem redoMI = new MenuItem("Redo move");
-        MenuItem optionsMI = new MenuItem("Options...");
         undoMI.setAccelerator(new KeyCodeCombination(KeyCode.Z, KeyCombination.SHORTCUT_DOWN));
         redoMI.setAccelerator(new KeyCodeCombination(KeyCode.R, KeyCombination.SHORTCUT_DOWN));
-        optionsMI.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.SHORTCUT_DOWN));
         editM.setMnemonicParsing(true);
-        editM.getItems().addAll(undoMI, redoMI, new SeparatorMenuItem(), optionsMI);
+        editM.getItems().addAll(undoMI, redoMI);
 
         // TOOLS MENU
         Menu toolsM = new Menu("Tools");
         toolsM.setMnemonicParsing(true);
+
         CheckMenuItem tooltipsCMI = new CheckMenuItem("Show tooltips");
         tooltipsCMI.setAccelerator(new KeyCodeCombination(KeyCode.T, KeyCombination.SHORTCUT_DOWN));
         tooltipsCMI.setSelected(true);
         tooltipsCMI.setOnAction(e -> {
             System.out.println("Toggling tooltips..");
             setChanged();
-            notifyObservers(!tooltipsEnabled);
+            notifyObservers(TOGGLE_TOOLTIP);
             clearChanged();
         });
-        toolsM.getItems().addAll(tooltipsCMI);
-        Menu screenshotM = new Menu("_Screenshot");
-        MenuItem savePNGMI = new MenuItem("Save as PNG...");
-        MenuItem saveGIFMI = new MenuItem("Save as GIF...");
-        toolsM.getItems().add(screenshotM);
-        screenshotM.getItems().addAll(savePNGMI, saveGIFMI);
+
+        CheckMenuItem highlightCMI = new CheckMenuItem("Highlight legal moves");
+        highlightCMI.setAccelerator(new KeyCodeCombination(KeyCode.L, KeyCombination.SHORTCUT_DOWN));
+        highlightCMI.setSelected(true);
+        highlightCMI.setOnAction(e -> {
+            System.out.println("Toggling highlighting..");
+            setChanged();
+            notifyObservers(HIGHLIGHT_LEGAL_MOVES);
+            clearChanged();
+        });
+
+        toolsM.getItems().addAll(tooltipsCMI, highlightCMI);
 
         // HELP MENU
         Menu helpM = new Menu("Help");

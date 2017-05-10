@@ -5,6 +5,7 @@ import engine.board.Square;
 import engine.moves.Move;
 import engine.moves.MoveTransaction;
 import engine.pieces.Piece;
+import gui.menu.MenuChoices;
 import javafx.animation.FillTransition;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -16,10 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
 import static engine.board.BoardUtilities.*;
 import static engine.moves.Move.MoveFactory.createMove;
@@ -30,7 +28,8 @@ import static javafx.scene.paint.Color.*;
 
 public class ChessBoardGrid extends GridPane implements Observer {
 
-    public static boolean tooltipsEnabled = true;
+    private static boolean tooltipsEnabled = true;
+    private static boolean highlightEnabled = true;
     private static final int BOARD_WIDTH = 600;
     private static final int BOARD_HEIGHT = 600;
     private static final int SQUARE_WIDTH = BOARD_WIDTH / 8;
@@ -38,6 +37,7 @@ public class ChessBoardGrid extends GridPane implements Observer {
     private static final Color LIGHT_COLOR = BLANCHEDALMOND;
     private static final Color DARK_COLOR = BURLYWOOD;
     private static final Color ACTIVE_COLOR = TOMATO;
+    private static final Color HIGHLIGHT_COLOR = GREENYELLOW;
     private List<SquareStack> squareStacks;
     private Board board; // initialized from Board class when "starting fresh"
     private Square squareSelected;
@@ -52,7 +52,14 @@ public class ChessBoardGrid extends GridPane implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        tooltipsEnabled = (boolean) arg;
+        switch ((MenuChoices) arg) {
+            case TOGGLE_TOOLTIP:
+                tooltipsEnabled = !tooltipsEnabled;
+                break;
+            case HIGHLIGHT_LEGAL_MOVES:
+                highlightEnabled = !highlightEnabled;
+                break;
+        }
     }
 
     private void initializeGrid() {
@@ -105,7 +112,9 @@ public class ChessBoardGrid extends GridPane implements Observer {
             setOnMouseEntered(event -> {
                 FillTransition ft = new FillTransition(Duration.millis(100), squareGraphic, bgColor, ACTIVE_COLOR);
                 ft.play();
-                showTooltips(position, col, row); // show various info to user
+                if (tooltipsEnabled) {
+                    showTooltips(position, col, row); // show various info to user
+                }
             }); // animate fill colors "in", call showTooltips()
 
             setOnMouseExited(event -> {
@@ -126,9 +135,9 @@ public class ChessBoardGrid extends GridPane implements Observer {
 
                         if (pieceSelected == null) {
                             squareSelected = null;
+                        } else {
+                            System.out.println("Piece selected (" + pieceSelected.toString() + ")");
                         }
-
-                        System.out.println("Piece selected (" + pieceSelected.toString() + ")");
 
                     } else {
 
@@ -167,6 +176,20 @@ public class ChessBoardGrid extends GridPane implements Observer {
                 pieceGraphic = new PieceGraphic(color + type); // identifier references piece image filename
                 getChildren().addAll(squareGraphic, pieceGraphic); // add "double node" to StackPane (i.e. occupied)
             } else {
+
+                // TODO: implement highlighting of legal moves
+                if (highlightEnabled && pieceSelected != null) {
+                    if (pieceSelected.getColor() == board.getCurrentPlayer().getColor()) {
+                        for (final Move legalMove : pieceSelected.calculateLegalMoves(board)) {
+                            int destinationPosition = legalMove.getDestinationPosition();
+                            if (destinationPosition == position) {
+                                bgColor = HIGHLIGHT_COLOR;
+                                squareGraphic.setFill(bgColor);
+                            }
+                        }
+                    }
+                }
+
                 getChildren().add(squareGraphic); // add "single" node to StackPane (i.e. empty)
             }
 
@@ -184,27 +207,35 @@ public class ChessBoardGrid extends GridPane implements Observer {
         }
 
         private void showTooltips(int position, int col, int row) {
-            if (tooltipsEnabled) {
-                Tooltip tooltip;
-                Square square = board.getSquare(position);
-                int pos = square.getPosition();
-                if (square.isOccupied()) {
-                    Piece piece = square.getPiece();
-                    tooltip = new Tooltip(
-                            "Position: " + pos + "\n"
-                                    + "Column: " + col + "\n"
-                                    + "Row: " + row + "\n"
-                                    + "Piece: " + piece.toString() + "\n"
-                                    + "Color: " + piece.getColor().toString().toUpperCase()
-                    );
-                } else {
-                    tooltip = new Tooltip(
-                            "Position: " + pos + "\n"
-                                    + "Column: " + col + "\n"
-                                    + "Row: " + row
-                    );
+            Tooltip tooltip;
+            Square square = board.getSquare(position);
+            int pos = square.getPosition();
+            if (square.isOccupied()) {
+                Piece piece = square.getPiece();
+                tooltip = new Tooltip(
+                        "Position: " + pos + "\n"
+                                + "Column: " + col + "\n"
+                                + "Row: " + row + "\n"
+                                + "Piece: " + piece.toString() + "\n"
+                                + "Color: " + piece.getColor().toString().toUpperCase()
+                );
+            } else {
+                tooltip = new Tooltip(
+                        "Position: " + pos + "\n"
+                                + "Column: " + col + "\n"
+                                + "Row: " + row
+                );
+            }
+            Tooltip.install(this, tooltip);
+        }
+
+        public void highlightLegalMoves(final Board board) {
+            if (pieceSelected.getColor() == board.getCurrentPlayer().getColor()) {
+                for (final Move m : pieceSelected.calculateLegalMoves(board)) {
+                    if (m.getDestinationPosition() == position) {
+                        System.out.println("yo");
+                    }
                 }
-                Tooltip.install(this, tooltip);
             }
         }
 

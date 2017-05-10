@@ -59,9 +59,9 @@ public abstract class Move {
                 this.getMovedPiece().equals(other.getMovedPiece());
     }
 
-    private int getCurrentPosition() {return this.getMovedPiece().getPosition();}
-    public int getDestinationPosition() {return this.destinationPosition;}
-    public Piece getMovedPiece() {return this.movedPiece;}
+    private int getCurrentPosition() {return getMovedPiece().getPosition();}
+    public int getDestinationPosition() {return destinationPosition;}
+    public Piece getMovedPiece() {return movedPiece;}
     public Piece getCapturedPiece() {return null;}
     public boolean isCaptureMove() {return false;}
     public boolean isCastlingMove() {return false;}
