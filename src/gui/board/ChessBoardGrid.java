@@ -29,13 +29,13 @@ import static javafx.scene.paint.Color.*;
 public class ChessBoardGrid extends GridPane {
 
     public static boolean tooltipsEnabled = true;
-    public static final int BOARD_WIDTH = 600;
-    public static final int BOARD_HEIGHT = 600;
-    public static final int SQUARE_WIDTH = BOARD_WIDTH / 8;
-    public static final int SQUARE_HEIGHT = BOARD_HEIGHT / 8;
-    public static final Color LIGHT_COLOR = BLANCHEDALMOND;
-    public static final Color DARK_COLOR = BURLYWOOD;
-    public static final Color ACTIVE_COLOR = TOMATO;
+    private static final int BOARD_WIDTH = 600;
+    private static final int BOARD_HEIGHT = 600;
+    private static final int SQUARE_WIDTH = BOARD_WIDTH / 8;
+    private static final int SQUARE_HEIGHT = BOARD_HEIGHT / 8;
+    private static final Color LIGHT_COLOR = BLANCHEDALMOND;
+    private static final Color DARK_COLOR = BURLYWOOD;
+    private static final Color ACTIVE_COLOR = TOMATO;
     private List<SquareStack> squareStacks;
     private Board board; // initialized from Board class when "starting fresh"
     private Square squareSelected;
@@ -63,24 +63,32 @@ public class ChessBoardGrid extends GridPane {
         }
     }
 
-    // TODO: implement and fix this
-    public void redraw(final Board board) {
+    private void redrawStacks(final Board board) {
         getChildren().clear();
         for (final SquareStack squareStack : squareStacks) {
             squareStack.drawGraphics(board, squareStack.position, 0, 0);
             getChildren().add(squareStack);
         }
+        System.out.println("Stacks redrawn");
     }
+
+    private void clearUserSelections() {
+        squareSelected = null;
+        squareDestination = null;
+        pieceSelected = null;
+        System.out.println("Selection canceled");
+    }
+
 
     // INNER CLASS!
     public class SquareStack extends StackPane { // "stacking" background and piece graphics in one square
 
-        private final int position;
-        private SquareGraphic squareGraphic;
-        private PieceGraphic pieceGraphic;
+        private final int position; // numbered location of Stack on Grid from top-left to bottom-right; 0-63
+        private SquareGraphic squareGraphic; // a square rectangle object giving background color to a board square
+        private PieceGraphic pieceGraphic; // canvas object which holds image files for the chess pieces
         private Color bgColor;
 
-        public SquareStack(final ChessBoardGrid boardGrid,
+        public SquareStack(final ChessBoardGrid grid,
                            final int position, final int col, final int row,
                            final double xPos, final double yPos) {
 
@@ -93,14 +101,17 @@ public class ChessBoardGrid extends GridPane {
                 ft.play();
                 showTooltips(position, col, row); // show various info to user
             }); // animate fill colors "in", call showTooltips()
+
             setOnMouseExited(event -> {
                 FillTransition ft = new FillTransition(Duration.millis(100), squareGraphic, ACTIVE_COLOR, bgColor);
                 ft.play();
             }); // animate fill colors "out"
 
             setOnMouseClicked(event -> {
+
                 if (event.getButton() == SECONDARY) { // user clicks right mouse btn "cancel everything"
                     clearUserSelections();
+
                 } else if (event.getButton() == PRIMARY) { // user clicks left mouse btn
 
                     if (squareSelected == null) { // no previous selections
@@ -111,27 +122,31 @@ public class ChessBoardGrid extends GridPane {
                             squareSelected = null;
                         }
 
+                        System.out.println("Piece selected (" + pieceSelected.toString() + ")");
+
                     } else {
+
                         squareDestination = board.getSquare(this.position);
 
                         // CREATE & EXECUTE MOVE!
                         final Move move = createMove(board,
                                                      squareSelected.getPosition(),
                                                      squareDestination.getPosition());
+
                         final MoveTransaction transaction = board.getCurrentPlayer().performMove(move);
 
                         if (transaction.getResult() == COMPLETED) {
                             board = transaction.getBoard();
-                            System.out.println("Move completed!");
+                            System.out.println("Move completed");
                         }
 
                         clearUserSelections(); // "reset" selected Square and Piece
                     }
 
                     // UPDATE GUI!
-                    boardGrid.redraw(board);
+                    grid.redrawStacks(board);
                 }
-            });
+            }); // create and perform moves
         }
 
         private void drawGraphics(final Board board, final int position, final double xPos, final double yPos) {
@@ -187,12 +202,6 @@ public class ChessBoardGrid extends GridPane {
             }
         }
 
-    }
-
-    private void clearUserSelections() {
-        squareSelected = null;
-        squareDestination = null;
-        pieceSelected = null;
     }
 
     // INNER CLASS!

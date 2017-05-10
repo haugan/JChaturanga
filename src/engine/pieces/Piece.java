@@ -10,8 +10,8 @@ public abstract class Piece {
 
     protected final int position;
     protected final PlayerColor color;
-    protected final PieceType type;
-    protected final boolean isFirstMove;
+    private final PieceType type;
+    private final boolean isFirstMove;
     private final int hashCode; // keeps cached value (Piece is immutable, needs only calc. hash code once)
 
     /**
@@ -22,8 +22,19 @@ public abstract class Piece {
         this.position = position;
         this.color = color;
         this.type = type;
-        this.isFirstMove = false;
-        this.hashCode = createHashCode();
+        isFirstMove = false;
+        hashCode = createHashCode();
+    }
+
+    /**
+     * @return a unique integer value for each particular (and immutable) Piece.
+     */
+    private int createHashCode() {
+        int hashCode = type.hashCode();
+        hashCode = 31 * hashCode + color.hashCode();
+        hashCode = 31 * hashCode + position;
+        hashCode = 31 * hashCode + (isFirstMove() ? 1 : 0);
+        return hashCode;
     }
 
     /**
@@ -36,7 +47,7 @@ public abstract class Piece {
      * @return hash code of key that is created, stored, and used for retrieving an object from a hash table.
      */
     @Override
-    public int hashCode() {return this.hashCode;}
+    public int hashCode() {return hashCode;}
 
     /**
      * Overridden from JRE to test for object equality over default reference-only equality test.
@@ -57,41 +68,14 @@ public abstract class Piece {
             this.isFirstMove() == other.isFirstMove(); // objects "contains" the same state
     }
 
-    /**
-     * @return a unique integer value for each particular (and immutable) Piece.
-     */
-    private int createHashCode() {
-        int hashCode = type.hashCode();
-        hashCode = 31 * hashCode + color.hashCode();
-        hashCode = 31 * hashCode + position;
-        hashCode = 31 * hashCode + (isFirstMove() ? 1 : 0);
-        return hashCode;
-    }
+    public int getPosition() {return position;}
 
-    /**
-     * @return a number representing which Square this Piece is occupying.
-     */
-    public int getPosition() {return this.position;}
+    public PlayerColor getColor() {return color;}
 
-    /**
-     * @return an instance of an Enum holding player colors, and move directions.
-     */
-    public PlayerColor getColor() {return this.color;}
+    public PieceType getType() {return type;}
 
-    /**
-     * @return TODO: comment this
-     */
-    public PieceType getType() {return this.type;}
+    public boolean isFirstMove() {return isFirstMove;}
 
-    /**
-     * @return true (if this Piece hasn't moved yet).
-     */
-    public boolean isFirstMove() {return this.isFirstMove;}
-
-    /**
-     * @param board TODO: comment this
-     * @return a list of legal and valid Moves.
-     */
     public abstract Collection<Move> calculateLegalMoves(final Board board);
 
     /**
@@ -109,10 +93,12 @@ public abstract class Piece {
 
         private String type;
 
-        PieceType(final String type) {this.type = type;}
+        PieceType(final String type) {
+            this.type = type;
+        }
 
         @Override
-        public String toString() {return this.type;}
+        public String toString() {return type;}
     }
 
 }

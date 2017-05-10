@@ -14,7 +14,7 @@ public class MoveTransaction {
         this.result = result;
     }
 
-    public MoveTransactionResult getResult() {return this.result;}
-    public Board getBoard() {return this.board;}
+    public MoveTransactionResult getResult() {return result;}
+    public Board getBoard() {return board;}
 
 }

@@ -28,14 +28,12 @@ public class BoardUtilities {
      */
     public static boolean[] initializeColumn(int columnNumber) {
         final boolean[] columns = new boolean[64];
-
         do {
             columns[columnNumber] = true;
             columnNumber += SQUARES_ON_ROW;
         } while (
             columnNumber < SQUARES_ON_BOARD
         );
-
         return columns;
     }
 
@@ -45,23 +43,21 @@ public class BoardUtilities {
      */
     private static boolean[] initializeRow(int squarePosition) {
         final boolean[] rows = new boolean[SQUARES_ON_BOARD];
-
         do {
             rows[squarePosition] = true;
             squarePosition++;
         } while (
             squarePosition % SQUARES_ON_ROW != 0 // squarePosition < SQUARES_ON_ROW (?)
         );
-
         return rows;
     }
 
     /**
-     * @param position of Square from top-left to bottom-right; 0 to 63.
+     * @param squarePosition of Square from top-left to bottom-right; 0 to 63.
      * @return true (if position is within bounds; thus valid).
      */
-    public static boolean isValidSquarePosition(final int position) {
-        return position >= 0 && position < SQUARES_ON_BOARD;
+    public static boolean isValidSquarePosition(final int squarePosition) {
+        return squarePosition >= 0 && squarePosition < SQUARES_ON_BOARD;
     }
 
 }

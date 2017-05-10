@@ -16,8 +16,7 @@ import static engine.board.BoardUtilities.*;
 
 public class Rook extends Piece {
 
-    public static final int[] MOVE_PATTERN = {-8, -1,
-                                               8,  1}; // vector values for each horizontal & vertical direction
+    public static final int[] MOVE_PATTERN = {-8, -1, 8,  1}; // vector values for each horizontal & vertical direction
 
     /**
      * @param position of Square from top-left to bottom-right; 0 to 63.

@@ -21,24 +21,19 @@ public class Board {
     private final List<Square> squareList;
     private final Collection<Piece> blackPieces;
     private final Collection<Piece> whitePieces;
-    private final Collection<Move> blackLegalMoves;
-    private final Collection<Move> whiteLegalMoves;
     private final BlackPlayer blackPlayer;
     private final WhitePlayer whitePlayer;
     private final Player currentPlayer;
 
-    /**
-     * @param builder TODO: comment this
-     */
     private Board(final BoardBuilder builder) {
-        this.squareList = createSquareList(builder);
-        this.blackPieces = getIngamePieces(this.squareList, BLACK);
-        this.whitePieces = getIngamePieces(this.squareList, WHITE);
-        this.blackLegalMoves = getLegalMoves(this.blackPieces);
-        this.whiteLegalMoves = getLegalMoves(this.whitePieces);
-        this.blackPlayer = new BlackPlayer(this, blackLegalMoves, whiteLegalMoves);
-        this.whitePlayer = new WhitePlayer(this, whiteLegalMoves, blackLegalMoves);
-        this.currentPlayer = builder.nextToMove.setPlayer(this.whitePlayer, this.blackPlayer);
+        squareList = createSquareList(builder);
+        blackPieces = getIngamePieces(squareList, BLACK);
+        whitePieces = getIngamePieces(squareList, WHITE);
+        Collection<Move> blackLegalMoves = getLegalMoves(blackPieces);
+        Collection<Move> whiteLegalMoves = getLegalMoves(whitePieces);
+        blackPlayer = new BlackPlayer(this, blackLegalMoves, whiteLegalMoves);
+        whitePlayer = new WhitePlayer(this, whiteLegalMoves, blackLegalMoves);
+        currentPlayer = builder.nextToMove.setPlayer(whitePlayer, blackPlayer);
     }
 
     /**
@@ -62,7 +57,7 @@ public class Board {
 
     /**
      * Create the initial chess board positioning.
-     * @return an object containing Pieces of each PlayerColor, attached to Squares.
+     * @return an instance of this class.
      */
     public static Board initializeBoard() {
         final BoardBuilder b = new BoardBuilder();
@@ -97,8 +92,8 @@ public class Board {
         b.setPiece(new Rook(56, WHITE));
         b.setPiece(new Knight(57, WHITE));
         b.setPiece(new Bishop(58, WHITE));
-        b.setPiece(new King(59, WHITE));
-        b.setPiece(new Queen(60, WHITE));
+        b.setPiece(new Queen(59, WHITE));
+        b.setPiece(new King(60, WHITE));
         b.setPiece(new Bishop(61, WHITE));
         b.setPiece(new Knight(62, WHITE));
         b.setPiece(new Rook(63, WHITE));
@@ -109,7 +104,6 @@ public class Board {
 
     /**
      * Loop through each position on Board (0-63) and create Squares (both empty & occupied).
-     *
      * @param builder TODO: comment this
      * @return list of 64 Squares representing the tiles on a chess board.
      */
@@ -125,10 +119,7 @@ public class Board {
         return ImmutableList.copyOf(squares);
     }
 
-    /**
-     * @param position of Square from top-left to bottom-right; 0 to 63.
-     * @return Square at any given position, from the list of Squares.
-     */
+
     public Square getSquare(final int position) {return squareList.get(position);}
 
     /**
@@ -136,9 +127,8 @@ public class Board {
      * @param color of player's Pieces, either black or white.
      * @return list of active "in-game" Pieces for each Player on the Board.
      */
-    public static Collection<Piece> getIngamePieces(final List<Square> squares, final PlayerColor color) {
+    private static Collection<Piece> getIngamePieces(final List<Square> squares, final PlayerColor color) {
         final List<Piece> ingamePieces = new ArrayList<>();
-
         for (final Square s : squares) {
             if (s.isOccupied()) {
                 final Piece occupyingPiece = s.getPiece();
@@ -147,70 +137,58 @@ public class Board {
                 }
             }
         }
-
         return ImmutableList.copyOf(ingamePieces);
     }
 
-    /**
-     * @param pieces which can return a collection of legal moves to the list.
-     * @return list of legal moves.
-     */
-    public Collection<Move> getLegalMoves(final Collection<Piece> pieces) {
+    private Collection<Move> getLegalMoves(final Collection<Piece> pieces) {
         final List<Move> legalMoves = new ArrayList<>();
-
         for (final Piece p : pieces) {
             legalMoves.addAll(p.calculateLegalMoves(this));
         }
-
         return ImmutableList.copyOf(legalMoves);
     }
 
-    /**
-     * @return TODO: comment this
-     */
     public Iterable<Move> getBothPlayersLegalMoves() {
         return Iterables.unmodifiableIterable(
                 Iterables.concat(
-                        this.whitePlayer.getLegalMoves(),
-                        this.blackPlayer.getLegalMoves()
+                        whitePlayer.getLegalMoves(),
+                        blackPlayer.getLegalMoves()
                 )
         );
     }
 
-    public Player getBlackPlayer() {return this.blackPlayer;}
-    public Player getWhitePlayer() {return this.whitePlayer;}
-    public Player getCurrentPlayer() {return this.currentPlayer;}
-
-    public Collection<Piece> getBlackPieces() {return this.blackPieces;}
-    public Collection<Piece> getWhitePieces() {return this.whitePieces;}
+    public Collection<Piece> getBlackPieces() {return blackPieces;}
+    public Collection<Piece> getWhitePieces() {return whitePieces;}
+    public Player getBlackPlayer() {return blackPlayer;}
+    public Player getWhitePlayer() {return whitePlayer;}
+    public Player getCurrentPlayer() {return currentPlayer;}
 
     // INNER CLASS!
     public static class BoardBuilder {
 
-        Map<Integer, Piece> squarePieceMap; // holding Squares "ID" (0-63) and their occupying Piece
-        PlayerColor nextToMove;
-        Pawn enPassantPawn; // holds Pawn that could be captured "en passant" by opposing Player
+        private final Map<Integer, Piece> squarePieceMap; // holding Squares "ID" (0-63) and their occupying Piece
+        private PlayerColor nextToMove;
+        private Pawn enPassantPawn; // holds Pawn that could be captured "en passant" by opposing Player
 
-        /**
-         * TODO: comment this
-         */
-        public BoardBuilder() {this.squarePieceMap = new HashMap<>();}
+        public BoardBuilder() {
+            squarePieceMap = new HashMap<>();
+        }
+
+        public Board createBoard() {return new Board(this);}
 
         /**
          * @param piece at a certain position (i.e. a numbered Square from 0-63).
          * @return an instance of this Builder class.
          */
         public BoardBuilder setPiece(final Piece piece) {
-            this.squarePieceMap.put(piece.getPosition(), piece);
+            squarePieceMap.put(piece.getPosition(), piece);
             return this;
         }
 
         public BoardBuilder setNextToMove(final PlayerColor color) {
-            this.nextToMove = color;
+            nextToMove = color;
             return this;
         }
-
-        public Board createBoard() {return new Board(this);}
 
         public void setEnPassantPawn(final Pawn enPassantPawn) {this.enPassantPawn = enPassantPawn;}
     }

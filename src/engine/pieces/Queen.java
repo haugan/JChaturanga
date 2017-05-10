@@ -16,8 +16,7 @@ import static engine.board.BoardUtilities.*;
 
 public class Queen extends Piece {
 
-    public static final int[] MOVE_PATTERN = {-9, -8, -7, -1,
-                                               9,  8,  7,  1}; // offset Squares from current position
+    public static final int[] MOVE_PATTERN = {-9, -8, -7, -1, 9,  8,  7,  1}; // offset Squares from current position
 
     /**
      * @param position of Square from top-left to bottom-right; 0 to 63.

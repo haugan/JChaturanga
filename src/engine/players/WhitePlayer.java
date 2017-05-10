@@ -18,20 +18,20 @@ import static engine.players.PlayerColor.WHITE;
 
 public class WhitePlayer extends Player {
 
-    /**
-     * @param board TODO: comment this
-     * @param whiteLegalMoves TODO: comment this
-     * @param blackLegalMoves TODO: comment this
-     */
     public WhitePlayer(final Board board,
                        final Collection<Move> whiteLegalMoves,
                        final Collection<Move> blackLegalMoves) {
+
         super(board, whiteLegalMoves, blackLegalMoves);
     }
 
     @Override
     public Collection<Piece> getPieces() {return this.board.getWhitePieces();}
+
+    @Override
     public PlayerColor getColor() {return WHITE;}
+
+    @Override
     public Player getOpponent() {return this.board.getBlackPlayer();}
 
     @Override
@@ -40,13 +40,13 @@ public class WhitePlayer extends Player {
 
         final List<Move> castlingMoves = new ArrayList<>();
 
-        if (this.king.isFirstMove() && !this.isChecked()) { // if King hasn't moved yet, and Player isn't in check
+        if (king.isFirstMove() && !isChecked()) { // if King hasn't moved yet, and Player isn't in check
 
             // CASTLING SHORT "KINGSIDE"
-            if (!this.board.getSquare(61).isOccupied() &&
-                !this.board.getSquare(62).isOccupied()) {
+            if (!board.getSquare(61).isOccupied() &&
+                !board.getSquare(62).isOccupied()) {
 
-                final Square rookSquareShort = this.board.getSquare(63); // kingside Rook Square
+                final Square rookSquareShort = board.getSquare(63); // kingside Rook Square
 
                 if (rookSquareShort.isOccupied() && rookSquareShort.getPiece().isFirstMove()) {
 
@@ -56,8 +56,8 @@ public class WhitePlayer extends Player {
 
                         castlingMoves.add(
                                 new CastlingShortMove(
-                                        this.board,
-                                        this.king,
+                                        board,
+                                        king,
                                         62,
                                         (Rook) rookSquareShort.getPiece(),
                                         rookSquareShort.getPosition(), // from position
@@ -71,11 +71,11 @@ public class WhitePlayer extends Player {
             } // castling Squares are empty (not occupied by any Piece)
 
             // CASTLING LONG "QUEENSIDE"
-            if (!this.board.getSquare(59).isOccupied() &&
-                !this.board.getSquare(58).isOccupied() &&
-                !this.board.getSquare(57).isOccupied()) {
+            if (!board.getSquare(59).isOccupied() &&
+                !board.getSquare(58).isOccupied() &&
+                !board.getSquare(57).isOccupied()) {
 
-                final Square rookSquareLong = this.board.getSquare(56); // queenside Rook Square
+                final Square rookSquareLong = board.getSquare(56); // queenside Rook Square
 
                 if (rookSquareLong.isOccupied() && rookSquareLong.getPiece().isFirstMove()) {
 
@@ -86,8 +86,8 @@ public class WhitePlayer extends Player {
 
                         castlingMoves.add(
                                 new CastlingLongMove(
-                                        this.board,
-                                        this.king,
+                                        board,
+                                        king,
                                         58,
                                         (Rook) rookSquareLong.getPiece(),
                                         rookSquareLong.getPosition(), // from position
