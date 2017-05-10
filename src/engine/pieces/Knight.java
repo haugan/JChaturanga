@@ -20,11 +20,7 @@ public class Knight extends Piece {
     private final static int[] MOVE_PATTERN = {-17, -15, -10, -6, 17,  15,  10,  6};
 
     public Knight(final int position, final PlayerColor color) {
-        super(position, color, KNIGHT, true);
-    }
-
-    public Knight(final int position, final PlayerColor color, final boolean firstMove) {
-        super(position, color, KNIGHT, firstMove);
+        super(position, color, KNIGHT);
     }
 
     @Override

@@ -20,11 +20,7 @@ public class Rook extends Piece {
     public static final int[] MOVE_PATTERN = {-8, -1, 8,  1}; // vector values for each horizontal & vertical direction
 
     public Rook(final int position, final PlayerColor color) {
-        super(position, color, ROOK, true);
-    }
-
-    public Rook(final int position, final PlayerColor color, final boolean firstMove) {
-        super(position, color, ROOK, firstMove);
+        super(position, color, ROOK);
     }
 
     @Override

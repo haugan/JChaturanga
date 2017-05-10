@@ -8,9 +8,9 @@ import engine.pieces.Rook;
 
 public abstract class Move {
 
-    final Board board; // previous Board state (i.e. before Move is performed)
-    final Piece movedPiece;
-    final int destinationPosition;
+    protected final Board board; // previous Board state (i.e. before Move is performed)
+    protected final Piece movedPiece;
+    protected final int destinationPosition;
     public static final Move ILLEGAL_MOVE = new IllegalMove(); // null Move
 
     private Move(final Board board, final Piece movedPiece, final int destinationPosition) {
@@ -32,8 +32,9 @@ public abstract class Move {
     public int hashCode() {
         final int i = 31;
         int hashCode = 1;
-        hashCode = i * hashCode + this.getDestinationPosition();
-        hashCode = i * hashCode + this.movedPiece.hashCode();
+        hashCode = i * hashCode + getDestinationPosition();
+        hashCode = i * hashCode + movedPiece.hashCode();
+        hashCode = i * hashCode + movedPiece.getPosition();
         return hashCode;
     }
 
@@ -50,8 +51,8 @@ public abstract class Move {
         if (!(obj instanceof Move)) return false;
         final Move other = (Move) obj;
         return
-                this.getDestinationPosition() == other.getDestinationPosition() &&
-                this.getMovedPiece().equals(other.getMovedPiece());
+                getDestinationPosition() == other.getDestinationPosition() &&
+                getMovedPiece().equals(other.getMovedPiece());
     }
 
     private int getCurrentPosition() {return getMovedPiece().getPosition();}
