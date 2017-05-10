@@ -62,10 +62,7 @@ public class King extends Piece {
 
     @Override
     public King performMove(final Move move) {
-        return new King(
-                move.getDestinationPosition(),
-                move.getMovedPiece().getColor()
-        );
+        return new King(move.getDestinationPosition(), move.getMovedPiece().getColor());
     }
 
     private static boolean isOnColumnA(final int position, final int offset) {

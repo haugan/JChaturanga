@@ -63,10 +63,7 @@ public class Rook extends Piece {
 
     @Override
     public Rook performMove(final Move move) {
-        return new Rook(
-                move.getDestinationPosition(),
-                move.getMovedPiece().getColor()
-        );
+        return new Rook(move.getDestinationPosition(), move.getMovedPiece().getColor());
     }
 
     private static boolean isOnColumnA(final int position, final int offset) {

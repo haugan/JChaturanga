@@ -62,10 +62,7 @@ public class Knight extends Piece {
 
     @Override
     public Knight performMove(final Move move) {
-        return new Knight(
-                move.getDestinationPosition(),
-                move.getMovedPiece().getColor()
-        );
+        return new Knight(move.getDestinationPosition(), move.getMovedPiece().getColor());
     }
 
     private static boolean isOnColumnA(final int position, final int offset) {

@@ -67,10 +67,7 @@ public class Bishop extends Piece {
 
     @Override
     public Bishop performMove(final Move move) {
-        return new Bishop(
-                move.getDestinationPosition(),
-                move.getMovedPiece().getColor()
-        );
+        return new Bishop(move.getDestinationPosition(), move.getMovedPiece().getColor());
     }
 
     private static boolean isOnColumnA(final int position, final int offset) {
