@@ -88,7 +88,7 @@ public abstract class Move {
     public Board perform() {
         final BoardBuilder builder = new BoardBuilder();
         final Player currPlayer = board.getCurrPlayer();
-        final Player opposingPlayer = board.getCurrPlayer().getOpponent();
+        final Player oppPlayer = currPlayer.getOpponent();
 
         // INCOMING BOARD'S CURRENT PLAYER PIECES
         for (final Piece p : currPlayer.getPieces()) {
@@ -98,13 +98,13 @@ public abstract class Move {
         }
 
         // INCOMING BOARD'S OPPONENT PIECES
-        for (final Piece piece : opposingPlayer.getPieces()) {
+        for (final Piece piece : oppPlayer.getPieces()) {
             builder.setPiece(piece);
         }
 
         // RETURNED BOARD'S NEW PIECE POSITIONS
         builder.setPiece(movedPiece.performMove(this));
-        builder.setNextToMove(opposingPlayer.getColor());
+        builder.setNextToMove(oppPlayer.getColor());
         builder.setMoveTransaction(this);
         return builder.createBoard();
     }
@@ -136,7 +136,7 @@ public abstract class Move {
 
         public static Move createMove(final Board board, final int currPos, final int destPos) {
 
-            for (final Move m : board.getLegalMovesBothPlayers()) {
+            for (final Move m : board.getAllLegalMoves()) {
                 if (m.getCurrPos() == currPos &&
                     m.getDestPos() == destPos) {
                     return m;

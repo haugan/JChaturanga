@@ -23,19 +23,19 @@ public class Board {
     private final Collection<Piece> whitePieces;
     private final BlackPlayer blackPlayer;
     private final WhitePlayer whitePlayer;
-    private final Player currentPlayer;
+    private final Player currPlayer;
     private final Pawn enPassantPawn;
     private final Move transactionMove;
 
     private Board(final BoardBuilder builder) {
         squareList = createSquareList(builder);
-        blackPieces = getIngamePieces(builder, BLACK);
-        whitePieces = getIngamePieces(builder, WHITE);
-        Collection<Move> blackLegalMoves = getLegalMovesCurrentPlayer(blackPieces);
-        Collection<Move> whiteLegalMoves = getLegalMovesCurrentPlayer(whitePieces);
+        blackPieces = getPieces(builder, BLACK);
+        whitePieces = getPieces(builder, WHITE);
+        Collection<Move> blackLegalMoves = getLegalMoves(blackPieces);
+        Collection<Move> whiteLegalMoves = getLegalMoves(whitePieces);
         blackPlayer = new BlackPlayer(this, blackLegalMoves, whiteLegalMoves);
         whitePlayer = new WhitePlayer(this, whiteLegalMoves, blackLegalMoves);
-        currentPlayer = builder.nextToMove.setPlayer(whitePlayer, blackPlayer);
+        currPlayer = builder.nextToMove.setPlayer(whitePlayer, blackPlayer);
         enPassantPawn = builder.enPassantPawn; // TODO: implement
         transactionMove = (builder.transactionMove != null) ? builder.transactionMove : Move.illegalMove;
     }
@@ -63,7 +63,7 @@ public class Board {
     public Collection<Piece> getWhitePieces() {return whitePieces;}
     public Player getBlackPlayer() {return blackPlayer;}
     public Player getWhitePlayer() {return whitePlayer;}
-    public Player getCurrPlayer() {return currentPlayer;}
+    public Player getCurrPlayer() {return currPlayer;}
     public Pawn getEnPassantPawn() {return enPassantPawn;}
     public Move getTransactionMove() {return transactionMove;}
     public Square getSquare(final int position) {return squareList.get(position);}
@@ -132,7 +132,7 @@ public class Board {
         return ImmutableList.copyOf(squares);
     }
 
-    private static Collection<Piece> getIngamePieces(final BoardBuilder builder, final PlayerColor color) {
+    private static Collection<Piece> getPieces(final BoardBuilder builder, final PlayerColor color) {
         final List<Piece> ingamePieces = new ArrayList<>(16);
         for (final Piece p : builder.squarePieceMap.values()) {
             if (p.getColor() == color) {
@@ -149,7 +149,7 @@ public class Board {
         );
     }
 
-    public Collection<Move> getLegalMovesCurrentPlayer(final Collection<Piece> pieces) {
+    public Collection<Move> getLegalMoves(final Collection<Piece> pieces) {
         final List<Move> legalMoves = new ArrayList<>(35);
         for (final Piece p : pieces) {
             legalMoves.addAll(p.calculateLegalMoves(this));
@@ -157,7 +157,7 @@ public class Board {
         return ImmutableList.copyOf(legalMoves);
     }
 
-    public Iterable<Move> getLegalMovesBothPlayers() {
+    public Iterable<Move> getAllLegalMoves() {
         return Iterables.unmodifiableIterable(
                 Iterables.concat(
                         whitePlayer.getLegalMoves(),
@@ -192,6 +192,11 @@ public class Board {
         }
 
         public BoardBuilder setNextToMove(final PlayerColor color) {
+
+            // TODO: add to GUI status bar
+            if (color == WHITE) System.out.println("White player to move..");
+            if (color == BLACK) System.out.println("Black player to move..");
+
             nextToMove = color;
             return this;
         }

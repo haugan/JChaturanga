@@ -25,13 +25,13 @@ public class Pawn extends Piece {
     private PlayerColor color;
 
     public Pawn(final int currentPosition, final PlayerColor color) {
-        super(currentPosition, color, PAWN, true);
+        super(PAWN, currentPosition, color, true);
         this.currentPosition = currentPosition;
         this.color = color;
     }
 
     public Pawn(final int currentPosition, final PlayerColor color, final boolean firstMove) {
-        super(currentPosition, color, PAWN, firstMove);
+        super(PAWN, currentPosition, color, firstMove);
         this.currentPosition = currentPosition;
         this.color = color;
     }

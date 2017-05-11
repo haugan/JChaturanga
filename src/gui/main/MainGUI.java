@@ -17,7 +17,6 @@ public class MainGUI extends BorderPane {
         ChessBoardGrid grid = new ChessBoardGrid();
 
         menu.addObserver(grid);
-        System.out.println("Observers of MenuTop: " + menu.countObservers());
 
         setTop(menu.getMenuBar());
         setCenter(grid);

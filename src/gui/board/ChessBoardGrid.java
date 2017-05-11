@@ -83,14 +83,12 @@ public class ChessBoardGrid extends GridPane implements Observer {
             squareStack.drawGraphics(board, squareStack.position, 0, 0);
             getChildren().add(squareStack);
         }
-        System.out.println("Stacks redrawn");
     }
 
     private void clearUserSelections() {
         squareSelected = null;
         squareDestination = null;
         pieceSelected = null;
-        System.out.println("Selection canceled");
     }
 
     // INNER CLASS!
@@ -134,8 +132,6 @@ public class ChessBoardGrid extends GridPane implements Observer {
 
                         if (pieceSelected == null) {
                             squareSelected = null;
-                        } else {
-                            System.out.println("Piece selected (" + pieceSelected.toString() + ")");
                         }
 
                     } else {
@@ -150,7 +146,6 @@ public class ChessBoardGrid extends GridPane implements Observer {
 
                         if (transaction.getResult() == COMPLETED) {
                             board = transaction.getBoard();
-                            System.out.println("Move completed");
                         }
 
                         clearUserSelections(); // "reset" selected Square and Piece

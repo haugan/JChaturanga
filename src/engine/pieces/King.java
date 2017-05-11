@@ -20,11 +20,11 @@ public class King extends Piece {
     public static final int[] MOVE_PATTERN = {-9, -8, -7, -1, 9,  8,  7,  1};
 
     public King(final int position, final PlayerColor color) {
-        super(position, color, KING, true);
+        super(KING, position, color,true);
     }
 
     public King(final int position, final PlayerColor color, final boolean firstMove) {
-        super(position, color, KING, firstMove);
+        super(KING, position, color, firstMove);
     }
 
     @Override

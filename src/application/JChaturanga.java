@@ -18,7 +18,7 @@ public class JChaturanga extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("ASD3000: JChaturanga 0.8");
+        primaryStage.setTitle("JChaturanga 0.9");
         primaryStage.getIcons().add(new Image("/res/img/appIcon.png"));
         primaryStage.setScene(new MainGUI().getGameScene());
         primaryStage.show();

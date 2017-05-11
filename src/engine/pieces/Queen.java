@@ -20,11 +20,11 @@ public class Queen extends Piece {
     public static final int[] MOVE_PATTERN = {-9, -8, -7, -1, 9,  8,  7,  1}; // offset Squares from current pos
 
     public Queen(final int position, final PlayerColor color) {
-        super(position, color, QUEEN, true);
+        super(QUEEN, position, color, true);
     }
 
     public Queen(final int position, final PlayerColor color, final boolean firstMove) {
-        super(position, color, QUEEN, firstMove);
+        super(QUEEN, position, color, firstMove);
     }
 
     @Override
