@@ -2,6 +2,7 @@ package engine.moves;
 
 import engine.board.Board;
 import engine.board.Board.BoardBuilder;
+import engine.board.BoardUtilities;
 import engine.pieces.Pawn;
 import engine.pieces.Piece;
 import engine.pieces.Rook;
@@ -11,12 +12,21 @@ public abstract class Move {
     protected final Board board; // previous Board state (i.e. before Move is performed)
     protected final Piece movedPiece;
     protected final int destinationPosition;
+    protected final boolean firstMove;
     public static final Move ILLEGAL_MOVE = new IllegalMove(); // null Move
 
     private Move(final Board board, final Piece movedPiece, final int destinationPosition) {
         this.board = board;
         this.movedPiece = movedPiece;
         this.destinationPosition = destinationPosition;
+        firstMove = movedPiece.isFirstMove();
+    }
+
+    private Move(final Board board, final int destinationPosition) {
+        this.board = board;
+        this.destinationPosition = destinationPosition;
+        movedPiece = null;
+        firstMove = false;
     }
 
     /**
@@ -51,6 +61,7 @@ public abstract class Move {
         if (!(obj instanceof Move)) return false;
         final Move other = (Move) obj;
         return
+                getCurrentPosition() == other.getCurrentPosition() &&
                 getDestinationPosition() == other.getDestinationPosition() &&
                 getMovedPiece().equals(other.getMovedPiece());
     }
@@ -132,6 +143,15 @@ public abstract class Move {
             super(board, movedPiece, destinationPosition);
         }
 
+        @Override
+        public boolean equals(Object other) {
+            return this == other || other instanceof NeutralMove && super.equals(other);
+        }
+
+        @Override
+        public String toString() {
+            return movedPiece.getType().toString() + BoardUtilities.getPosition(destinationPosition);
+        }
     }
 
     // INNER CLASS!

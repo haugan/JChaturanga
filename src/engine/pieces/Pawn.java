@@ -15,6 +15,8 @@ import java.util.List;
 
 import static engine.board.BoardUtilities.*;
 import static engine.pieces.Piece.PieceType.PAWN;
+import static engine.players.PlayerColor.BLACK;
+import static engine.players.PlayerColor.WHITE;
 
 public class Pawn extends Piece {
 
@@ -23,7 +25,13 @@ public class Pawn extends Piece {
     private PlayerColor color;
 
     public Pawn(final int currentPosition, final PlayerColor color) {
-        super(currentPosition, color, PAWN);
+        super(currentPosition, color, PAWN, true);
+        this.currentPosition = currentPosition;
+        this.color = color;
+    }
+
+    public Pawn(final int currentPosition, final PlayerColor color, final boolean firstMove) {
+        super(currentPosition, color, PAWN, firstMove);
         this.currentPosition = currentPosition;
         this.color = color;
     }
@@ -48,8 +56,8 @@ public class Pawn extends Piece {
 
             // DOUBLE JUMP
             } else if (offset == 16 && isFirstMove() &&
-                      ((ROW_7[currentPosition] && getColor().isBlack()) ||
-                       (ROW_2[currentPosition] && getColor().isWhite()))) {
+                      ((ROW_7[currentPosition] && color == BLACK) ||
+                       (ROW_2[currentPosition] && color == WHITE))) {
 
                 final int jumpedPos = currentPosition + (color.getMoveDirection() * 8);
                 final Square jumpedSquare = board.getSquare(jumpedPos);
@@ -59,14 +67,22 @@ public class Pawn extends Piece {
                 }
 
             // DIAGONAL CAPTURE "WEST"
-            } else if (offset == 7 && destSquare.isOccupied() &&
-                      !((COLUMN_A[currentPosition] && color.isBlack()) || (COLUMN_H[currentPosition] && color.isWhite()))) {
+            } else if (offset == 7 &&
+                      !((COLUMN_A[currentPosition] && color == BLACK ||
+                        (COLUMN_H[currentPosition] && color == WHITE))
+                      )) {
+
                 addPawnCaptureMove(board, legalMoves, movePos, destSquare);
 
-            // DIAGONAL CAPTURE "EAST"
-            } else if (offset == 9 && destSquare.isOccupied() &&
-                      !((COLUMN_A[currentPosition] && color.isWhite()) || (COLUMN_H[currentPosition] && color.isBlack()))) {
+
+                // DIAGONAL CAPTURE "EAST"
+            } else if (offset == 9 &&
+                      !((COLUMN_A[currentPosition] && color == WHITE) ||
+                        (COLUMN_H[currentPosition] && color == BLACK)
+                      )) {
+
                 addPawnCaptureMove(board, legalMoves, movePos, destSquare);
+
             }
 
         }
@@ -75,9 +91,11 @@ public class Pawn extends Piece {
     }
 
     private void addPawnCaptureMove(Board board, List<Move> legalMoves, int movePos, Square destSquare) {
-        final Piece destPiece = destSquare.getPiece();
-        if (color != destPiece.getColor()) {
-            legalMoves.add(new PawnCaptureMove(board, this, movePos, destPiece));
+        if (destSquare.isOccupied()) {
+            final Piece destPiece = destSquare.getPiece();
+            if (color != destPiece.getColor()) {
+                legalMoves.add(new PawnCaptureMove(board, this, movePos, destPiece));
+            }
         }
     }
 

@@ -20,7 +20,11 @@ public class Bishop extends Piece {
     public static final int[] MOVE_PATTERN = {-9, -7, 9,  7};
 
     public Bishop(final int position, final PlayerColor color) {
-        super(position, color, BISHOP);
+        super(position, color, BISHOP, true);
+    }
+
+    public Bishop(final int position, final PlayerColor color, final boolean firstMove) {
+        super(position, color, BISHOP, firstMove);
     }
 
     @Override

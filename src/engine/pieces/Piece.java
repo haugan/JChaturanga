@@ -14,11 +14,11 @@ public abstract class Piece {
     private boolean firstMove;
     private final int hashCode; // keeps cached value (Piece is immutable, needs only calc. hash code once)
 
-    public Piece(final int position, final PlayerColor color, final PieceType type) {
+    public Piece(final int position, final PlayerColor color, final PieceType type, final boolean firstMove) {
         this.position = position;
         this.color = color;
         this.type = type;
-        firstMove = true;
+        this.firstMove = firstMove;
         hashCode = createHashCode();
     }
 

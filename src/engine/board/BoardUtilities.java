@@ -1,7 +1,11 @@
 package engine.board;
 
+import java.util.Map;
+
 public class BoardUtilities {
 
+    public static final String[] PGN_NOTATION = initializePGNArray();
+    public static final Map<String, Integer> POSITION_TO_PGN = initializePGNMap();
     public static final int SQUARES_ON_BOARD = 64; // number of Squares on chess Board
     public static final int SQUARES_ON_ROW = SQUARES_ON_BOARD / 8; // number of Squares on each row
     public static final int SQUARES_ON_COL = SQUARES_ON_BOARD / 8; // number of Squares on each column
@@ -52,12 +56,16 @@ public class BoardUtilities {
         return rows;
     }
 
-    /**
-     * @param squarePosition of Square from top-left to bottom-right; 0 to 63.
-     * @return true (if position is within bounds; thus valid).
-     */
     public static boolean isValidSquarePosition(final int squarePosition) {
         return squarePosition >= 0 && squarePosition < SQUARES_ON_BOARD;
+    }
+
+    public static int getPGNCoordinateAtPosition(final String position) {
+        return POSITION_TO_PGN.get(position);
+    }
+
+    public static int getPositionAtPGNCoordinate(final int coordinate) {
+        return PGN_NOTATION[coordinate];
     }
 
 }

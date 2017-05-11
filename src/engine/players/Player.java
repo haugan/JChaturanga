@@ -62,12 +62,14 @@ public abstract class Player {
      */
     protected static Collection<Move> getCaptureMovesOnSquare(final int position,
                                                               final Collection<Move> legalMovesOpponent) {
+
         final List<Move> captureMovesOpponent = new ArrayList<>();
         for (final Move m : legalMovesOpponent) {
             if (position == m.getDestinationPosition()) {
                 captureMovesOpponent.add(m);
             }
         }
+
         return ImmutableList.copyOf(captureMovesOpponent);
     }
 
