@@ -2,11 +2,8 @@ package engine.pieces;
 
 import com.google.common.collect.ImmutableList;
 import engine.board.Board;
-import engine.board.Square;
 import engine.moves.Move;
-import engine.moves.Move.NeutralMove;
-import engine.moves.Move.PawnCaptureMove;
-import engine.moves.Move.PawnDoubleMove;
+import engine.moves.Move.*;
 import engine.players.PlayerColor;
 
 import java.util.ArrayList;
@@ -15,26 +12,21 @@ import java.util.List;
 
 import static engine.board.BoardUtilities.*;
 import static engine.pieces.Piece.PieceType.PAWN;
-import static engine.players.PlayerColor.BLACK;
-import static engine.players.PlayerColor.WHITE;
 
-public class Pawn extends Piece {
+public final class Pawn extends Piece {
 
-    private static final int[] OFFSET_PATTERN = {7, 8, 9, 16}; // .. Squares from current pos
-    private int currentPosition; // current numbered Square pos of Piece
-    private PlayerColor color;
+    private static final int[] OFFSET_PATTERN = {7, 8, 9, 16}; // .. Squares from current squarePos
 
-    public Pawn(final int currentPosition, final PlayerColor color) {
-        super(PAWN, currentPosition, color, true);
-        this.currentPosition = currentPosition;
-        this.color = color;
+
+    public Pawn(final int currPos, final PlayerColor color) {
+        super(PAWN, color, currPos,true);
     }
 
-    public Pawn(final int currentPosition, final PlayerColor color, final boolean firstMove) {
-        super(PAWN, currentPosition, color, firstMove);
-        this.currentPosition = currentPosition;
-        this.color = color;
+    public Pawn(final int currPos, final PlayerColor color, final boolean firstMove) {
+        super(PAWN, color, currPos, firstMove);
     }
+
+
 
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
@@ -42,46 +34,104 @@ public class Pawn extends Piece {
 
         for (final int offset : OFFSET_PATTERN) {
 
-            final int movePos = currentPosition + (color.getMoveDirection() * offset); // direction values (up -1 / down +1)
-            final Square destSquare = board.getSquare(movePos); // move destination Square
+            int destPos = squarePos + (color.getMoveDir() * offset); // direction values (up -1 / down +1)
 
             // SKIP EVERYTHING IF MOVE POSITION IS OUTSIDE BOARD
-            if (!isValidSquarePosition(movePos)) {
-                continue; // if currPos is out of bounds, jump to next iteration of for-loop
+            if (!isSquareOnBoard(destPos)) {
+                continue; // if squarePos is out of bounds, jump to next iteration of for-loop
             }
 
             // SINGLE MOVE
-            if (offset == 8 && !destSquare.isOccupied()) { // neutral move
-                legalMoves.add(new NeutralMove(board, this, movePos));
+            if (offset == 8 && !board.getSquare(destPos).isOccupied()) { // neutral move
+
+                // PROMOTION
+                if (color.hasReachedPromotion(destPos)) {
+                    legalMoves.add(new PawnPromotion(new PawnMove(board, this, destPos)));
+                } else {
+                    legalMoves.add(new PawnMove(board, this, destPos));
+                }
 
             // DOUBLE JUMP
             } else if (offset == 16 && isFirstMove() &&
-                      ((ROW_7[currentPosition] && color == BLACK) ||
-                       (ROW_2[currentPosition] && color == WHITE))) {
+                      ((ROW_7.get(squarePos) && color.isBlack()) || (ROW_2.get(squarePos) && color.isWhite()))) {
 
-                final int jumpedPos = currentPosition + (color.getMoveDirection() * 8);
-                final Square jumpedSquare = board.getSquare(jumpedPos);
+                final int jumpedPos = squarePos + (color.getMoveDir() * 8);
 
-                if (!jumpedSquare.isOccupied() && !destSquare.isOccupied()) {
-                    legalMoves.add(new PawnDoubleMove(board, this, movePos));
+                if (!board.getSquare(jumpedPos).isOccupied() && !board.getSquare(destPos).isOccupied()) {
+                    legalMoves.add(new PawnDoubleMove(board, this, destPos));
                 }
 
             // DIAGONAL CAPTURE "WEST"
             } else if (offset == 7 &&
-                      !((COLUMN_A[currentPosition] && color == BLACK ||
-                        (COLUMN_H[currentPosition] && color == WHITE))
-                      )) {
+                      !((COLUMN_H.get(squarePos) && color.isWhite()) || (COLUMN_A.get(squarePos) && color.isBlack()))) {
 
-                addPawnCaptureMove(board, legalMoves, movePos, destSquare);
+                if (board.getSquare(destPos).isOccupied()) {
+                    final Piece destPiece = board.getSquare(destPos).getPiece();
+                    if (color != destPiece.getColor()) {
 
+                        // PROMOTION
+                        if (color.hasReachedPromotion(destPos)) {
+                            legalMoves.add(new PawnPromotion(new PawnCaptureMove(board, this, destPos, destPiece)));
+                        }
+                        // CAPTURE
+                        else {
+                            legalMoves.add(new PawnCaptureMove(board, this, destPos, destPiece));
+                        }
 
-                // DIAGONAL CAPTURE "EAST"
+                    }
+
+                // EN PASSANT "WEST"
+                } else if (board.getEnPassantPawn() != null &&
+                           board.getEnPassantPawn().getSquarePos() == (squarePos + (color.getOppDir()))) {
+
+                    final Piece destPiece = board.getEnPassantPawn();
+                    if (color != destPiece.getColor()) {
+
+                        // PROMOTION
+                        if (color.hasReachedPromotion(destPos)) {
+                            legalMoves.add(new PawnPromotion(new PawnEnPassantMove(board, this, destPos, destPiece)));
+                        }
+                        // CAPTURE
+                        else {
+                            legalMoves.add(new PawnEnPassantMove(board, this, destPos, destPiece));
+                        }
+
+                    }
+                }
+
+            // DIAGONAL CAPTURE "EAST"
             } else if (offset == 9 &&
-                      !((COLUMN_A[currentPosition] && color == WHITE) ||
-                        (COLUMN_H[currentPosition] && color == BLACK)
-                      )) {
+                      !((COLUMN_A.get(squarePos) && color.isWhite()) || (COLUMN_H.get(squarePos) && color.isBlack()))) {
 
-                addPawnCaptureMove(board, legalMoves, movePos, destSquare);
+                if (board.getSquare(destPos).isOccupied()) {
+
+                    if (color != board.getSquare(destPos).getPiece().getColor()) {
+                        if (color.hasReachedPromotion(destPos)) {
+                            legalMoves.add(new PawnPromotion(new PawnCaptureMove(board, this, destPos, board.getSquare(destPos).getPiece())));
+                        } else {
+                            legalMoves.add(new PawnCaptureMove(board, this, destPos, board.getSquare(destPos).getPiece()));
+                        }
+                    }
+
+                // EN PASSANT "EAST"
+                } else if (board.getEnPassantPawn() != null && board.getEnPassantPawn().getSquarePos() == (squarePos - (color.getOppDir()))) {
+
+                    final Piece destPiece = board.getEnPassantPawn();
+
+                    if (color != destPiece.getColor()) {
+
+                        // PROMOTION
+                        if (color.hasReachedPromotion(destPos)) {
+                            legalMoves.add(new PawnPromotion(new PawnEnPassantMove(board, this, destPos, destPiece)));
+                        }
+                        // CAPTURE
+                        else {
+                            legalMoves.add(new PawnEnPassantMove(board, this, destPos, destPiece));
+                        }
+
+                    }
+
+                }
 
             }
 
@@ -90,22 +140,13 @@ public class Pawn extends Piece {
         return ImmutableList.copyOf(legalMoves);
     }
 
-    private void addPawnCaptureMove(Board board, List<Move> legalMoves, int movePos, Square destSquare) {
-        if (destSquare.isOccupied()) {
-            final Piece destPiece = destSquare.getPiece();
-            if (color != destPiece.getColor()) {
-                legalMoves.add(new PawnCaptureMove(board, this, movePos, destPiece));
-            }
-        }
-    }
-
-    public Piece getPromotedPawn() {
-        return new Queen(pos, color, false);
+    public Piece getPromotionQueen() {
+        return new Queen(squarePos, color, false);
     }
 
     @Override
     public Pawn performMove(final Move move) {
-        return new Pawn(move.getDestPos(), move.getMovedPiece().getColor());
+        return PieceUtilities.INSTANCE.getMovedPawn(move); // return new Pawn to new Board
     }
 
     @Override

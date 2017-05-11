@@ -161,7 +161,7 @@ public class ChessBoardGrid extends GridPane implements Observer {
             getChildren().clear(); // clear Board before drawing new
 
             squareGraphic = new SquareGraphic(xPos, yPos); // background graphics of "chess square"
-            setSquareColors(position); // relative to Square's pos on board (alternating light & dark)
+            setSquareColors(position); // relative to Square's squarePos on board (alternating light & dark)
 
             if (board.getSquare(position).isOccupied()) { // Square contains Piece
                 String color = board.getSquare(position).getPiece().getColor().toString();
@@ -180,13 +180,13 @@ public class ChessBoardGrid extends GridPane implements Observer {
 
         }
 
-        private void setSquareColors(final int position) {
-            if (ROW_8[position] || ROW_6[position] || ROW_4[position] || ROW_2[position]) {
-                bgColor = (position % 2 == 0) ? LIGHT_COLOR : DARK_COLOR;
+        private void setSquareColors(final int squarePos) {
+            if (ROW_8.get(squarePos) || ROW_6.get(squarePos) || ROW_4.get(squarePos) || ROW_2.get(squarePos)) {
+                bgColor = (squarePos % 2 == 0) ? LIGHT_COLOR : DARK_COLOR;
                 squareGraphic.setFill(bgColor);
             }
-            else if (ROW_7[position] || ROW_5[position] || ROW_3[position] || ROW_1[position]) {
-                bgColor = (position % 2 != 0) ? LIGHT_COLOR : DARK_COLOR;
+            else if (ROW_7.get(squarePos) || ROW_5.get(squarePos) || ROW_3.get(squarePos) || ROW_1.get(squarePos)) {
+                bgColor = (squarePos % 2 != 0) ? LIGHT_COLOR : DARK_COLOR;
                 squareGraphic.setFill(bgColor);
             }
         }
@@ -233,8 +233,8 @@ public class ChessBoardGrid extends GridPane implements Observer {
 
         public SquareGraphic(final double xPos, final double yPos) {
             super(SQUARE_WIDTH, SQUARE_HEIGHT);
-            setX(xPos); // pos is relative to parent node (i.e. StackPane)
-            setY(yPos); // pos is relative to parent node (i.e. StackPane)
+            setX(xPos); // squarePos is relative to parent node (i.e. StackPane)
+            setY(yPos); // squarePos is relative to parent node (i.e. StackPane)
         }
 
     }

@@ -8,6 +8,7 @@ import engine.players.BlackPlayer;
 import engine.players.Player;
 import engine.players.PlayerColor;
 import engine.players.WhitePlayer;
+import gui.main.StatusBar;
 
 import java.util.*;
 
@@ -48,7 +49,7 @@ public class Board {
     public String toString() {
         final StringBuilder sb = new StringBuilder();
 
-        for (int pos = 0; pos < SQUARES_ON_BOARD; pos++) { // loop through each pos on Board
+        for (int pos = 0; pos < SQUARES_ON_BOARD; pos++) { // loop through each squarePos on Board
             final String square = this.squareList.get(pos).toString(); // overridden in Square class
             sb.append(String.format("%3s", square));
             if ((pos + 1) % SQUARES_ON_ROW == 0) {
@@ -117,16 +118,16 @@ public class Board {
     }
 
     /**
-     * Loop through each pos on Board (0-63) and create Squares (both empty & occupied).
+     * Loop through each squarePos on Board (0-63) and create Squares (both empty & occupied).
      * @param builder TODO: comment this
      * @return list of 64 Squares representing the tiles on a chess board.
      */
     private static List<Square> createSquareList(final BoardBuilder builder) {
         final Square[] squares = new Square[SQUARES_ON_BOARD];
 
-        for (int pos = 0; pos < SQUARES_ON_BOARD; pos++) { // loop through each pos on Board
+        for (int pos = 0; pos < SQUARES_ON_BOARD; pos++) { // loop through each squarePos on Board
             squares[pos] = Square.createSquare(pos, builder.squarePieceMap.get(pos)
-            ); // get Piece associated with pos, and create Square (with occupying Piece)
+            ); // get Piece associated with squarePos, and create Square (with occupying Piece)
         }
 
         return ImmutableList.copyOf(squares);
@@ -183,19 +184,19 @@ public class Board {
         }
 
         /**
-         * @param piece at a certain pos (i.e. a numbered Square from 0-63).
+         * @param piece at a certain squarePos (i.e. a numbered Square from 0-63).
          * @return an instance of this Builder class.
          */
         public BoardBuilder setPiece(final Piece piece) {
-            squarePieceMap.put(piece.getPos(), piece);
+            squarePieceMap.put(piece.getSquarePos(), piece);
             return this;
         }
 
         public BoardBuilder setNextToMove(final PlayerColor color) {
 
-            // TODO: add to GUI status bar
-            if (color == WHITE) System.out.println("White player to move..");
-            if (color == BLACK) System.out.println("Black player to move..");
+            // DISPLAY IN BOTTOM STATUS BAR
+            if (color == WHITE) StatusBar.setStatus("White to move..");
+            if (color == BLACK) StatusBar.setStatus("Black to move..");
 
             nextToMove = color;
             return this;

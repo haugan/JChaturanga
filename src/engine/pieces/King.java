@@ -17,14 +17,14 @@ import static engine.pieces.Piece.PieceType.KING;
 
 public class King extends Piece {
 
-    public static final int[] MOVE_PATTERN = {-9, -8, -7, -1, 9,  8,  7,  1};
+    public static final int[] MOVE_PATTERN = {-9, -8, -7, -1, 1, 7, 8, 9};
 
-    public King(final int position, final PlayerColor color) {
-        super(KING, position, color,true);
+    public King(final int squarePos, final PlayerColor color) {
+        super(KING, color, squarePos,true);
     }
 
-    public King(final int position, final PlayerColor color, final boolean firstMove) {
-        super(KING, position, color, firstMove);
+    public King(final int squarePos, final PlayerColor color, final boolean firstMove) {
+        super(KING, color, squarePos, firstMove);
     }
 
     @Override
@@ -35,11 +35,11 @@ public class King extends Piece {
         final List<Move> legalMoves = new ArrayList<>();
 
         for (final int offset : MOVE_PATTERN) {
-            int possibleMovePosition = this.pos + offset; // get pos (0-63) of potential move destination pos
-            if (isValidSquarePosition(possibleMovePosition)) {
+            int possibleMovePosition = this.squarePos + offset; // get squarePos (0-63) of potential move destination squarePos
+            if (isSquareOnBoard(possibleMovePosition)) {
 
-                if (isOnColumnA(this.pos, offset) ||
-                    isOnColumnH(this.pos, offset)) {
+                if (isOnColumnA(this.squarePos, offset) ||
+                    isOnColumnH(this.squarePos, offset)) {
                     continue; // skip current loop iteration through King's move pattern (i.e. begin next iteration)
                 }
 
@@ -69,12 +69,14 @@ public class King extends Piece {
         return new King(move.getDestPos(), move.getMovedPiece().getColor());
     }
 
-    private static boolean isOnColumnA(final int position, final int offset) {
-        return COLUMN_A[position] && (offset == -9 || offset == -1 || offset == 7);
+    private static boolean isOnColumnA(final int destPos, final int offset) {
+        //return COLUMN_A[position] && (offset == -9 || offset == -1 || offset == 7);
+        return COLUMN_A.get(destPos) && ((offset == -9) || (offset == -1) || (offset == 7));
     }
 
-    private static boolean isOnColumnH(final int position, final int offset) {
-        return COLUMN_H[position] && (offset == -7 || offset == 1 || offset == 9);
+    private static boolean isOnColumnH(final int destPos, final int offset) {
+        //return COLUMN_H[position] && (offset == -7 || offset == 1 || offset == 9);
+        return COLUMN_H.get(destPos) && ((offset == -7) || (offset == 1) || (offset == 9));
     }
 
 }

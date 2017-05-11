@@ -17,14 +17,14 @@ import static engine.pieces.Piece.PieceType.QUEEN;
 
 public class Queen extends Piece {
 
-    public static final int[] MOVE_PATTERN = {-9, -8, -7, -1, 9,  8,  7,  1}; // offset Squares from current pos
+    public static final int[] MOVE_PATTERN = {-9, -8, -7, -1, 9,  8,  7,  1}; // offset Squares from current squarePos
 
-    public Queen(final int position, final PlayerColor color) {
-        super(QUEEN, position, color, true);
+    public Queen(final int squarePos, final PlayerColor color) {
+        super(QUEEN, color, squarePos, true);
     }
 
-    public Queen(final int position, final PlayerColor color, final boolean firstMove) {
-        super(QUEEN, position, color, firstMove);
+    public Queen(final int squarePos, final PlayerColor color, final boolean firstMove) {
+        super(QUEEN, color, squarePos, firstMove);
     }
 
     @Override
@@ -35,17 +35,17 @@ public class Queen extends Piece {
         final List<Move> legalMoves = new ArrayList<>();
 
         for (final int offset : MOVE_PATTERN) {
-            int possibleMovePosition = this.pos; // get pos (0-63) of potential move destination pos
-            while (isValidSquarePosition(possibleMovePosition)) {
+            int possibleMovePosition = this.squarePos; // get squarePos (0-63) of potential move destination squarePos
+            while (isSquareOnBoard(possibleMovePosition)) {
 
-                if (isOnColumnA(pos, offset) || // isValid-rule breaks if Piece is at column A or H
-                    isOnColumnH(pos, offset)) {
+                if (isOnColumnA(squarePos, offset) || // isValid-rule breaks if Piece is at column A or H
+                    isOnColumnH(squarePos, offset)) {
                     break; // out of while-loop (i.e. on to next offset vector value from Queen's move pattern)
                 }
 
                 possibleMovePosition += offset; // add offset vector values from move pattern
 
-                if (isValidSquarePosition(possibleMovePosition)) { // go further only for the values that are in bounds
+                if (isSquareOnBoard(possibleMovePosition)) { // go further only for the values that are in bounds
                     final Square possibleSquareDestination = board.getSquare(possibleMovePosition);
                     if (!possibleSquareDestination.isOccupied()) { // possible Square destination for move is empty
                         legalMoves.add(
@@ -71,15 +71,15 @@ public class Queen extends Piece {
 
     @Override
     public Queen performMove(final Move move) {
-        return new Queen(move.getDestPos(), move.getMovedPiece().getColor());
+        return PieceUtilities.INSTANCE.getMovedQueen(move); // return new Queen to new Board
     }
 
-    private static boolean isOnColumnA(final int position, final int offset) {
-        return COLUMN_A[position] && (offset == -9 || offset == -1 || offset == 7);
+    private static boolean isOnColumnA(final int destPos, final int offset) {
+        return COLUMN_A.get(destPos) && (offset == -9 || offset == -1 || offset == 7);
     }
 
-    private static boolean isOnColumnH(final int position, final int offset) {
-        return COLUMN_H[position] && (offset == -7 || offset == 1 || offset == 9);
+    private static boolean isOnColumnH(final int destPos, final int offset) {
+        return COLUMN_H.get(destPos) && (offset == -7 || offset == 1 || offset == 9);
     }
 
 }

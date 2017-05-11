@@ -19,12 +19,12 @@ public class Knight extends Piece {
 
     private final static int[] MOVE_PATTERN = {-17, -15, -10, -6, 17,  15,  10,  6};
 
-    public Knight(final int position, final PlayerColor color) {
-        super(KNIGHT, position, color, true);
+    public Knight(final int squarePos, final PlayerColor color) {
+        super(KNIGHT, color, squarePos, true);
     }
 
-    public Knight(final int position, final PlayerColor color, final boolean firstMove) {
-        super(KNIGHT, position, color, firstMove);
+    public Knight(final int squarePos, final PlayerColor color, final boolean firstMove) {
+        super(KNIGHT, color, squarePos, firstMove);
     }
 
     @Override
@@ -35,13 +35,13 @@ public class Knight extends Piece {
         final List<Move> legalMoves = new ArrayList<>();
 
         for (final int offset : MOVE_PATTERN) { // loop through all possible moves from the piece's offset pattern
-            final int possibleMovePosition = this.pos + offset; // get pos (0-63) of potential move destination pos
-            if (isValidSquarePosition(possibleMovePosition)) {
+            final int possibleMovePosition = this.squarePos + offset; // get squarePos (0-63) of potential move destination squarePos
+            if (isSquareOnBoard(possibleMovePosition)) {
 
-                if (isOnColumnA(pos, offset) ||
-                    isOnColumnB(pos, offset) ||
-                    isOnColumnG(pos, offset) ||
-                    isOnColumnH(pos, offset)) {
+                if (isOnColumnA(squarePos, offset) ||
+                    isOnColumnB(squarePos, offset) ||
+                    isOnColumnG(squarePos, offset) ||
+                    isOnColumnH(squarePos, offset)) {
                     continue; // skip current loop iteration through Knight's move pattern (i.e. begin next iteration)
                 }
 
@@ -68,23 +68,23 @@ public class Knight extends Piece {
 
     @Override
     public Knight performMove(final Move move) {
-        return new Knight(move.getDestPos(), move.getMovedPiece().getColor());
+        return PieceUtilities.INSTANCE.getMovedKnight(move); // return new Knight to new Board
     }
 
-    private static boolean isOnColumnA(final int position, final int offset) {
-        return COLUMN_A[position] && (offset == -17 || offset == -10 || offset == 6 || offset == 15);
+    private static boolean isOnColumnA(final int destPos, final int offset) {
+        return COLUMN_A.get(destPos) && (offset == -17 || offset == -10 || offset == 6 || offset == 15);
     }
 
-    private static boolean isOnColumnB(final int position, final int offset) {
-        return COLUMN_B[position] && (offset == -10 || offset == 6);
+    private static boolean isOnColumnB(final int destPos, final int offset) {
+        return COLUMN_B.get(destPos) && (offset == -10 || offset == 6);
     }
 
-    private static boolean isOnColumnG(final int position, final int offset) {
-        return COLUMN_G[position] && (offset == 10 || offset == -6);
+    private static boolean isOnColumnG(final int destPos, final int offset) {
+        return COLUMN_G.get(destPos) && (offset == 10 || offset == -6);
     }
 
-    private static boolean isOnColumnH(final int position, final int offset) {
-        return COLUMN_H[position] && (offset == 17 || offset == 10 || offset == -6 || offset == -15);
+    private static boolean isOnColumnH(final int destPos, final int offset) {
+        return COLUMN_H.get(destPos) && (offset == 17 || offset == 10 || offset == -6 || offset == -15);
     }
 
 }

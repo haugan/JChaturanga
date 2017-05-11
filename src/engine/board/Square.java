@@ -10,7 +10,7 @@ import static engine.board.BoardUtilities.SQUARES_ON_BOARD;
 
 public abstract class Square {
 
-    protected final int position; // pos on Board from top-left to bottom-right; 0 to 63.
+    protected final int position; // squarePos on Board from top-left to bottom-right; 0 to 63.
     private static final Map<Integer, EmptySquare> EMPTY_SQUARE_MAP = createEmptySquareMap();
 
     private Square(final int position) {
@@ -35,7 +35,7 @@ public abstract class Square {
     /**
      * @param position of Square from top-left to bottom-right; 0 to 63.
      * @param piece that will occupy Square.
-     * @return Square with attached Piece at given pos.
+     * @return Square with attached Piece at given squarePos.
      */
     public static Square createSquare(final int position, final Piece piece) {
         return

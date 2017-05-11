@@ -1,0 +1,7 @@
+TODO:
+- new game
+- status bar info
+- scores
+- save & load game state
+- change GUI size 
+- change board colors

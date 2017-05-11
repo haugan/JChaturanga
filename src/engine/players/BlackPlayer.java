@@ -60,7 +60,7 @@ public class BlackPlayer extends Player {
                                         this.king,
                                         6,
                                         (Rook) rookSquareShort.getPiece(),
-                                        rookSquareShort.getPosition(), // from pos
+                                        rookSquareShort.getPosition(), // from squarePos
                                         5)          // to destination
                         );
 
@@ -90,7 +90,7 @@ public class BlackPlayer extends Player {
                                         this.king,
                                         2,
                                         (Rook) rookSquareLong.getPiece(),
-                                        rookSquareLong.getPosition(), // from pos
+                                        rookSquareLong.getPosition(), // from squarePos
                                         3)         // to destination
                         );
 

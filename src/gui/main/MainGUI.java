@@ -14,12 +14,14 @@ public class MainGUI extends BorderPane {
     public MainGUI() {
         Group root = new Group();
         MenuTop menu = new MenuTop();
+        StatusBar statusBar = new StatusBar(1);
         ChessBoardGrid grid = new ChessBoardGrid();
 
         menu.addObserver(grid);
 
         setTop(menu.getMenuBar());
         setCenter(grid);
+        setBottom(statusBar);
 
         root.getChildren().add(this);
         gameScene = new Scene(root, Color.DIMGRAY);

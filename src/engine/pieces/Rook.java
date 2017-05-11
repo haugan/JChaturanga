@@ -19,12 +19,12 @@ public class Rook extends Piece {
 
     public static final int[] MOVE_PATTERN = {-8, -1, 8,  1}; // vector values for each horizontal & vertical direction
 
-    public Rook(final int pos, final PlayerColor color) {
-        super(ROOK, pos, color, true);
+    public Rook(final int squarePos, final PlayerColor color) {
+        super(ROOK, color, squarePos,true);
     }
 
-    public Rook(final int position, final PlayerColor color, final boolean firstMove) {
-        super(ROOK, position, color, firstMove);
+    public Rook(final int squarePos, final PlayerColor color, final boolean firstMove) {
+        super(ROOK, color, squarePos, firstMove);
 
     }
 
@@ -36,18 +36,18 @@ public class Rook extends Piece {
         final List<Move> legalMoves = new ArrayList<>();
 
         for (final int offset : MOVE_PATTERN) {
-            int destPos = this.pos; // set pos (0-63) of potential move
+            int destPos = this.squarePos; // set squarePos (0-63) of potential move
 
-            while (isValidSquarePosition(destPos)) {
+            while (isSquareOnBoard(destPos)) {
 
-                if (isOnColumnA(pos, offset) || // isValid-rule breaks if piece is at column A or H
-                    isOnColumnH(pos, offset)) {
+                if (isOnColumnA(squarePos, offset) || // isValid-rule breaks if piece is at column A or H
+                    isOnColumnH(squarePos, offset)) {
                     break; // out of while-loop (i.e. on to next offset vector value from Rook's move pattern)
                 }
 
                 destPos += offset; // add offset vector values from move pattern
 
-                if (isValidSquarePosition(destPos)) { // go further only for the values that are in bounds
+                if (isSquareOnBoard(destPos)) { // go further only for the values that are in bounds
                     final Square destSquare = board.getSquare(destPos); // destination Square for move
 
                     if (!destSquare.isOccupied()) { // possible Square destination for Move is empty
@@ -71,15 +71,15 @@ public class Rook extends Piece {
 
     @Override
     public Rook performMove(final Move move) {
-        return new Rook(move.getDestPos(), move.getMovedPiece().getColor());
+        return PieceUtilities.INSTANCE.getMovedRook(move); // return new Rook to new Board
     }
 
-    private static boolean isOnColumnA(final int position, final int offset) {
-        return COLUMN_A[position] && (offset == -1);
+    private static boolean isOnColumnA(final int destPos, final int offset) {
+        return COLUMN_A.get(destPos) && (offset == -1);
     }
 
-    private static boolean isOnColumnH(final int position, final int offset) {
-        return COLUMN_H[position] && (offset == 1);
+    private static boolean isOnColumnH(final int destPos, final int offset) {
+        return COLUMN_H.get(destPos) && (offset == 1);
     }
 
 }

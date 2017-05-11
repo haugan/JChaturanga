@@ -17,14 +17,14 @@ import static engine.pieces.Piece.PieceType.BISHOP;
 
 public class Bishop extends Piece {
 
-    public static final int[] MOVE_PATTERN = {-9, -7, 9,  7};
+    public static final int[] MOVE_PATTERN = {-9, -7, 7, 9};
 
-    public Bishop(final int position, final PlayerColor color) {
-        super(BISHOP, position, color, true);
+    public Bishop(final int squarePos, final PlayerColor color) {
+        super(BISHOP, color, squarePos, true);
     }
 
-    public Bishop(final int position, final PlayerColor color, final boolean firstMove) {
-        super(BISHOP, position, color, firstMove);
+    public Bishop(final int squarePos, final PlayerColor color, final boolean firstMove) {
+        super(BISHOP, color, squarePos, firstMove);
     }
 
     @Override
@@ -35,30 +35,34 @@ public class Bishop extends Piece {
         final List<Move> legalMoves = new ArrayList<>();
 
         for (final int offset : MOVE_PATTERN) {
-            int possibleMovePosition = this.pos; // // get pos (0-63) of potential move destination pos
-            while (isValidSquarePosition(possibleMovePosition)) {
 
-                if (isOnColumnA(pos, offset) || // isValid-rule breaks if piece is at column A or H
-                    isOnColumnH(pos, offset)) {
+            int destPos = this.squarePos; // // get Square number (0-63) of potential move destination poition
+
+            while (isSquareOnBoard(destPos)) {
+
+                if (isOnColumnA(destPos, offset) || // isValid-rule breaks if piece is at column A or H
+                    isOnColumnH(destPos, offset)) {
                     break; // out of while-loop (i.e. on to next offset vector value from Bishop's move pattern)
                 }
 
-                possibleMovePosition += offset; // add offset vector values from move pattern
+                destPos += offset; // add offset vector values from move pattern
 
-                if (isValidSquarePosition(possibleMovePosition)) { // go further only for the values that are in bounds
-                    final Square possibleSquareDestination = board.getSquare(possibleMovePosition);
-                    if (!possibleSquareDestination.isOccupied()) { // possible square destination for move is empty
-                        legalMoves.add(
-                                new NeutralMove(board, this, possibleMovePosition)
-                        );
+                if (isSquareOnBoard(destPos)) { // go further only for the values that are in bounds
+                    final Square destSquare = board.getSquare(destPos);
+
+                    // NEUTRAL MOVE
+                    if (!destSquare.isOccupied()) { // possible square destination for move is empty
+                        legalMoves.add(new NeutralMove(board, this, destPos));
+
+                    // CAPTURE
                     } else {
-                        final Piece occupyingPiece = possibleSquareDestination.getPiece();
-                        final PlayerColor occupyingColor = occupyingPiece.getColor();
-                        if (this.color != occupyingColor) { // occupying piece is enemy's
-                            legalMoves.add(
-                                    new NeutralCaptureMove(board, this, possibleMovePosition, occupyingPiece)
-                            );
+                        final Piece destPiece = destSquare.getPiece();
+                        final PlayerColor destPieceColor = destPiece.getColor();
+
+                        if (color != destPieceColor) {
+                            legalMoves.add(new NeutralCaptureMove(board, this, destPos, destPiece));
                         }
+
                         break; // no need for further checks, an occupied square was found and Bishops can't "jump"
                     }
                 }
@@ -71,15 +75,15 @@ public class Bishop extends Piece {
 
     @Override
     public Bishop performMove(final Move move) {
-        return new Bishop(move.getDestPos(), move.getMovedPiece().getColor());
+        return PieceUtilities.INSTANCE.getMovedBishop(move); // return new Bishop to new Board
     }
 
-    private static boolean isOnColumnA(final int position, final int offset) {
-        return COLUMN_A[position] && (offset == -9 || offset == 7);
+    private static boolean isOnColumnA(final int destPos, final int offset) {
+        return COLUMN_A.get(destPos) && ((offset == -9) || (offset == 7));
     }
 
-    private static boolean isOnColumnH(final int position, final int offset) {
-        return COLUMN_H[position] && (offset == -7 || offset == 9);
+    private static boolean isOnColumnH(final int destPos, final int offset) {
+        return COLUMN_H.get(destPos) && ((offset == -7) || (offset == 9));
     }
 
 }

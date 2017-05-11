@@ -46,7 +46,7 @@ public abstract class Move {
         int i = 1;
         i = 31 * i + destPos;
         i = 31 * i + movedPiece.hashCode();
-        i = 31 * i + movedPiece.getPos();
+        i = 31 * i + movedPiece.getSquarePos();
         i = i + (firstMove ? 1 : 0);
         return i;
     }
@@ -74,7 +74,7 @@ public abstract class Move {
 
     public int getCurrPos() {
         if (movedPiece != null) {
-            return movedPiece.getPos();
+            return movedPiece.getSquarePos();
         }
         return 0;
     }
@@ -127,7 +127,7 @@ public abstract class Move {
         for (final Move move : board.getCurrPlayer().getLegalMoves()) {
             if(move.getDestPos() == destPos && !equals(move) &&
                     movedPiece.getType().equals(move.getMovedPiece().getType())) {
-                return BoardUtilities.INSTANCE.getPGNFromPos(movedPiece.getPos()).substring(0, 1);
+                return BoardUtilities.INSTANCE.getPGNFromPos(movedPiece.getSquarePos()).substring(0, 1);
             }
         }
         return "";
@@ -446,7 +446,7 @@ public abstract class Move {
 
         @Override
         public String toString() {
-            return BoardUtilities.INSTANCE.getPGNFromPos(this.movedPiece.getPos()).substring(0, 1) + "x" +
+            return BoardUtilities.INSTANCE.getPGNFromPos(this.movedPiece.getSquarePos()).substring(0, 1) + "x" +
                    BoardUtilities.INSTANCE.getPGNFromPos(this.destPos);
         }
 
@@ -537,7 +537,7 @@ public abstract class Move {
                 builder.setPiece(piece);
             }
 
-            builder.setPiece(this.pawn.getPromotedPawn().performMove(this));
+            builder.setPiece(pawn.getPromotionQueen().performMove(this));
             builder.setNextToMove(board.getCurrPlayer().getColor());
             builder.setMoveTransaction(this);
 
@@ -556,7 +556,7 @@ public abstract class Move {
 
         @Override
         public String toString() {
-            return BoardUtilities.INSTANCE.getPGNFromPos(movedPiece.getPos()) + "-" +
+            return BoardUtilities.INSTANCE.getPGNFromPos(movedPiece.getSquarePos()) + "-" +
                    BoardUtilities.INSTANCE.getPGNFromPos(destPos) + "=" + QUEEN;
         }
 
