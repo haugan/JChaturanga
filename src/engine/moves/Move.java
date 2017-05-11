@@ -14,7 +14,7 @@ public abstract class Move {
 
     protected final Board board; // previous Board state (i.e. before Move is performed)
     protected final Piece movedPiece;
-    protected final int destPos; // destination pos of Piece (fter Move)
+    protected final int destPos; // destination position of Piece (fter Move)
     protected final boolean firstMove;
     public static final Move illegalMove = new IllegalMove(); // null Move
 
@@ -53,7 +53,7 @@ public abstract class Move {
 
     /**
      * Overridden from JRE to test for object equality over default reference-only equality test.
-     * A Piece object copy might have changed from the original (e.g. new pos on Board).
+     * A Piece object copy might have changed from the original (e.g. new position on Board).
      * (ref. http://tutorials.jenkov.com/java-collections/hashcode-equals.html)
      * @param obj that is tested for equality.
      * @return true (if the two objects has equal "states", i.e. same variable values, etc.)
@@ -72,7 +72,12 @@ public abstract class Move {
                getMovedPiece() == other.getMovedPiece();
     }
 
-    public int getCurrPos() {return movedPiece.getPos();} // current pos of Piece (before Move)
+    public int getCurrPos() {
+        if (movedPiece != null) {
+            return movedPiece.getPos();
+        }
+        return 0;
+    }
     public int getDestPos() {return destPos;}
     public Board getBoard() {return board;}
     public Piece getMovedPiece() {return movedPiece;}
@@ -245,13 +250,13 @@ public abstract class Move {
     static abstract class CastlingMove extends Move {
 
         protected final Rook castlingRook;
-        protected final int currPosRook; // current pos of Rook (before Castling)
-        protected final int destPosRook; // destination pos of Rook (after Castling)
+        protected final int currPosRook; // current position of Rook (before Castling)
+        protected final int destPosRook; // destination position of Rook (after Castling)
 
         CastlingMove(final Board board, final Piece movedPiece, final int destPos,
                      final Rook castlingRook, final int currPosRook, final int destPosRook) {
 
-            super(board, movedPiece, destPos); // destination pos of King (before Castling)
+            super(board, movedPiece, destPos); // destination position of King (before Castling)
             this.castlingRook = castlingRook;
             this.currPosRook = currPosRook;
             this.destPosRook = destPosRook;
