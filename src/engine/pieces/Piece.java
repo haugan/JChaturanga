@@ -8,29 +8,18 @@ import java.util.Collection;
 
 public abstract class Piece {
 
-    protected final int position;
+    protected final int pos; // numbered position of Piece on Board (Squares top-left to bottom-right; 0-63)
     protected final PlayerColor color;
     private final PieceType type;
-    private boolean firstMove;
+    protected final boolean firstMove;
     private final int hashCode; // keeps cached value (Piece is immutable, needs only calc. hash code once)
 
-    public Piece(final int position, final PlayerColor color, final PieceType type, final boolean firstMove) {
-        this.position = position;
+    public Piece(final int pos, final PlayerColor color, final PieceType type, final boolean firstMove) {
+        this.pos = pos;
         this.color = color;
         this.type = type;
         this.firstMove = firstMove;
         hashCode = createHashCode();
-    }
-
-    /**
-     * @return a unique integer value for each particular (and immutable) Piece.
-     */
-    private int createHashCode() {
-        int hashCode = type.hashCode();
-        hashCode = 31 * hashCode + color.hashCode();
-        hashCode = 31 * hashCode + position;
-        hashCode = 31 * hashCode + (isFirstMove() ? 1 : 0);
-        return hashCode;
     }
 
     /**
@@ -47,40 +36,54 @@ public abstract class Piece {
 
     /**
      * Overridden from JRE to test for object equality over default reference-only equality test.
-     * A Piece object copy might have changed from the original (e.g. new position on Board).
+     * A Piece object copy might have changed from the original (e.g. new pos on Board).
      * (ref. http://tutorials.jenkov.com/java-collections/hashcode-equals.html)
      * @param obj that is tested for equality.
      * @return true (if the two objects has equal "states", i.e. same variable values, etc.)
      */
     @Override
     public boolean equals(final Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Piece)) return false;
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Piece)) {
+            return false;
+        }
+
         final Piece other = (Piece) obj;
-        return
-            this.position == other.getPosition() &&
-            this.color == other.getColor() &&
-            this.type == other.getType() &&
-            this.isFirstMove() == other.isFirstMove(); // objects "contains" the same state
+
+        return pos == other.pos &&
+               color == other.color &&
+               type == other.type &&
+               firstMove == other.firstMove;
     }
 
-    public int getPosition() {return position;}
+    /**
+     * @return a unique integer value for each particular (and immutable) Piece.
+     */
+    private int createHashCode() {
+        int hashCode = type.hashCode();
+        hashCode = 31 * hashCode + color.hashCode();
+        hashCode = 31 * hashCode + pos;
+        hashCode = 31 * hashCode + (isFirstMove() ? 1 : 0);
+        return hashCode;
+    }
 
+    public int getPos() {return pos;}
     public PlayerColor getColor() {return color;}
-
     public PieceType getType() {return type;}
-
     public boolean isFirstMove() {return firstMove;}
-
-    public abstract Collection<Move> calculateLegalMoves(final Board board);
 
     /**
      * The Piece class is immutable (ref. Joshua Block - Effective Java), following best practices.
      * Thus, this method creates a new Piece object with updated positioning from Move object that's passed to it.
-     * @param move object containing new position for Piece, and color of "moving" Player.
-     * @return new Piece with updated position.
+     * @param move object containing new pos for Piece, and color of "moving" Player.
+     * @return new Piece with updated pos.
      */
     public abstract Piece performMove(final Move move);
+    public abstract Collection<Move> calculateLegalMoves(final Board board);
+
 
     // INNER CLASS!
     public enum PieceType {

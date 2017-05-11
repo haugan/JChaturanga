@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import engine.board.Board;
 import engine.board.Square;
 import engine.moves.Move;
-import engine.moves.Move.CaptureMove;
+import engine.moves.Move.NeutralCaptureMove;
 import engine.moves.Move.NeutralMove;
 import engine.players.PlayerColor;
 
@@ -35,11 +35,11 @@ public class King extends Piece {
         final List<Move> legalMoves = new ArrayList<>();
 
         for (final int offset : MOVE_PATTERN) {
-            int possibleMovePosition = this.position + offset; // get position (0-63) of potential move destination position
+            int possibleMovePosition = this.pos + offset; // get pos (0-63) of potential move destination pos
             if (isValidSquarePosition(possibleMovePosition)) {
 
-                if (isOnColumnA(this.position, offset) ||
-                    isOnColumnH(this.position, offset)) {
+                if (isOnColumnA(this.pos, offset) ||
+                    isOnColumnH(this.pos, offset)) {
                     continue; // skip current loop iteration through King's move pattern (i.e. begin next iteration)
                 }
 
@@ -53,7 +53,7 @@ public class King extends Piece {
                     final PlayerColor occupyingColor = occupyingPiece.getColor();
                     if (this.color != occupyingColor) { // occupying piece is enemy's
                         legalMoves.add(
-                                new CaptureMove(board, this, possibleMovePosition, occupyingPiece)
+                                new NeutralCaptureMove(board, this, possibleMovePosition, occupyingPiece)
                         );
                     }
                 }
@@ -66,7 +66,7 @@ public class King extends Piece {
 
     @Override
     public King performMove(final Move move) {
-        return new King(move.getDestinationPosition(), move.getMovedPiece().getColor());
+        return new King(move.getDestPos(), move.getMovedPiece().getColor());
     }
 
     private static boolean isOnColumnA(final int position, final int offset) {

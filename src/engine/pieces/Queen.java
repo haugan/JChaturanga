@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import engine.board.Board;
 import engine.board.Square;
 import engine.moves.Move;
-import engine.moves.Move.CaptureMove;
+import engine.moves.Move.NeutralCaptureMove;
 import engine.moves.Move.NeutralMove;
 import engine.players.PlayerColor;
 
@@ -17,7 +17,7 @@ import static engine.pieces.Piece.PieceType.QUEEN;
 
 public class Queen extends Piece {
 
-    public static final int[] MOVE_PATTERN = {-9, -8, -7, -1, 9,  8,  7,  1}; // offset Squares from current position
+    public static final int[] MOVE_PATTERN = {-9, -8, -7, -1, 9,  8,  7,  1}; // offset Squares from current pos
 
     public Queen(final int position, final PlayerColor color) {
         super(position, color, QUEEN, true);
@@ -35,11 +35,11 @@ public class Queen extends Piece {
         final List<Move> legalMoves = new ArrayList<>();
 
         for (final int offset : MOVE_PATTERN) {
-            int possibleMovePosition = this.position; // get position (0-63) of potential move destination position
+            int possibleMovePosition = this.pos; // get pos (0-63) of potential move destination pos
             while (isValidSquarePosition(possibleMovePosition)) {
 
-                if (isOnColumnA(position, offset) || // isValid-rule breaks if Piece is at column A or H
-                    isOnColumnH(position, offset)) {
+                if (isOnColumnA(pos, offset) || // isValid-rule breaks if Piece is at column A or H
+                    isOnColumnH(pos, offset)) {
                     break; // out of while-loop (i.e. on to next offset vector value from Queen's move pattern)
                 }
 
@@ -56,7 +56,7 @@ public class Queen extends Piece {
                         final PlayerColor occupyingColor = occupyingPiece.getColor();
                         if (this.color != occupyingColor) { // occupying piece is enemy's
                             legalMoves.add(
-                                    new CaptureMove(board, this, possibleMovePosition, occupyingPiece)
+                                    new NeutralCaptureMove(board, this, possibleMovePosition, occupyingPiece)
                             );
                         }
                         break; // no need for further checks, occupied Square was found and Queens can't "jump"
@@ -71,7 +71,7 @@ public class Queen extends Piece {
 
     @Override
     public Queen performMove(final Move move) {
-        return new Queen(move.getDestinationPosition(), move.getMovedPiece().getColor());
+        return new Queen(move.getDestPos(), move.getMovedPiece().getColor());
     }
 
     private static boolean isOnColumnA(final int position, final int offset) {

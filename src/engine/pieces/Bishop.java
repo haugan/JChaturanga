@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import engine.board.Board;
 import engine.board.Square;
 import engine.moves.Move;
+import engine.moves.Move.NeutralCaptureMove;
 import engine.players.PlayerColor;
 
 import java.util.ArrayList;
@@ -11,7 +12,6 @@ import java.util.Collection;
 import java.util.List;
 
 import static engine.board.BoardUtilities.*;
-import static engine.moves.Move.CaptureMove;
 import static engine.moves.Move.NeutralMove;
 import static engine.pieces.Piece.PieceType.BISHOP;
 
@@ -35,11 +35,11 @@ public class Bishop extends Piece {
         final List<Move> legalMoves = new ArrayList<>();
 
         for (final int offset : MOVE_PATTERN) {
-            int possibleMovePosition = this.position; // // get position (0-63) of potential move destination position
+            int possibleMovePosition = this.pos; // // get pos (0-63) of potential move destination pos
             while (isValidSquarePosition(possibleMovePosition)) {
 
-                if (isOnColumnA(position, offset) || // isValid-rule breaks if piece is at column A or H
-                    isOnColumnH(position, offset)) {
+                if (isOnColumnA(pos, offset) || // isValid-rule breaks if piece is at column A or H
+                    isOnColumnH(pos, offset)) {
                     break; // out of while-loop (i.e. on to next offset vector value from Bishop's move pattern)
                 }
 
@@ -56,7 +56,7 @@ public class Bishop extends Piece {
                         final PlayerColor occupyingColor = occupyingPiece.getColor();
                         if (this.color != occupyingColor) { // occupying piece is enemy's
                             legalMoves.add(
-                                    new CaptureMove(board, this, possibleMovePosition, occupyingPiece)
+                                    new NeutralCaptureMove(board, this, possibleMovePosition, occupyingPiece)
                             );
                         }
                         break; // no need for further checks, an occupied square was found and Bishops can't "jump"
@@ -71,7 +71,7 @@ public class Bishop extends Piece {
 
     @Override
     public Bishop performMove(final Move move) {
-        return new Bishop(move.getDestinationPosition(), move.getMovedPiece().getColor());
+        return new Bishop(move.getDestPos(), move.getMovedPiece().getColor());
     }
 
     private static boolean isOnColumnA(final int position, final int offset) {

@@ -60,7 +60,7 @@ public class WhitePlayer extends Player {
                                         king,
                                         62,
                                         (Rook) rookSquareShort.getPiece(),
-                                        rookSquareShort.getPosition(), // from position
+                                        rookSquareShort.getPosition(), // from pos
                                         61)         // to destination
                         );
 
@@ -90,7 +90,7 @@ public class WhitePlayer extends Player {
                                         king,
                                         58,
                                         (Rook) rookSquareLong.getPiece(),
-                                        rookSquareLong.getPosition(), // from position
+                                        rookSquareLong.getPosition(), // from pos
                                         59)        // to destination
                         );
 

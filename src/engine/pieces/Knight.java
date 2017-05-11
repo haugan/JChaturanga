@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import engine.board.Board;
 import engine.board.Square;
 import engine.moves.Move;
+import engine.moves.Move.NeutralCaptureMove;
 import engine.moves.Move.NeutralMove;
 import engine.players.PlayerColor;
 
@@ -12,7 +13,6 @@ import java.util.Collection;
 import java.util.List;
 
 import static engine.board.BoardUtilities.*;
-import static engine.moves.Move.CaptureMove;
 import static engine.pieces.Piece.PieceType.KNIGHT;
 
 public class Knight extends Piece {
@@ -35,13 +35,13 @@ public class Knight extends Piece {
         final List<Move> legalMoves = new ArrayList<>();
 
         for (final int offset : MOVE_PATTERN) { // loop through all possible moves from the piece's offset pattern
-            final int possibleMovePosition = this.position + offset; // get position (0-63) of potential move destination position
+            final int possibleMovePosition = this.pos + offset; // get pos (0-63) of potential move destination pos
             if (isValidSquarePosition(possibleMovePosition)) {
 
-                if (isOnColumnA(position, offset) ||
-                    isOnColumnB(position, offset) ||
-                    isOnColumnG(position, offset) ||
-                    isOnColumnH(position, offset)) {
+                if (isOnColumnA(pos, offset) ||
+                    isOnColumnB(pos, offset) ||
+                    isOnColumnG(pos, offset) ||
+                    isOnColumnH(pos, offset)) {
                     continue; // skip current loop iteration through Knight's move pattern (i.e. begin next iteration)
                 }
 
@@ -55,7 +55,7 @@ public class Knight extends Piece {
                     final PlayerColor occupyingColor = occupyingPiece.getColor();
                     if (this.color != occupyingColor) { // occupying piece is enemy's
                         legalMoves.add(
-                                new CaptureMove(board, this, possibleMovePosition, occupyingPiece)
+                                new NeutralCaptureMove(board, this, possibleMovePosition, occupyingPiece)
                         );
                     }
                 }
@@ -68,7 +68,7 @@ public class Knight extends Piece {
 
     @Override
     public Knight performMove(final Move move) {
-        return new Knight(move.getDestinationPosition(), move.getMovedPiece().getColor());
+        return new Knight(move.getDestPos(), move.getMovedPiece().getColor());
     }
 
     private static boolean isOnColumnA(final int position, final int offset) {

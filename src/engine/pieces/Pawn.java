@@ -20,8 +20,8 @@ import static engine.players.PlayerColor.WHITE;
 
 public class Pawn extends Piece {
 
-    private static final int[] OFFSET_PATTERN = {7, 8, 9, 16}; // .. Squares from current position
-    private int currentPosition; // current numbered Square position of Piece
+    private static final int[] OFFSET_PATTERN = {7, 8, 9, 16}; // .. Squares from current pos
+    private int currentPosition; // current numbered Square pos of Piece
     private PlayerColor color;
 
     public Pawn(final int currentPosition, final PlayerColor color) {
@@ -99,9 +99,13 @@ public class Pawn extends Piece {
         }
     }
 
+    public Piece getPromotedPawn() {
+        return new Queen(pos, color, false);
+    }
+
     @Override
     public Pawn performMove(final Move move) {
-        return new Pawn(move.getDestinationPosition(), move.getMovedPiece().getColor());
+        return new Pawn(move.getDestPos(), move.getMovedPiece().getColor());
     }
 
     @Override

@@ -24,16 +24,20 @@ public class Board {
     private final BlackPlayer blackPlayer;
     private final WhitePlayer whitePlayer;
     private final Player currentPlayer;
+    private final Pawn enPassantPawn;
+    private final Move transactionMove;
 
     private Board(final BoardBuilder builder) {
         squareList = createSquareList(builder);
-        blackPieces = getIngamePieces(squareList, BLACK);
-        whitePieces = getIngamePieces(squareList, WHITE);
-        Collection<Move> blackLegalMoves = getLegalMoves(blackPieces);
-        Collection<Move> whiteLegalMoves = getLegalMoves(whitePieces);
+        blackPieces = getIngamePieces(builder, BLACK);
+        whitePieces = getIngamePieces(builder, WHITE);
+        Collection<Move> blackLegalMoves = getLegalMovesCurrentPlayer(blackPieces);
+        Collection<Move> whiteLegalMoves = getLegalMovesCurrentPlayer(whitePieces);
         blackPlayer = new BlackPlayer(this, blackLegalMoves, whiteLegalMoves);
         whitePlayer = new WhitePlayer(this, whiteLegalMoves, blackLegalMoves);
         currentPlayer = builder.nextToMove.setPlayer(whitePlayer, blackPlayer);
+        enPassantPawn = builder.enPassantPawn; // TODO: implement
+        transactionMove = (builder.transactionMove != null) ? builder.transactionMove : Move.illegalMove;
     }
 
     /**
@@ -44,7 +48,7 @@ public class Board {
     public String toString() {
         final StringBuilder sb = new StringBuilder();
 
-        for (int pos = 0; pos < SQUARES_ON_BOARD; pos++) { // loop through each position on Board
+        for (int pos = 0; pos < SQUARES_ON_BOARD; pos++) { // loop through each pos on Board
             final String square = this.squareList.get(pos).toString(); // overridden in Square class
             sb.append(String.format("%3s", square));
             if ((pos + 1) % SQUARES_ON_ROW == 0) {
@@ -54,6 +58,16 @@ public class Board {
 
         return sb.toString();
     }
+
+    public Collection<Piece> getBlackPieces() {return blackPieces;}
+    public Collection<Piece> getWhitePieces() {return whitePieces;}
+    public Player getBlackPlayer() {return blackPlayer;}
+    public Player getWhitePlayer() {return whitePlayer;}
+    public Player getCurrPlayer() {return currentPlayer;}
+    public Pawn getEnPassantPawn() {return enPassantPawn;}
+    public Move getTransactionMove() {return transactionMove;}
+    public Square getSquare(final int position) {return squareList.get(position);}
+    public List<Square> getSquareList() {return squareList;}
 
     /**
      * Create the initial chess board positioning.
@@ -103,52 +117,47 @@ public class Board {
     }
 
     /**
-     * Loop through each position on Board (0-63) and create Squares (both empty & occupied).
+     * Loop through each pos on Board (0-63) and create Squares (both empty & occupied).
      * @param builder TODO: comment this
      * @return list of 64 Squares representing the tiles on a chess board.
      */
     private static List<Square> createSquareList(final BoardBuilder builder) {
         final Square[] squares = new Square[SQUARES_ON_BOARD];
 
-        for (int pos = 0; pos < SQUARES_ON_BOARD; pos++) { // loop through each position on Board
-            squares[pos] = Square.createSquare(
-                    pos, builder.squarePieceMap.get(pos)
-            ); // get Piece associated with position, and create Square (with occupying Piece)
+        for (int pos = 0; pos < SQUARES_ON_BOARD; pos++) { // loop through each pos on Board
+            squares[pos] = Square.createSquare(pos, builder.squarePieceMap.get(pos)
+            ); // get Piece associated with pos, and create Square (with occupying Piece)
         }
 
         return ImmutableList.copyOf(squares);
     }
 
-
-    public Square getSquare(final int position) {return squareList.get(position);}
-
-    /**
-     * @param squares from the list of Squares, representing the chess board tiles.
-     * @param color of player's Pieces, either black or white.
-     * @return list of active "in-game" Pieces for each Player on the Board.
-     */
-    private static Collection<Piece> getIngamePieces(final List<Square> squares, final PlayerColor color) {
-        final List<Piece> ingamePieces = new ArrayList<>();
-        for (final Square s : squares) {
-            if (s.isOccupied()) {
-                final Piece occupyingPiece = s.getPiece();
-                if (occupyingPiece.getColor() == color) {
-                    ingamePieces.add(occupyingPiece);
-                }
+    private static Collection<Piece> getIngamePieces(final BoardBuilder builder, final PlayerColor color) {
+        final List<Piece> ingamePieces = new ArrayList<>(16);
+        for (final Piece p : builder.squarePieceMap.values()) {
+            if (p.getColor() == color) {
+                ingamePieces.add(p);
             }
         }
         return ImmutableList.copyOf(ingamePieces);
     }
 
-    private Collection<Move> getLegalMoves(final Collection<Piece> pieces) {
-        final List<Move> legalMoves = new ArrayList<>();
+    public Iterable<Piece> getAllPieces() {
+        return Iterables.unmodifiableIterable(
+                Iterables.concat(blackPieces,
+                                 whitePieces)
+        );
+    }
+
+    public Collection<Move> getLegalMovesCurrentPlayer(final Collection<Piece> pieces) {
+        final List<Move> legalMoves = new ArrayList<>(35);
         for (final Piece p : pieces) {
             legalMoves.addAll(p.calculateLegalMoves(this));
         }
         return ImmutableList.copyOf(legalMoves);
     }
 
-    public Iterable<Move> getBothPlayersLegalMoves() {
+    public Iterable<Move> getLegalMovesBothPlayers() {
         return Iterables.unmodifiableIterable(
                 Iterables.concat(
                         whitePlayer.getLegalMoves(),
@@ -157,31 +166,28 @@ public class Board {
         );
     }
 
-    public Collection<Piece> getBlackPieces() {return blackPieces;}
-    public Collection<Piece> getWhitePieces() {return whitePieces;}
-    public Player getBlackPlayer() {return blackPlayer;}
-    public Player getWhitePlayer() {return whitePlayer;}
-    public Player getCurrentPlayer() {return currentPlayer;}
-
     // INNER CLASS!
     public static class BoardBuilder {
 
         private final Map<Integer, Piece> squarePieceMap; // holding Squares "ID" (0-63) and their occupying Piece
         private PlayerColor nextToMove;
         private Pawn enPassantPawn; // holds Pawn that could be captured "en passant" by opposing Player
+        private Move transactionMove;
 
         public BoardBuilder() {
-            squarePieceMap = new HashMap<>();
+            squarePieceMap = new HashMap<>(33, 1.0f);
         }
 
-        public Board createBoard() {return new Board(this);}
+        public Board createBoard() {
+            return new Board(this);
+        }
 
         /**
-         * @param piece at a certain position (i.e. a numbered Square from 0-63).
+         * @param piece at a certain pos (i.e. a numbered Square from 0-63).
          * @return an instance of this Builder class.
          */
         public BoardBuilder setPiece(final Piece piece) {
-            squarePieceMap.put(piece.getPosition(), piece);
+            squarePieceMap.put(piece.getPos(), piece);
             return this;
         }
 
@@ -190,7 +196,16 @@ public class Board {
             return this;
         }
 
-        public void setEnPassantPawn(final Pawn enPassantPawn) {this.enPassantPawn = enPassantPawn;}
+        public BoardBuilder setEnPassantPawn(final Pawn enPassantPawn) {
+            this.enPassantPawn = enPassantPawn;
+            return this;
+        }
+
+        public BoardBuilder setMoveTransaction(final Move transactionMove) {
+            this.transactionMove = transactionMove;
+            return this;
+        }
+
     }
 
 }

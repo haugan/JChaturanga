@@ -11,8 +11,8 @@ public class JChaturanga extends Application {
     public static Board board;
 
     public static void main(String[] args) {
-        board = Board.initializeBoard(); // TODO: find usages of this board (if any)
-        System.out.println(board); // print ASCII board
+        //board = Board.initializeBoard(); // TODO: find usages of this board (if any)
+        //System.out.println(board); // print ASCII board
         launch(args); // run JavaFX application thread
     }
 

@@ -42,7 +42,7 @@ public abstract class Player {
           which in turn causes the Board class to instantiate more Players, and so on..
         */
         inCheck = !Player.getCaptureMovesOnSquare(
-                king.getPosition(), legalMovesOpponent
+                king.getPos(), legalMovesOpponent
         ).isEmpty(); // current Player is in check if returned list contains legal Moves
     }
 
@@ -55,17 +55,17 @@ public abstract class Player {
     public Collection<Move> getLegalMoves() {return legalMoves;}
 
     /**
-     * Check if a given Square position is capturable by any legal Moves from opposing Player.
+     * Check if a given Square pos is capturable by any legal Moves from opposing Player.
      * @param position of Square to check if any legal capture move can reach.
      * @param legalMovesOpponent collected by Move type.
-     * @return list of Moves that overlaps their destination position with current Player's Piece-position.
+     * @return list of Moves that overlaps their destination pos with current Player's Piece-pos.
      */
     protected static Collection<Move> getCaptureMovesOnSquare(final int position,
                                                               final Collection<Move> legalMovesOpponent) {
 
         final List<Move> captureMovesOpponent = new ArrayList<>();
         for (final Move m : legalMovesOpponent) {
-            if (position == m.getDestinationPosition()) {
+            if (position == m.getDestPos()) {
                 captureMovesOpponent.add(m);
             }
         }
@@ -101,11 +101,11 @@ public abstract class Player {
         final Board newBoard = move.perform(); // new Board switches current Player to "next color"
 
         // MOVE LEAVES PLAYER IN CHECK
-        Collection<Move> checkMoves = getCaptureMovesOnSquare(newBoard.getCurrentPlayer()
+        Collection<Move> checkMoves = getCaptureMovesOnSquare(newBoard.getCurrPlayer()
                                                                       .getOpponent()
                                                                       .getKing()
-                                                                      .getPosition(),
-                                                              newBoard.getCurrentPlayer()
+                                                                      .getPos(),
+                                                              newBoard.getCurrPlayer()
                                                                       .getLegalMoves()
         ); // get check attempts against opponent's King (after move, current player is the opponent)
 
@@ -125,7 +125,7 @@ public abstract class Player {
     public boolean isCastled() {return false;}
 
     /**
-     * Check if Player can escape a checked position, by performing legal Moves on a separate Board.
+     * Check if Player can escape a checked pos, by performing legal Moves on a separate Board.
      * @return true (if any of the Player's current legal Moves removes him from check by opponent).
      */
     protected boolean canEscape() {

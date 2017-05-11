@@ -146,7 +146,7 @@ public class ChessBoardGrid extends GridPane implements Observer {
                         final Move move = createMove(board,
                                                      squareSelected.getPosition(), squareDestination.getPosition());
 
-                        final MoveTransaction transaction = board.getCurrentPlayer().performMove(move);
+                        final MoveTransaction transaction = board.getCurrPlayer().performMove(move);
 
                         if (transaction.getResult() == COMPLETED) {
                             board = transaction.getBoard();
@@ -166,7 +166,7 @@ public class ChessBoardGrid extends GridPane implements Observer {
             getChildren().clear(); // clear Board before drawing new
 
             squareGraphic = new SquareGraphic(xPos, yPos); // background graphics of "chess square"
-            setSquareColors(position); // relative to Square's position on board (alternating light & dark)
+            setSquareColors(position); // relative to Square's pos on board (alternating light & dark)
 
             if (board.getSquare(position).isOccupied()) { // Square contains Piece
                 String color = board.getSquare(position).getPiece().getColor().toString();
@@ -220,9 +220,9 @@ public class ChessBoardGrid extends GridPane implements Observer {
         }
 
         private void highlightLegalMoves(final Board board, final int position) {
-            if (pieceSelected.getColor() == board.getCurrentPlayer().getColor()) {
+            if (pieceSelected.getColor() == board.getCurrPlayer().getColor()) {
                 for (final Move legalMove : pieceSelected.calculateLegalMoves(board)) {
-                    int destinationPosition = legalMove.getDestinationPosition();
+                    int destinationPosition = legalMove.getDestPos();
                     if (destinationPosition == position) {
                         bgColor = HIGHLIGHT_COLOR;
                         squareGraphic.setFill(bgColor);
@@ -238,8 +238,8 @@ public class ChessBoardGrid extends GridPane implements Observer {
 
         public SquareGraphic(final double xPos, final double yPos) {
             super(SQUARE_WIDTH, SQUARE_HEIGHT);
-            setX(xPos); // position is relative to parent node (i.e. StackPane)
-            setY(yPos); // position is relative to parent node (i.e. StackPane)
+            setX(xPos); // pos is relative to parent node (i.e. StackPane)
+            setY(yPos); // pos is relative to parent node (i.e. StackPane)
         }
 
     }
