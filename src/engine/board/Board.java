@@ -38,7 +38,7 @@ public class Board {
         whitePlayer = new WhitePlayer(this, whiteLegalMoves, blackLegalMoves);
         currPlayer = builder.nextToMove.setPlayer(whitePlayer, blackPlayer);
         enPassantPawn = builder.enPassantPawn; // TODO: implement
-        transactionMove = (builder.transactionMove != null) ? builder.transactionMove : Move.illegalMove;
+        transactionMove = (builder.transactionMove != null) ? builder.transactionMove : Move.ILLEGAL_MOVE;
     }
 
     /**

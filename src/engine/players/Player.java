@@ -93,7 +93,7 @@ public abstract class Player {
 
         // MOVE IS NOT LEGAL
         if (!isAttemptingLegalMove(move)) {
-            return new MoveTransaction(board, move, CANCELED
+            return new MoveTransaction(board, board, move, CANCELED
             ); // return same Board as before attempted Move (i.e. current positioning)
         }
 
@@ -110,15 +110,18 @@ public abstract class Player {
         ); // get check attempts against opponent's King (after move, current player is the opponent)
 
         if (!checkMoves.isEmpty()) {
-            return new MoveTransaction(board, move, PLAYER_CHECKED);
+            return new MoveTransaction(board, board, move, PLAYER_CHECKED);
         } // if list isn't empty, the King is checked
 
         // MOVE IS LEGAL
-        return new MoveTransaction(newBoard, move, COMPLETED); // return new Board with new positions
+        return new MoveTransaction(board, newBoard, move, COMPLETED); // return new Board with new positions
+    }
+
+    public MoveTransaction undoMove(final Move move) {
+        return new MoveTransaction(board, move.undo(), move, COMPLETED);
     }
 
     public boolean isAttemptingLegalMove(final Move attemptedMove) {return legalMoves.contains(attemptedMove);}
-
     public boolean isChecked() {return inCheck;}
     public boolean isCheckmated() {return inCheck && !canEscape();}
     public boolean isStalemated() {return !inCheck && !canEscape();}

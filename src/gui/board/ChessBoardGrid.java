@@ -3,6 +3,7 @@ package gui.board;
 import engine.board.Board;
 import engine.board.Square;
 import engine.moves.Move;
+import engine.moves.MoveLog;
 import engine.moves.MoveTransaction;
 import engine.pieces.Piece;
 import gui.menu.MenuChoices;
@@ -17,7 +18,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import static engine.board.BoardUtilities.*;
 import static engine.moves.Move.MoveFactory.createMove;
@@ -43,6 +47,7 @@ public class ChessBoardGrid extends GridPane implements Observer {
     private Square squareSelected;
     private Square squareDestination;
     private Piece pieceSelected;
+    private Move lastMove;
 
     public ChessBoardGrid() {
         setPrefSize(BOARD_WIDTH, BOARD_HEIGHT);
@@ -58,6 +63,15 @@ public class ChessBoardGrid extends GridPane implements Observer {
                 break;
             case SHOW_LEGAL_MOVES:
                 legalMovesEnabled = !legalMovesEnabled;
+                break;
+            case UNDO_MOVE:
+                undoMove();
+                break;
+            case REDO_MOVE:
+                redoMove();
+                break;
+            case RESET_MOVES:
+                resetMoves();
                 break;
         }
     }
@@ -89,6 +103,27 @@ public class ChessBoardGrid extends GridPane implements Observer {
         squareSelected = null;
         squareDestination = null;
         pieceSelected = null;
+    }
+
+    private void undoMove() {
+        lastMove = MoveLog.getMoveList().remove(MoveLog.getMoveList().size() - 1);
+        board = board.getCurrPlayer().undoMove(lastMove).getNewBoard();
+        redrawStacks(board);
+    }
+
+    private void redoMove() {
+        if (lastMove != null) {
+            board = board.getCurrPlayer().performMove(lastMove).getNewBoard();
+            redrawStacks(board);
+        }
+    }
+
+    private void resetMoves() {
+        for(int i = MoveLog.getMoveList().size() - 1; i >= 0; i--) {
+            final Move lastMove = MoveLog.getMoveList().remove(MoveLog.getMoveList().size() - 1);
+            board = board.getCurrPlayer().undoMove(lastMove).getNewBoard();
+        }
+        redrawStacks(board);
     }
 
     // INNER CLASS!
@@ -145,7 +180,7 @@ public class ChessBoardGrid extends GridPane implements Observer {
                         final MoveTransaction transaction = board.getCurrPlayer().performMove(move);
 
                         if (transaction.getResult() == COMPLETED) {
-                            board = transaction.getBoard();
+                            board = transaction.getNewBoard();
                         }
 
                         clearUserSelections(); // "reset" selected Square and Piece
@@ -170,7 +205,6 @@ public class ChessBoardGrid extends GridPane implements Observer {
                 getChildren().addAll(squareGraphic, pieceGraphic); // add "double node" to StackPane (i.e. occupied)
             } else {
 
-                // TODO: refactor to method
                 if (legalMovesEnabled && pieceSelected != null) {
                     highlightLegalMoves(board, position);
                 }

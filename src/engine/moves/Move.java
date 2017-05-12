@@ -16,7 +16,7 @@ public abstract class Move {
     protected final Piece movedPiece;
     protected final int destPos; // destination position of Piece (fter Move)
     protected final boolean firstMove;
-    public static final Move illegalMove = new IllegalMove(); // null Move
+    public static final Move ILLEGAL_MOVE = new IllegalMove(); // null Move
 
     private Move(final Board board, final Piece movedPiece, final int destPos) {
         this.board = board;
@@ -111,6 +111,11 @@ public abstract class Move {
         builder.setPiece(movedPiece.performMove(this));
         builder.setNextToMove(oppPlayer.getColor());
         builder.setMoveTransaction(this);
+
+        // TODO: add move to move log for undo / redo / reset
+        MoveLog.getInstance().addMove(this);
+        System.out.println("Move log: " + MoveLog.getMoveList().toString());
+
         return builder.createBoard();
     }
 
@@ -148,7 +153,7 @@ public abstract class Move {
                 }
             }
 
-            return illegalMove;
+            return ILLEGAL_MOVE;
         }
 
     }

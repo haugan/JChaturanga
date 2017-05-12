@@ -17,7 +17,9 @@ import static engine.pieces.Piece.PieceType.KING;
 
 public class King extends Piece {
 
-    public static final int[] MOVE_PATTERN = {-9, -8, -7, -1, 1, 7, 8, 9};
+    private static final int[] MOVE_PATTERN = {-9, -8, -7, -1, 1, 7, 8, 9};
+
+
 
     public King(final int squarePos, final PlayerColor color) {
         super(KING, color, squarePos,true);
@@ -35,26 +37,23 @@ public class King extends Piece {
         final List<Move> legalMoves = new ArrayList<>();
 
         for (final int offset : MOVE_PATTERN) {
-            int possibleMovePosition = this.squarePos + offset; // get squarePos (0-63) of potential move destination squarePos
-            if (isSquareOnBoard(possibleMovePosition)) {
 
-                if (isOnColumnA(this.squarePos, offset) ||
-                    isOnColumnH(this.squarePos, offset)) {
-                    continue; // skip current loop iteration through King's move pattern (i.e. begin next iteration)
-                }
+            if (isOnColumnA(squarePos, offset) ||
+                isOnColumnH(squarePos, offset)) {
+                continue; // skip current loop iteration through King's move pattern (i.e. begin next iteration)
+            }
 
-                final Square possibleSquareDestination = board.getSquare(possibleMovePosition);
-                if (!possibleSquareDestination.isOccupied()) { // possible square destination for move is empty
-                    legalMoves.add(
-                            new NeutralMove(board, this, possibleMovePosition)
-                    );
+            int destPos = squarePos + offset; // get squarePos (0-63) of potential move destination squarePos
+            if (isSquareOnBoard(destPos)) {
+
+                final Square destSquare = board.getSquare(destPos);
+                if (!destSquare.isOccupied()) { // possible square destination for move is empty
+                    legalMoves.add(new NeutralMove(board, this, destPos));
                 } else {
-                    final Piece occupyingPiece = possibleSquareDestination.getPiece();
-                    final PlayerColor occupyingColor = occupyingPiece.getColor();
-                    if (this.color != occupyingColor) { // occupying piece is enemy's
-                        legalMoves.add(
-                                new NeutralCaptureMove(board, this, possibleMovePosition, occupyingPiece)
-                        );
+                    final Piece destPiece = destSquare.getPiece();
+                    final PlayerColor destColor = destPiece.getColor();
+                    if (color != destColor) { // occupying piece is enemy's
+                        legalMoves.add(new NeutralCaptureMove(board, this, destPos, destPiece));
                     }
                 }
 

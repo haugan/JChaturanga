@@ -8,8 +8,7 @@ import javafx.scene.input.KeyCombination;
 
 import java.util.Observable;
 
-import static gui.menu.MenuChoices.SHOW_LEGAL_MOVES;
-import static gui.menu.MenuChoices.SHOW_TOOLTIP;
+import static gui.menu.MenuChoices.*;
 
 public class MenuTop extends Observable {
 
@@ -20,27 +19,42 @@ public class MenuTop extends Observable {
 
         // FILE MENU
         Menu fileM = new Menu("File");
-        MenuItem newMI = new MenuItem("New");
-        MenuItem saveMI = new MenuItem("Save PGN...");
-        MenuItem loadMI = new MenuItem("Load PGN...");
-        MenuItem exitMI = new MenuItem("Exit");
+        MenuItem newMI = new MenuItem("New game");
         newMI.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.SHORTCUT_DOWN));
-        saveMI.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN));
-        loadMI.setAccelerator(new KeyCodeCombination(KeyCode.L, KeyCombination.SHORTCUT_DOWN));
+        newMI.setOnAction(e -> {
+            System.out.println("Starting new game..");
+            setChanged();
+            notifyObservers(RESET_MOVES);
+            clearChanged();
+        });
+        MenuItem exitMI = new MenuItem("Exit");
         exitMI.setAccelerator(new KeyCodeCombination(KeyCode.E, KeyCombination.SHORTCUT_DOWN));
         exitMI.setOnAction(e -> {
             System.out.println("Exiting application..");
             Platform.exit();
         });
         fileM.setMnemonicParsing(true);
-        fileM.getItems().addAll(newMI, saveMI, loadMI, new SeparatorMenuItem(), exitMI);
+        fileM.getItems().addAll(newMI, new SeparatorMenuItem(), exitMI);
 
         // EDIT MENU
         Menu editM = new Menu("Edit");
         MenuItem undoMI = new MenuItem("Undo move");
-        MenuItem redoMI = new MenuItem("Redo move");
         undoMI.setAccelerator(new KeyCodeCombination(KeyCode.Z, KeyCombination.SHORTCUT_DOWN));
+        undoMI.setOnAction(e -> {
+            System.out.println("Undoing move..");
+            setChanged();
+            notifyObservers(UNDO_MOVE);
+            clearChanged();
+        });
+
+        MenuItem redoMI = new MenuItem("Redo move");
         redoMI.setAccelerator(new KeyCodeCombination(KeyCode.R, KeyCombination.SHORTCUT_DOWN));
+        redoMI.setOnAction(e -> {
+            System.out.println("Redoing move..");
+            setChanged();
+            notifyObservers(REDO_MOVE);
+            clearChanged();
+        });
         editM.setMnemonicParsing(true);
         editM.getItems().addAll(undoMI, redoMI);
 
